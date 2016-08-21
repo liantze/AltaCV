@@ -14,11 +14,11 @@ I _knew_ I had to do something about it. And so AltaCV was born.
 
 ## Samples
 
-This is how the re-created résumé looks like ([view on Overleaf](https://www.overleaf.com/read/gtqfpbwncfvp)):
+This is how the re-created résumé looks like ([view/open on Overleaf](https://www.overleaf.com/read/gtqfpbwncfvp)):
 
 <img src="mmayer.png" alt="Marissa Mayer's résumé, re-created with AltaCV" width="600px">
 
-Though if you're creating your own CV/résumé, you'd probably prefer using the basic template ([view on Overleaf](https://www.overleaf.com/read/trgqjpwnmtgv)):
+Though if you're creating your own CV/résumé, you'd probably prefer using the basic template ([view/open on Overleaf](https://www.overleaf.com/read/trgqjpwnmtgv)):
 
 <img src="sample.png" alt="sample barebones AltaCV template" width="600px">
 
