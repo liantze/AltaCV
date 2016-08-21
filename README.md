@@ -18,7 +18,7 @@ This is how the re-created résumé looks like ([view on Overleaf](https://www.o
 
 <img src="mmayer.png" alt="Marissa Mayer's résumé, re-created with AltaCV" width="600px">
 
-Though if you're creating your own CV/résumé, you'd probably prefer using the basic template ([view on Overeaf](https://www.overleaf.com/read/trgqjpwnmtgv)):
+Though if you're creating your own CV/résumé, you'd probably prefer using the basic template ([view on Overleaf](https://www.overleaf.com/read/trgqjpwnmtgv)):
 
 <img src="sample.png" alt="sample barebones AltaCV template" width="600px">
 
