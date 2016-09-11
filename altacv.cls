@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.0, 19 August 2016) written by
+% This is altacv.cls (v1.0.1, 11 September 2016) written by
 % LianTze Lim (liantze@gmail.com).
 % 
 %% It may be distributed and/or modified under the
@@ -11,7 +11,7 @@
 %% version 2003/12/01 or later.
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2016/08/19 AltaCV, yet another alternative class for a résumé/curriculum vitae.]
+\ProvidesClass{altacv}[2016/09/11 AltaCV, yet another alternative class for a résumé/curriculum vitae.]
 \LoadClass{article}
 
 \RequirePackage[margin=2cm]{geometry}
@@ -118,7 +118,7 @@
 }
 
 \newcommand{\cvtag}[1]{%
-  \tikz\node[draw=body!30,rounded corners,inner xsep=1ex,inner ysep =0.75ex,text height=1.5ex,text depth=.25ex]{#1};
+  \tikz[baseline]\node[anchor=base,draw=body!30,rounded corners,inner xsep=1ex,inner ysep =0.75ex,text height=1.5ex,text depth=.25ex]{#1};
 }
 
 \newcommand{\cvskill}[2]{%
