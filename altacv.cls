@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.0.1, 11 September 2016) written by
+% This is altacv.cls (v1.1, 21 November 2016) written by
 % LianTze Lim (liantze@gmail.com).
-% 
+%
 %% It may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
 %% of this license or (at your option) any later version.
@@ -11,11 +11,29 @@
 %% version 2003/12/01 or later.
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2016/09/11 AltaCV, yet another alternative class for a résumé/curriculum vitae.]
+\ProvidesClass{altacv}[2016/11/21 AltaCV v1.1, yet another alternative class for a résumé/curriculum vitae.]
+
+%% v1.1: Optionally load academicons
+\newif\if@academicons
+\DeclareOption{academicons}{\@academiconstrue}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\ProcessOptions\relax
+
 \LoadClass{article}
 
 \RequirePackage[margin=2cm]{geometry}
-\RequirePackage{fontawesome,academicons}
+\RequirePackage{fontawesome}
+
+%% v1.1: Optionally load academicons
+\if@academicons
+  %% Patch to make academicons compilable with XeLaTeX
+  \ExplSyntaxOn
+  \msg_redirect_name:nnn { fontspec } { font-not-found } { none }
+  \ExplSyntaxOff
+  \RequirePackage{academicons}
+  \newfontfamily{\AI}{academicons.ttf}
+\fi
+
 \RequirePackage{xcolor}
 
 \colorlet{accent}{blue!70!black}
@@ -89,7 +107,7 @@
 
 \newcommand{\cvsection}[2][]{%
   \bigskip%
-  \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}% 
+  \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
   {\color{heading}\LARGE\bfseries\MakeUppercase{#2}}\\[-1ex]%
   {\color{heading}\rule{\linewidth}{2pt}\par}\medskip
 }

@@ -1,6 +1,6 @@
 # AltaCV, yet another LaTeX CV/Résumé class
 
-v1.0.1 (11 September 2016), by LianTze Lim (liantze@gmail.com)
+v1.1 (21 November 2016), by LianTze Lim (liantze@gmail.com)
 
 (Thanks to [Nur](https://github.com/nurh) for the name.)
 
@@ -26,5 +26,6 @@ Though if you're creating your own CV/résumé, you'd probably prefer using the 
 ## Requirements and Compilation
 
 * AltaCV uses [`fontawesome`](http://www.ctan.org/pkg/fontawesome) and [`academicons`](http://www.ctan.org/pkg/academicons); they're included in both TeX Live 2016 and MikTeX 2.9.
+* Loading `academicons` is optional: enable it by adding the `academicons` option to `\documentclass`.
+* Can now be compiled with both XeLaTeX and LuaLaTeX! However if you're using `academicons`, and the doc compiles but the icons don't show up in the output PDF, try compiling with LuaLaTeX instead.
 * The samples here use the [Lato](http://www.latofonts.com/lato-free-fonts/) font.
-* LuaLaTeX compilation is **strongly** recommended. If you want to use XeLaTeX instead, that's fine, but you may need to make sure `academicons.ttf` is installed _on_ your operating system, not just available in your `TEXMF` tree with the `academicons` LaTeX package.
