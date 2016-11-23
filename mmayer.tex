@@ -12,14 +12,19 @@
 %% version 2003/12/01 or later.
 %%%%%%%%%%%%%%%%
 
+%% If you want to use \orcid or the
+%% academicons icons, add "academicons"
+%% to the \documentclass options.
+%% Then compile with XeLaTeX or LuaLaTeX.
+% \documentclass[10pt,a4paper,academicons]{altacv}
 \documentclass[10pt,a4paper]{altacv}
 
 %% AltaCV uses the fontawesome and academicon fonts
 %% and packages.
 %% See texdoc.net/pkg/fontawecome and http://texdoc.net/pkg/academicons for full list of symbols.
-%%
+%% When using the "academicons" option,
 %% Compile with LuaLaTeX for best results. If you
-%% want to use XeLaTeX, you'll need to install
+%% want to use XeLaTeX, you may need to install
 %% Academicons.ttf in your operating system's font %% folder.
 
 
@@ -27,7 +32,14 @@
 \geometry{left=1cm,right=9cm,marginparwidth=6.8cm,marginparsep=1.2cm,top=1cm,bottom=1cm}
 
 % Change the font if you want to.
-\setmainfont{Lato}
+
+% If using pdflatex:
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[default]{lato}
+
+% If using xelatex or lualatex:
+% \setmainfont{Lato}
 
 % Change the colours if you want to
 \definecolor{VividPurple}{HTML}{3E0097}
