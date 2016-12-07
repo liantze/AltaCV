@@ -1,6 +1,7 @@
 %%%%%%%%%%%%%%%%%
 % This is an sample CV template created using altacv.cls
-% (v1.1, 21 November 2016) written by LianTze Lim (liantze@gmail.com). Now compiles with both XeLaTeX and LuaLaTeX.
+% (v1.1.1, 7 December 2016) written by LianTze Lim (liantze@gmail.com). 
+%% Now compiles with both XeLaTeX and LuaLaTeX.
 %
 %% It may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
@@ -18,7 +19,8 @@
 %% icons, make sure you have the academicons
 %% option here, and compile with XeLaTeX
 %% or LuaLaTeX.
-\documentclass[10pt,a4paper,academicons]{altacv}
+% \documentclass[10pt,a4paper,academicons]{altacv}
+\documentclass[10pt,a4paper]{altacv}
 
 %% AltaCV uses the fontawesome and academicon fonts
 %% and packages.
@@ -36,12 +38,12 @@
 % Change the font if you want to.
 
 % If using pdflatex:
-% \usepackage[utf8]{inputenc}
-% \usepackage[T1]{fontenc}
-% \usepackage[default]{lato}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[default]{lato}
 
 % If using xelatex or lualatex:
-\setmainfont{Lato}
+% \setmainfont{Lato}
 
 % Change the colours if you want to
 \definecolor{Mulberry}{HTML}{72243D}
@@ -75,7 +77,8 @@
   \twitter{@twitterhandle}
   \linkedin{linkedin.com/in/yourid}
   \github{github.com/yourid}
-  \orcid{orcid.org/0000-0000-0000-0000}
+  %% You MUST add the academicons option to \documentclass, then compile with LuaLaTeX or XeLaTeX, if you want to use \orcid or other academicons commands.
+%   \orcid{orcid.org/0000-0000-0000-0000}
 }
 
 %% Make the header extend all the way to the right, if you want. Extend the right margin by 8cm (=6.8cm marginparwidth + 1.2cm marginparsep)
@@ -87,7 +90,7 @@
 %% You can always just use \marginpar{...} if you do
 %% not need to align the top of the contents to any
 %% \cvsection title in the "main" bar.
-\cvsection[page1sidebar]{Experience}
+\cvsection[sample-p1sidebar]{Experience}
 
 \cvevent{Job Title 1}{Company 1}{Month 20XX -- Ongoing}{Location}
 \begin{itemize}

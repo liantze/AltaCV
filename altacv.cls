@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.1, 21 November 2016) written by
+% This is altacv.cls (v1.1.1, 7 December 2016) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -11,15 +11,15 @@
 %% version 2003/12/01 or later.
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2016/11/21 AltaCV v1.1, yet another alternative class for a résumé/curriculum vitae.]
+\ProvidesClass{altacv}[2016/12/07 AltaCV v1.1.1, yet another alternative class for a résumé/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 \newif\if@academicons
 \DeclareOption{academicons}{\@academiconstrue}
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{extarticle}}
 \ProcessOptions\relax
 
-\LoadClass{article}
+\LoadClass{extarticle}
 
 \RequirePackage[margin=2cm]{geometry}
 \RequirePackage{fontawesome}
@@ -211,7 +211,7 @@
 
 \newenvironment{cvcolumn}[1]{\begin{minipage}[t]{#1}\raggedright}{\end{minipage}}
 
-\RequirePackage[backend=biber,style=authoryear]{biblatex}
+\RequirePackage[backend=biber,style=authoryear,sorting=ydnt]{biblatex}
 \defbibheading{pubtype}{\cvsubsection{#1}}
 \renewcommand{\bibsetup}{\vspace*{-\baselineskip}}
 \AtEveryBibitem{\makebox[\bibhang][l]{\itemmarker}}
