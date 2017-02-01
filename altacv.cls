@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.1.1, 7 December 2016) written by
+% This is altacv.cls (v1.1.2, 1 February 2017) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -11,7 +11,7 @@
 %% version 2003/12/01 or later.
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2016/12/07 AltaCV v1.1.1, yet another alternative class for a résumé/curriculum vitae.]
+\ProvidesClass{altacv}[2017/02/01 AltaCV v1.1.2, yet another alternative class for a résumé/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 \newif\if@academicons
@@ -216,6 +216,14 @@
 \renewcommand{\bibsetup}{\vspace*{-\baselineskip}}
 \AtEveryBibitem{\makebox[\bibhang][l]{\itemmarker}}
 \setlength{\bibitemsep}{0.25\baselineskip}
+
+% v1.1.2: make it easier to add a sidebar aligned with top of next page
+\RequirePackage{afterpage}
+\newcommand{\addsidebar}[2][]{\marginpar{%
+  \ifstrequal{#1}{}{}{\vspace*{#1}}%
+  \input{#2}}%
+}
+\newcommand{\addnextpagesidebar}[2][]{\afterpage{\addsidebar[#1]{#2}}}
 
 \AtBeginDocument{%
   \pagestyle{empty}

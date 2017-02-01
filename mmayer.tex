@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is an example CV created using altacv.cls (v1.1.1, 7 December 2016) written by
+% This is an example CV created using altacv.cls (v1.1.2, 1 February 2017) written by
 % LianTze Lim (liantze@gmail.com), based on the
 % Cv created by BusinessInsider at http://www.businessinsider.my/a-sample-resume-for-marissa-mayer-2016-7/?r=US&IR=T
 %
@@ -86,7 +86,7 @@
 %% You can always just use \marginpar{...} if you do
 %% not need to align the top of the contents to any
 %% \cvsection title in the "main" bar.
-\cvsection[mmayer-p1sidebar]{Experience}
+\cvsection[page1sidebar]{Experience}
 
 \cvevent{President \& CEO}{Yahoo!}{July 2012 -- Ongoing}{Sunnyvale, CA}
 \begin{itemize}
@@ -156,5 +156,13 @@
 \divider
 
 \printbibliography[heading=pubtype,title={\printinfo{\faGroup}{Conference Proceedings}},type=inproceedings]
+
+%% If the NEXT page doesn't start with a \cvsection but you'd
+%% still like to add a sidebar, then use this command on THIS
+%% page to add it. The optional argument lets you pull up the
+%% sidebar a bit so that it looks aligned with the top of the
+%% main column.
+% \addnextpagesidebar[-1ex]{page3sidebar}
+
 
 \end{document}
