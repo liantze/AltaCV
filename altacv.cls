@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.1.2, 1 February 2017) written by
+% This is altacv.cls (v1.1.3, 30 April 2017) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -11,11 +11,14 @@
 %% version 2003/12/01 or later.
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2017/02/01 AltaCV v1.1.2, yet another alternative class for a résumé/curriculum vitae.]
+\ProvidesClass{altacv}[2017/04/30 AltaCV v1.1.3, yet another alternative class for a résumé/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 \newif\if@academicons
 \DeclareOption{academicons}{\@academiconstrue}
+%% v1.1.3: Choice of round/square photo
+\newif\if@normalphoto
+\DeclareOption{normalphoto}{\@normalphototrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extarticle}}
 \ProcessOptions\relax
 
@@ -59,6 +62,10 @@
 \setlength{\parindent}{0pt}
 \newcommand{\divider}{\textcolor{body!30}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}\medskip}
 
+\newenvironment{fullwidth}{%
+  \begin{adjustwidth}{}{\dimexpr-\marginparwidth-\marginparsep\relax}}
+  {\end{adjustwidth}}
+
 \newcommand{\emailsymbol}{\faAt}
 \newcommand{\phonesymbol}{\faPhone}
 \newcommand{\homepagesymbol}{\faChain}
@@ -98,7 +105,11 @@
     \ifdef{\@photodiameter}{%
     \end{minipage}\hfill%
     \begin{minipage}{\@photodiameter}
-    \tikz\path[fill overzoom image={\@photo}]circle[radius=0.5\linewidth];
+    \if@normalphoto
+      \includegraphics[width=\linewidth]{\@photo}
+    \else
+      \tikz\path[fill overzoom image={\@photo}]circle[radius=0.5\linewidth];
+    \fi%
     \end{minipage}\par}{}%
   \endgroup\medskip
 }
@@ -212,6 +223,10 @@
 \newenvironment{cvcolumn}[1]{\begin{minipage}[t]{#1}\raggedright}{\end{minipage}}
 
 \RequirePackage[backend=biber,style=authoryear,sorting=ydnt]{biblatex}
+%% For removing numbering entirely when using a numeric style
+% \setlength{\bibhang}{1em}
+% \DeclareFieldFormat{labelnumberwidth}{\makebox[\bibhang][l]{\itemmarker}}
+% \setlength{\biblabelsep}{0pt}
 \defbibheading{pubtype}{\cvsubsection{#1}}
 \renewcommand{\bibsetup}{\vspace*{-\baselineskip}}
 \AtEveryBibitem{\makebox[\bibhang][l]{\itemmarker}}

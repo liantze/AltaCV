@@ -19,6 +19,10 @@
 %% option here, and compile with XeLaTeX
 %% or LuaLaTeX.
 % \documentclass[10pt,a4paper,academicons]{altacv}
+
+%% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
+% \documentclass[10pt,a4paper,normalphoto]{altacv}
+
 \documentclass[10pt,a4paper]{altacv}
 
 %% AltaCV uses the fontawesome and academicon fonts
@@ -80,10 +84,10 @@
 %   \orcid{orcid.org/0000-0000-0000-0000}
 }
 
-%% Make the header extend all the way to the right, if you want. Extend the right margin by 8cm (=6.8cm marginparwidth + 1.2cm marginparsep)
-\begin{adjustwidth}{}{-8cm}
+%% Make the header extend all the way to the right, if you want.
+\begin{fullwidth}
 \makecvheader
-\end{adjustwidth}
+\end{fullwidth}
 
 %% Provide the file name containing the sidebar contents as an optional parameter to \cvsection.
 %% You can always just use \marginpar{...} if you do

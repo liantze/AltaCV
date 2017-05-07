@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is an example CV created using altacv.cls (v1.1.2, 1 February 2017) written by
+% This is an example CV created using altacv.cls (v1.1.3, 30 April 2017) written by
 % LianTze Lim (liantze@gmail.com), based on the
 % Cv created by BusinessInsider at http://www.businessinsider.my/a-sample-resume-for-marissa-mayer-2016-7/?r=US&IR=T
 %
@@ -17,6 +17,10 @@
 %% to the \documentclass options.
 %% Then compile with XeLaTeX or LuaLaTeX.
 % \documentclass[10pt,a4paper,academicons]{altacv}
+
+%% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
+% \documentclass[10pt,a4paper,normalphoto]{altacv}
+
 \documentclass[10pt,a4paper]{altacv}
 
 %% AltaCV uses the fontawesome and academicon fonts
@@ -77,10 +81,10 @@
 %   \orcid{orcid.org/0000-0000-0000-0000} % Obviously making this up too. If you want to use this field (and also other academicons symbols), add "academicons" option to \documentclass{altacv}
 }
 
-%% Make the header extend all the way to the right, if you want. Extend the right margin by 8cm (=6.8cm marginparwidth + 1.2cm marginparsep)
-\begin{adjustwidth}{}{-8cm}
+%% Make the header extend all the way to the right, if you want.
+\begin{fullwidth}
 \makecvheader
-\end{adjustwidth}
+\end{fullwidth}
 
 %% Provide the file name containing the sidebar contents as an optional parameter to \cvsection.
 %% You can always just use \marginpar{...} if you do
