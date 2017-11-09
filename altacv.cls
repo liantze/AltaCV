@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%
 % This is altacv.cls (v1.1.3, 30 April 2017) written by
 % LianTze Lim (liantze@gmail.com).
-%
+% 
 %% It may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
 %% of this license or (at your option) any later version.
@@ -73,6 +73,8 @@
 \newcommand{\linkedinsymbol}{\faLinkedin}
 \newcommand{\twittersymbol}{\faTwitter}
 \newcommand{\githubsymbol}{\faGithub}
+\newcommand{\bitbucketsymbol}{\faBitbucket}
+\newcommand{\bitbucketsquaresymbol}{\faBitbucketSquare}
 \newcommand{\orcidsymbol}{\aiOrcid}
 \newcommand{\mailsymbol}{\faEnvelope}
 
@@ -88,6 +90,8 @@
 \newcommand{\twitter}[1]{\printinfo{\twittersymbol}{#1}}
 \newcommand{\linkedin}[1]{\printinfo{\linkedinsymbol}{#1}}
 \newcommand{\github}[1]{\printinfo{\githubsymbol}{#1}}
+\newcommand{\bitbucket}[1]{\printinfo{\bitbucketsymbol}{#1}}
+\newcommand{\bitbucketsquare}[1]{\printinfo{\bitbucketsquaresymbol}{#1}}
 \newcommand{\orcid}[1]{\printinfo{\orcidsymbol}{#1}}
 \newcommand{\location}[1]{\printinfo{\locationsymbol}{#1}}
 
@@ -118,7 +122,7 @@
 
 \newcommand{\cvsection}[2][]{%
   \bigskip%
-  \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
+  \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}% 
   {\color{heading}\LARGE\bfseries\MakeUppercase{#2}}\\[-1ex]%
   {\color{heading}\rule{\linewidth}{2pt}\par}\medskip
 }
@@ -245,3 +249,4 @@
   \color{body}
   \raggedright
 }
+
