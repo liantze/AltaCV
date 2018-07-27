@@ -159,13 +159,13 @@
 }
 
 % Adapted from @Jake's answer at http://tex.stackexchange.com/a/82729/226
-\newcommand{\wheelchart}[3]{%
+\newcommand{\wheelchart}[4][0]{%
     \begingroup\centering
-    \def\innerradius{#2}%
-    \def\outerradius{#1}%
+    \def\innerradius{#3}%
+    \def\outerradius{#2}%
     % Calculate total
     \pgfmathsetmacro{\totalnum}{0}%
-    \foreach \value/\colour/\name in {#3} {%
+    \foreach \value/\colour/\name in {#4} {%
         \pgfmathparse{\value+\totalnum}%
         \global\let\totalnum=\pgfmathresult%
     }%
@@ -174,13 +174,14 @@
       % Calculate the thickness and the middle line of the wheel
       \pgfmathsetmacro{\wheelwidth}{\outerradius-\innerradius}
       \pgfmathsetmacro{\midradius}{(\outerradius+\innerradius)/2}
+      \pgfmathsetmacro{\totalrot}{-90 + #1}
 
       % Rotate so we start from the top
-      \begin{scope}[rotate=-90]
+      \begin{scope}[rotate=\totalrot]
 
       % Loop through each value set. \cumnum keeps track of where we are in the wheel
       \pgfmathsetmacro{\cumnum}{0}
-      \foreach \value/\width/\colour/\name in {#3} {
+      \foreach \value/\width/\colour/\name in {#4} {
             \pgfmathsetmacro{\newcumnum}{\cumnum + \value/\totalnum*360}
 
             % Calculate the percent value

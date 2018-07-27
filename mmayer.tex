@@ -135,12 +135,13 @@
 % Adapted from @Jake's answer from http://tex.stackexchange.com/a/82729/226
 % \wheelchart{outer radius}{inner radius}{
 % comma-separated list of value/text width/color/detail}
+% Some ad-hoc tweaking to adjust the labels so that they don't overlap
 \wheelchart{1.5cm}{0.5cm}{%
-  10/13em/accent!30/Sleeping \& dreaming about work,
+  10/10em/accent!30/Sleeping \& dreaming about work,
   25/9em/accent!60/Public resolving issues with Yahoo!\ investors,
-  5/12em/accent!10/New York \& San Francisco Ballet Jawbone board member,
-  20/12em/accent!40/Spending time with family,
-  5/8em/accent!20/Business development for Yahoo!\ after the Verizon acquisition,
+  5/13em/accent!10/\footnotesize\\[1ex]New York \& San Francisco Ballet Jawbone board member,
+  20/15em/accent!40/Spending time with family,
+  5/8em/accent!20/\footnotesize Business development for Yahoo!\ after the Verizon acquisition,
   30/9em/accent/Showing Yahoo!\ employees that their work has meaning,
   5/8em/accent!20/Baking cupcakes
 }
