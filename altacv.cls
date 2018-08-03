@@ -218,7 +218,7 @@
 \newcommand{\cvref}[3]{%
   \smallskip
   \textcolor{emphasis}{\textbf{#1}}\par
-  \begin{description}[font=\color{accent},style=multiline,leftmargin=1.25em]
+  \begin{description}[font=\color{accent},style=multiline,leftmargin=1.35em]
   \item[\normalfont\emailsymbol] #2
   \item[\small\normalfont\mailsymbol] #3
   \end{description}
