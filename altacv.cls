@@ -22,13 +22,15 @@
 \newif\if@normalphoto
 \DeclareOption{normalphoto}{\@normalphototrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extarticle}}
+\newif\if@raggedtwoe
+\DeclareOption{ragged2e}{\@raggedtwoetrue}
 \ProcessOptions\relax
 
 \LoadClass{extarticle}
 
 \RequirePackage[margin=2cm]{geometry}
 \RequirePackage{fontawesome}
-\RequirePackage{ragged2e}
+
 
 %% v1.1: Optionally load academicons
 \if@academicons
@@ -38,6 +40,10 @@
   \ExplSyntaxOff
   \RequirePackage{academicons}
   \newfontfamily{\AI}{academicons.ttf}
+\fi
+
+\if@raggedtwoe
+  \RequirePackage[newcommands]{ragged2e}
 \fi
 
 \RequirePackage{xcolor}
@@ -99,7 +105,7 @@
 \newcommand{\makecvheader}{%
   \begingroup
     \ifdef{\@photodiameter}{\begin{minipage}{\dimexpr\linewidth-\@photodiameter-2em}}{}%
-    \RaggedRight\color{emphasis}%
+    \raggedright\color{emphasis}%
     {\Huge\bfseries\MakeUppercase{\@name}\par}
     \medskip
     {\large\bfseries\color{accent}\@tagline\par}
@@ -121,7 +127,7 @@
 
 \newcommand{\cvsection}[2][]{%
   \bigskip%
-  \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\RaggedRight\input{#1}}}%
+  \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
   {\color{heading}\LARGE\bfseries\MakeUppercase{#2}}\\[-1ex]%
   {\color{heading}\rule{\linewidth}{2pt}\par}\medskip
 }
@@ -144,7 +150,7 @@
 }
 
 \newcommand{\cvachievement}[3]{%
-  \begin{tabularx}{\linewidth}{@{}p{2em} @{\hspace{1ex}} >{\RaggedRight\arraybackslash}X@{}}
+  \begin{tabularx}{\linewidth}{@{}p{2em} @{\hspace{1ex}} >{\raggedright\arraybackslash}X@{}}
   \multirow{2}{*}{\Large\color{accent}#1} & \bfseries\textcolor{emphasis}{#2}\\
   & #3
   \end{tabularx}%
@@ -226,7 +232,7 @@
 %   \medskip
 }
 
-\newenvironment{cvcolumn}[1]{\begin{minipage}[t]{#1}\RaggedRight}{\end{minipage}}
+\newenvironment{cvcolumn}[1]{\begin{minipage}[t]{#1}\raggedright}{\end{minipage}}
 
 \RequirePackage[backend=biber,style=authoryear,sorting=ydnt]{biblatex}
 %% For removing numbering entirely when using a numeric style
@@ -249,5 +255,5 @@
 \AtBeginDocument{%
   \pagestyle{empty}
   \color{body}
-  \RaggedRight
+  \raggedright
 }
