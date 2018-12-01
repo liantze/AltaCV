@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.1.4, 27 July 2018) written by
+% This is altacv.cls (v1.1.5, 1 December 2018) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -9,11 +9,18 @@
 %%    http://www.latex-project.org/lppl.txt
 %% and version 1.3 or later is part of all distributions of LaTeX
 %% version 2003/12/01 or later.
+%%
+%%
+% Contributions:
+% - https://github.com/akreuzer Added ragged2e option (5 Nov 2018)
+% - https://github.com/stefanogermano Fixed bad boxes and undefined font shape (July 2018)
+% - https://github.com/foohyfooh Fixed blank spaces in \cvevent and bad link in README.md (June 2018)
+
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 %% v1.4: Detect TL2018 to handle accented characters in class information
 \@ifl@t@r\fmtversion{2018/04/01}{\UseRawInputEncoding}{}
-\ProvidesClass{altacv}[2018/07/27 AltaCV v1.1.4, yet another alternative class for a résumé/curriculum vitae.]
+\ProvidesClass{altacv}[2018/12/01 AltaCV v1.1.5, yet another alternative class for a résumé/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 \newif\if@academicons
@@ -30,16 +37,57 @@
 
 \RequirePackage[margin=2cm]{geometry}
 \RequirePackage{fontawesome}
+\RequirePackage{ifxetex,ifluatex}
+\RequirePackage{scrlfile}
 
+%% v1.1.5: added for convenience
+\newif\ifxetexorluatex
+\ifxetex
+  \xetexorluatextrue
+\else
+  \ifluatex
+    \xetexorluatextrue
+  \else
+    \xetexorluatexfalse
+  \fi
+\fi
 
 %% v1.1: Optionally load academicons
+%% v1.1.5: Handle different versions of academicons
 \if@academicons
-  %% Patch to make academicons compilable with XeLaTeX
-  \ExplSyntaxOn
-  \msg_redirect_name:nnn { fontspec } { font-not-found } { none }
-  \ExplSyntaxOff
-  \RequirePackage{academicons}
-  \newfontfamily{\AI}{academicons.ttf}
+  \ifxetexorluatex
+    \RequirePackage{fontspec}
+    %% academicons in TL2018 doesn't require
+    %% Academicons to be installed in OS fonts
+    %% so can be loaded directly
+    \@ifl@t@r\fmtversion{2018/04/01}{%
+      \RequirePackage{academicons}
+    }{%
+      % TL2017
+      \@ifl@t@r\fmtversion{2017/04/01}{%
+        \@ifpackagelater{academicons}{2018/03/01}{%
+          \RequirePackage{academicons}
+        }{%
+          \let\ori@newfontfamily\newfontfamily%
+          \renewcommand{\newfontfamily}[2]{}
+          \RequirePackage{academicons}
+          \let\newfontfamily\ori@newfontfamily
+          \newfontfamily{\AI}{academicons.ttf}
+        }
+      }{% TL2016 requires the package to be loaded before
+        % the version can be checked. Only added because
+        % Overleaf v1 still runs TL2016; will be removed
+        % when v1 is completely retired.
+          \let\ori@newfontfamily\newfontfamily%
+          \renewcommand{\newfontfamily}[2]{}
+          \RequirePackage{academicons}
+          \let\newfontfamily\ori@newfontfamily
+          \newfontfamily{\AI}{academicons.ttf}
+      }
+    }
+  \else
+    \ClassError{AltaCV}{academicons unsupported by latex or pdflatex. Please compile with xelatex or lualatex}{Please compile with xelatex or lualatex to use the academicons option}
+  \fi
 \fi
 
 \if@raggedtwoe

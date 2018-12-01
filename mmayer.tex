@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is an example CV created using altacv.cls (v1.1.4, 27 July 2018) written by
+% This is an example CV created using altacv.cls (v1.1.5, 1 December 2018) written by
 % LianTze Lim (liantze@gmail.com), based on the
 % Cv created by BusinessInsider at http://www.businessinsider.my/a-sample-resume-for-marissa-mayer-2016-7/?r=US&IR=T
 %
@@ -12,38 +12,35 @@
 %% version 2003/12/01 or later.
 %%%%%%%%%%%%%%%%
 
-%% If you want to use \orcid or the
-%% academicons icons, add "academicons"
-%% to the \documentclass options.
-%% Then compile with XeLaTeX or LuaLaTeX.
+%% If you are using \orcid or academicons
+%% icons, make sure you have the academicons
+%% option here, and compile with XeLaTeX
+%% or LuaLaTeX.
 % \documentclass[10pt,a4paper,academicons]{altacv}
 
 %% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
 % \documentclass[10pt,a4paper,normalphoto]{altacv}
 
-\documentclass[10pt,a4paper]{altacv}
+\documentclass[10pt,a4paper,ragged2e]{altacv}
 
 %% AltaCV uses the fontawesome and academicon fonts
 %% and packages.
-%% See texdoc.net/pkg/fontawecome and http://texdoc.net/pkg/academicons for full list of symbols.
-%% When using the "academicons" option,
-%% Compile with LuaLaTeX for best results. If you
-%% want to use XeLaTeX, you may need to install
-%% Academicons.ttf in your operating system's font %% folder.
-
+%% See texdoc.net/pkg/fontawecome and http://texdoc.net/pkg/academicons for full list of symbols. You MUST compile with XeLaTeX or LuaLaTeX if you want to use academicons.
 
 % Change the page layout if you need to
-\geometry{left=1cm,right=9cm,marginparwidth=6.8cm,marginparsep=1.2cm,top=1cm,bottom=1cm}
+\geometry{left=1cm,right=9cm,marginparwidth=6.8cm,marginparsep=1.2cm,top=1.25cm,bottom=1.25cm}
 
-% Change the font if you want to.
-
-% If using pdflatex:
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[default]{lato}
-
-% If using xelatex or lualatex:
-% \setmainfont{Lato}
+% Change the font if you want to, depending on whether
+% you're using pdflatex or xelatex/lualatex
+\ifxetexorluatex
+  % If using xelatex or lualatex:
+  \setmainfont{Lato}
+\else
+  % If using pdflatex:
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage[default]{lato}
+\fi
 
 % Change the colours if you want to
 \definecolor{VividPurple}{HTML}{3E0097}
