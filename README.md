@@ -32,3 +32,28 @@ Though if you're creating your own CV/résumé, you'd probably prefer using the 
 * Can now be compiled with pdflatex, XeLaTeX and LuaLaTeX!
 * However if you're using `academicons`, you _must_ use either XeLaTeX or LuaLaTeX. If the doc then compiles but the icons don't show up in the output PDF, try compiling with LuaLaTeX instead.
 * The samples here use the [Lato](http://www.latofonts.com/lato-free-fonts/) font.
+
+
+## Docker & Make
+Change the variable *FILE_NAME* in the Makefile file with your file name. The default name is *sample*.
+
+1. Run the command `make build` to create the docker image. It takes a few minutes.
+
+  Now you have two options.
+
+  2.a. Generate *sample.pdf* by running the command `make run`.
+
+  2.b. Generate *sample.pdf* by running the command `make bash` and then inside the docker container, `make pdf`.
+
+#### Commands
+`$ make build`: build the docker image
+
+`$ make bash`: run the docker container in the terminal
+
+`$ make run`: run the docker container and generate *sample.pdf*
+
+`$ make pdf`: generate *sample.pdf*
+
+`$ make clean`: remove all aux files
+
+`$ make clean-all`: remove all aux and *.pdf* files
