@@ -39,11 +39,11 @@ Change the variable *FILE_NAME* in the Makefile file with your file name. The de
 
 1. Run the command `make build` to create the docker image. It takes a few minutes.
 
-  Now you have two options.
+    Now you have two options.
 
-  2.a. Generate *sample.pdf* by running the command `make run`.
+    2.a. Generate *sample.pdf* by running the command `make run`.
 
-  2.b. Generate *sample.pdf* by running the command `make bash` and then inside the docker container, `make pdf`.
+    2.b. Generate *sample.pdf* by running the command `make bash` and then inside the docker container, `make pdf`.
 
 #### Commands
 `$ make build`: build the docker image
