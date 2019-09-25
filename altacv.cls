@@ -132,6 +132,8 @@
 \newcommand{\githubsymbol}{\faGithub}
 \newcommand{\orcidsymbol}{\aiOrcid}
 \newcommand{\mailsymbol}{\faEnvelope}
+\newcommand{\scholar}[1]{\printinfo{\faGraduationCap}{\href{https://scholar.google.com/citations?user=#1}{#1}}}
+\newcommand{\xing}[1]{\printinfo{\faXingSquare}{\href{https://www.xing.com/profile/#1}{#1}}}
 
 \newcommand{\printinfo}[2]{\mbox{\textcolor{accent}{\normalfont #1}\hspace{0.5em}#2\hspace{2em}}}
 
