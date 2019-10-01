@@ -144,7 +144,7 @@
 \newcommand{\mailaddress}[1]{\printinfo{\mailsymbol}{#1}}
 \newcommand{\phone}[1]{\printinfo{\phonesymbol}{#1}}
 \newcommand{\homepage}[1]{\printinfo{\homepagesymbol}{#1}}
-\newcommand{\twitter}[1]{\printinfo{\twittersymbol}{#1}}
+\newcommand{\twitter}[1]{\printinfo{\twittersymbol}{\href{https://twitter.com/}{#1}}}
 \newcommand{\orcid}[1]{\printinfo{\orcidsymbol}{#1}}
 \newcommand{\location}[1]{\printinfo{\locationsymbol}{#1}}
 \newcommand{\linkedin}[1]{\printinfo{\linkedinsymbol}{\href{https://linkedin.com/in/#1}{#1}}}
