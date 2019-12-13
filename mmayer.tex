@@ -21,7 +21,10 @@
 %% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
 % \documentclass[10pt,a4paper,normalphoto]{altacv}
 
-\documentclass[10pt,a4paper,ragged2e]{altacv}
+%% Use the "leftphoto" option if you also want a left picture in your cv 
+ \documentclass[10pt,a4paper,normalphoto,leftphoto]{altacv}
+
+%\documentclass[10pt,a4paper,ragged2e]{altacv}
 
 %% AltaCV uses the fontawesome and academicon fonts
 %% and packages.
@@ -62,8 +65,14 @@
 \begin{document}
 \name{Marissa Mayer}
 \tagline{Business Woman \& Proud Geek}
+
 % Cropped to square from https://en.wikipedia.org/wiki/Marissa_Mayer#/media/File:Marissa_Mayer_May_2014_(cropped).jpg, CC-BY 2.0
-\photo{2.5cm}{mmayer-wikipedia-cc-by-2_0}
+%% If you have the "leftphoto" option you need to have this photoL defined, otherwise you'll have compilation errors
+\photoL{2.8cm}{mmayer-wikipedia-cc-by-2_0}
+
+% From https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Yahoo%21_%282019%29.svg/320px-Yahoo%21_%282019%29.svg.png, CC-BY 2.0
+\photo{3.3cm}{320px-Yahoo!_(2019)}
+
 \personalinfo{%
   % Not all of these are required!
   % You can add your own with \printinfo{symbol}{detail}

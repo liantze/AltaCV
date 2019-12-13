@@ -23,7 +23,10 @@
 %% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
 % \documentclass[10pt,a4paper,normalphoto]{altacv}
 
-\documentclass[10pt,a4paper,ragged2e]{altacv}
+%% Use the "leftphoto" option if you also want a left picture in your cv 
+\documentclass[10pt,a4paper,normalphoto,leftphoto]{altacv}
+
+%\documentclass[10pt,a4paper,ragged2e]{altacv}
 
 %% AltaCV uses the fontawesome and academicon fonts
 %% and packages.
@@ -64,6 +67,7 @@
 \begin{document}
 \name{Your Name Here}
 \tagline{Your Position or Tagline Here}
+\photoL{2.8cm}{Globe_High}
 \photo{2.8cm}{Globe_High}
 \personalinfo{%
   % Not all of these are required!

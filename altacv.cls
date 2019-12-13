@@ -28,6 +28,9 @@
 %% v1.1.3: Choice of round/square photo
 \newif\if@normalphoto
 \DeclareOption{normalphoto}{\@normalphototrue}
+%% New feature: Option for Left profile photo
+\newif\if@leftphoto
+\DeclareOption{leftphoto}{\@leftphototrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extarticle}}
 \newif\if@raggedtwoe
 \DeclareOption{ragged2e}{\@raggedtwoetrue}
@@ -138,6 +141,7 @@
 \newcommand{\name}[1]{\def\@name{#1}}
 \newcommand{\tagline}[1]{\def\@tagline{#1}}
 \newcommand{\photo}[2]{\def\@photo{#2}\def\@photodiameter{#1}}
+\newcommand{\photoL}[2]{\def\@photoL{#2}\def\@photoLdiameter{#1}}
 \newcommand{\email}[1]{\printinfo{\emailsymbol}{#1}}
 \newcommand{\mailaddress}[1]{\printinfo{\mailsymbol}{#1}}
 \newcommand{\phone}[1]{\printinfo{\phonesymbol}{#1}}
@@ -151,24 +155,55 @@
 \newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
 
 \newcommand{\makecvheader}{%
-  \begingroup
-    \ifdef{\@photodiameter}{\begin{minipage}{\dimexpr\linewidth-\@photodiameter-2em}}{}%
-    \raggedright\color{emphasis}%
-    {\Huge\bfseries\MakeUppercase{\@name}\par}
-    \medskip
-    {\large\bfseries\color{accent}\@tagline\par}
-    \medskip
-    {\footnotesize\bfseries\@personalinfo\par}
-    \ifdef{\@photodiameter}{%
-    \end{minipage}\hfill%
-    \begin{minipage}{\@photodiameter}
-    \if@normalphoto
-      \includegraphics[width=\linewidth]{\@photo}
-    \else
-      \tikz\path[fill overzoom image={\@photo}]circle[radius=0.5\linewidth];
-    \fi%
-    \end{minipage}\par}{}%
-  \endgroup\medskip
+  \if@leftphoto
+    \begingroup
+        \ifdef{\@photodiameter}{
+        \ifdef{\@photoLdiameter}{
+        \begin{minipage}{\@photoLdiameter}
+        \if@normalphoto
+          \includegraphics[width=\linewidth]{\@photoL}
+        \else
+          \tikz\path[fill overzoom image={\@photoL}]circle[radius=0.5\linewidth];
+        \fi%
+        \end{minipage}
+        \quad
+        \begin{minipage}{\dimexpr\linewidth-\@photodiameter-\@photoLdiameter-2em}}}{}%document
+        \raggedright\color{emphasis}%
+        {\Huge\bfseries\MakeUppercase{\@name}\par}
+        \medskip
+        {\large\bfseries\color{accent}\@tagline\par}
+        \medskip
+        {\footnotesize\bfseries\@personalinfo\par}
+        \ifdef{\@photodiameter}{%
+        \end{minipage}\hfill%
+        \begin{minipage}{\@photodiameter}
+        \if@normalphoto
+          \includegraphics[width=\linewidth]{\@photo}
+        \else
+          \tikz\path[fill overzoom image={\@photo}]circle[radius=0.5\linewidth];
+        \fi%
+        \end{minipage}\par}{}%
+    \endgroup\medskip
+  \else
+    \begingroup
+        \ifdef{\@photodiameter}{\begin{minipage}{\dimexpr\linewidth-\@photodiameter-2em}}{}%
+        \raggedright\color{emphasis}%
+        {\Huge\bfseries\MakeUppercase{\@name}\par}
+        \medskip
+        {\large\bfseries\color{accent}\@tagline\par}
+        \medskip
+        {\footnotesize\bfseries\@personalinfo\par}
+        \ifdef{\@photodiameter}{%
+        \end{minipage}\hfill%
+        \begin{minipage}{\@photodiameter}
+        \if@normalphoto
+          \includegraphics[width=\linewidth]{\@photo}
+        \else
+          \tikz\path[fill overzoom image={\@photo}]circle[radius=0.5\linewidth];
+        \fi%
+        \end{minipage}\par}{}%
+    \endgroup\medskip
+  \fi%
 }
 
 \renewenvironment{quote}{\color{accent}\itshape\large}{\par}
