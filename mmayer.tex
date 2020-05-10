@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is an example CV created using altacv.cls (v1.2, 11 February 2020) written by
+% This is an example CV created using altacv.cls (v1.3, 10 May 2020) written by
 % LianTze Lim (liantze@gmail.com), based on the
 % Cv created by BusinessInsider at http://www.businessinsider.my/a-sample-resume-for-marissa-mayer-2016-7/?r=US&IR=T
 %
@@ -21,11 +21,11 @@
 %% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
 % \documentclass[10pt,a4paper,normalphoto]{altacv}
 
-\documentclass[10pt,a4paper,ragged2e]{altacv}
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
 
-%% AltaCV uses the fontawesome and academicon fonts
+%% AltaCV uses the fontawesome5 and academicon fonts
 %% and packages.
-%% See http://texdoc.net/pkg/fontawesome and http://texdoc.net/pkg/academicons for full list of symbols. You MUST compile with XeLaTeX or LuaLaTeX if you want to use academicons.
+%% See http://texdoc.net/pkg/fontawesome5 and http://texdoc.net/pkg/academicons for full list of symbols. You MUST compile with XeLaTeX or LuaLaTeX if you want to use academicons.
 
 % Change the page layout if you need to
 \geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
@@ -50,10 +50,20 @@
 \definecolor{VividPurple}{HTML}{3E0097}
 \definecolor{SlateGrey}{HTML}{2E2E2E}
 \definecolor{LightGrey}{HTML}{666666}
+% \colorlet{name}{black}
+% \colorlet{tagline}{PastelRed}
 \colorlet{heading}{VividPurple}
+\colorlet{headingrule}{VividPurple}
+% \colorlet{subheading}{PastelRed}
 \colorlet{accent}{VividPurple}
 \colorlet{emphasis}{SlateGrey}
 \colorlet{body}{LightGrey}
+
+% Change some fonts, if necessary
+% \renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+% \renewcommand{\personalinfofont}{\footnotesize}
+% \renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+% \renewcommand{\cvsubsectionfont}{\large\bfseries}
 
 % Change the bullets for itemize and rating marker
 % for \cvskill if you want to
@@ -77,19 +87,26 @@
 %   \phone{000-00-0000}
   \mailaddress{Address, Street, 00000 County}
   \location{Sunnyvale, CA}
-  \homepage{marissamayr.tumblr.com/}
+  \homepage{marissamayr.tumblr.com}
   \twitter{@marissamayer}
-  \linkedin{linkedin.com/in/marissamayer}
+  \linkedin{marissamayer}
 %   \github{github.com/mmayer} % I'm just making this up though.
 %   \orcid{orcid.org/0000-0000-0000-0000} % Obviously making this up too. If you want to use this field (and also other academicons symbols), add "academicons" option to \documentclass{altacv}
+  %% You MUST add the academicons option to \documentclass, then compile with LuaLaTeX or XeLaTeX, if you want to use \orcid or other academicons commands.
+  % \orcid{0000-0000-0000-0000}
+  %% You can add your own arbtrary detail with
+  %% \printinfo{symbol}{detail}[optional hyperlink prefix]
+  % \printinfo{\faPaw}{Hey ho!}
+  %% Or you can declare your own field with
+  %% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
+  % \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
+  % \gitlab{your_id}
 }
 
 \makecvheader
 
 %% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
 \AtBeginEnvironment{itemize}{\small}
-
-%% Provide the file name containing the sidebar contents as an optional parameter to \cvsection.
 
 %% Set the left/right column width ratio to 6:4.
 \columnratio{0.6}
@@ -167,11 +184,11 @@
 
 \divider
 
-\printbibliography[heading=pubtype,title={\printinfo{\faFileTextO}{Journal Articles}}, type=article]
+\printbibliography[heading=pubtype,title={\printinfo{\faFile*[regular]}{Journal Articles}}, type=article]
 
 \divider
 
-\printbibliography[heading=pubtype,title={\printinfo{\faGroup}{Conference Proceedings}},type=inproceedings]
+\printbibliography[heading=pubtype,title={\printinfo{\faUsers}{Conference Proceedings}},type=inproceedings]
 
 %% Switch to the right column. This will now automatically move to the second
 %% page if the content is too long.
@@ -192,7 +209,7 @@
 
 \divider
 
-\cvachievement{\faLineChart}{Google's Growth}{from a hundred thousand searches per day to over a billion}
+\cvachievement{\faChartLine}{Google's Growth}{from a hundred thousand searches per day to over a billion}
 
 \divider
 

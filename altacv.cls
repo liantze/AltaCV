@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.2, 11 February 2020) written by
+% This is altacv.cls (v1.3, 10 May 2020) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -18,7 +18,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2020/02/11 AltaCV v1.2, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2020/05/10 AltaCV v1.3, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 \newif\if@academicons
@@ -29,14 +29,18 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extarticle}}
 \newif\if@raggedtwoe
 \DeclareOption{ragged2e}{\@raggedtwoetrue}
+%% v1.3: load hyperref for clickable hyperlinks
+\newif\if@withhyper
+\DeclareOption{withhyper}{\@withhypertrue}
 \ProcessOptions\relax
 
-\LoadClass{extarticle}
+\LoadClass{article}
 
 \RequirePackage[margin=2cm]{geometry}
-\RequirePackage{fontawesome}
+\RequirePackage[fixed]{fontawesome5}
 \RequirePackage{ifxetex,ifluatex}
 \RequirePackage{scrlfile}
+\RequirePackage{xparse}
 
 %% v1.1.5: added for convenience
 \newif\ifxetexorluatex
@@ -92,12 +96,23 @@
   \RequirePackage[newcommands]{ragged2e}
 \fi
 
+\if@withhyper
+  \AtBeginDocument{%
+    \RequirePackage{hyperref}
+    \hypersetup{hidelinks}
+  }
+\fi
+
 \RequirePackage{xcolor}
 
 \colorlet{accent}{blue!70!black}
-\colorlet{heading}{black}
 \colorlet{emphasis}{black}
+\colorlet{heading}{black}
+\colorlet{headingrule}{black}
+\colorlet{subheading}{emphasis}
 \colorlet{body}{black!80!white}
+\colorlet{name}{heading}
+\colorlet{tagline}{accent}
 \newcommand{\itemmarker}{{\small\textbullet}}
 \newcommand{\ratingmarker}{\faCircle}
 
@@ -121,29 +136,50 @@
   \begin{adjustwidth}{}{\dimexpr-\marginparwidth-\marginparsep\relax}}
   {\end{adjustwidth}}
 
-\newcommand{\emailsymbol}{\faAt}
-\newcommand{\phonesymbol}{\faPhone}
-\newcommand{\homepagesymbol}{\faChain}
-\newcommand{\locationsymbol}{\faMapMarker}
-\newcommand{\linkedinsymbol}{\faLinkedin}
-\newcommand{\twittersymbol}{\faTwitter}
-\newcommand{\githubsymbol}{\faGithub}
-\newcommand{\orcidsymbol}{\aiOrcid}
-\newcommand{\mailsymbol}{\faEnvelope}
+%% v1.3: Incorporating hyperlinks
+\ExplSyntaxOn
+\NewDocumentCommand{\printinfo}{m m o}{%
+  \IfNoValueTF{#3}{%
+    \mbox{\textcolor{accent}{\normalfont #1}~\detokenize{#2}\hspace{2em}}%
+  }{%
+     \if@withhyper%
+       \mbox{\textcolor{accent}{\normalfont #1}~
+       \href{#3}{\detokenize{#2}}\hspace{2em}}
+     \else%
+       \ClassWarning{Please specify [withhyper] option to enable hyperlinks. Printing out full hyperlink prefix #1 for now.}%
+       \mbox{\textcolor{accent}{\normalfont #1}~\detokenize{#3#2}\hspace{2em}}%
+     \fi%
+  }%
+}%
 
-\newcommand{\printinfo}[2]{\mbox{\textcolor{accent}{\normalfont #1}\hspace{0.5em}#2\hspace{2em}}}
+%% v1.3: Exploring convenient creation of fields
+\NewDocumentCommand{\NewInfoField}{m m o}{%
+  \IfNoValueF{#3}{\csdef{#1 hyperprefix}{#3}}%
+  \csdef{#1 symbol}{#2}%
+  \csdef{#1}##1{%
+    \if@withhyper
+      \IfNoValueTF {#3}
+        {\printinfo{\csuse{#1 symbol}}{##1}}%
+        {\printinfo{\csuse{#1 symbol}}{##1}[\csuse{#1 hyperprefix}##1]}%
+    \else
+      \printinfo{\csuse{#1 symbol}}{##1}%
+    \fi%
+  }
+}
+\ExplSyntaxOff
+
 \newcommand{\name}[1]{\def\@name{#1}}
 \newcommand{\tagline}[1]{\def\@tagline{#1}}
-\newcommand{\email}[1]{\printinfo{\emailsymbol}{#1}}
-\newcommand{\mailaddress}[1]{\printinfo{\mailsymbol}{#1}}
-\newcommand{\phone}[1]{\printinfo{\phonesymbol}{#1}}
-\newcommand{\homepage}[1]{\printinfo{\homepagesymbol}{#1}}
-\newcommand{\twitter}[1]{\printinfo{\twittersymbol}{#1}}
-\newcommand{\linkedin}[1]{\printinfo{\linkedinsymbol}{#1}}
-\newcommand{\github}[1]{\printinfo{\githubsymbol}{#1}}
-\newcommand{\orcid}[1]{\printinfo{\orcidsymbol}{#1}}
-\newcommand{\location}[1]{\printinfo{\locationsymbol}{#1}}
 \newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
+\NewInfoField{email}{\faAt}[mailto:]
+\NewInfoField{mailaddress}{\faEnvelope}
+\NewInfoField{phone}{\faPhone}
+\NewInfoField{homepage}{\faGlobe}[https://]
+\NewInfoField{twitter}{\faTwitter}[https://twitter.com/]
+\NewInfoField{linkedin}{\faLinkedin}[https://linkedin.com/in/]
+\NewInfoField{github}{\faGithub}[https://github.com/]
+\NewInfoField{orcid}{\aiOrcid}[https://orcid.com/]
+\NewInfoField{location}{\faMapMarker}
 
 % v1.2: Support for multiple photos
 \newlength{\altacv@photos@width}
@@ -186,16 +222,22 @@
 }
 \let\photo\photoR
 
+\newcommand{\namefont}{\Huge\bfseries}
+\newcommand{\taglinefont}{\large\bfseries}
+\newcommand{\personalinfofont}{\footnotesize\bfseries}
+\newcommand{\cvsectionfont}{\LARGE\bfseries}
+\newcommand{\cvsubsectionfont}{\large\bfseries}
+
 \newcommand{\makecvheader}{%
   \begingroup
     \altacv@left@photos\hfill%
     \begin{minipage}{\dimexpr\linewidth-\altacv@photos@width}%
-    \raggedright\color{emphasis}%
-    {\Huge\bfseries\MakeUppercase{\@name}\par}
+    \raggedright%
+    {\namefont\color{name}\MakeUppercase{\@name}\par}
     \medskip
-    {\large\bfseries\color{accent}\@tagline\par}
+    {\taglinefont\color{tagline}\@tagline\par}
     \medskip
-    {\footnotesize\bfseries\@personalinfo\par}
+    {\personalinfofont\@personalinfo\par}
     \end{minipage}\hfill%
     \altacv@right@photos\par%
   \endgroup\medskip
@@ -206,13 +248,13 @@
 \newcommand{\cvsection}[2][]{%
   \bigskip%
   \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
-  {\color{heading}\LARGE\bfseries\MakeUppercase{#2}}\\[-1ex]%
-  {\color{heading}\rule{\linewidth}{2pt}\par}\medskip
+  {\color{heading}\cvsectionfont\MakeUppercase{#2}}\\[-1ex]%
+  {\color{headingrule}\rule{\linewidth}{2pt}\par}\medskip
 }
 
 \newcommand{\cvsubsection}[1]{%
   \smallskip%
-  {\color{emphasis}\large\bfseries{#1}\par}\medskip
+  {\color{subheading}\cvsubsectionfont{#1}\par}\medskip
 }
 
 % v1.1.4: fixes inconsistent font size
@@ -222,8 +264,8 @@
   \ifstrequal{#2}{}{}{
   \textbf{\color{accent}#2}\par
   \smallskip}
-  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar\hspace{0.5em}#3}}}%
-  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker\hspace{0.5em}#4}}}\par
+  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar~#3}}}%
+  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker~#4}}}\par
   \medskip\normalsize
 }
 
@@ -303,9 +345,9 @@
 \newcommand{\cvref}[3]{%
   \smallskip
   \textcolor{emphasis}{\textbf{#1}}\par
-  \begin{description}[font=\color{accent},style=multiline,leftmargin=1.35em]
-  \item[\normalfont\emailsymbol] #2
-  \item[\small\normalfont\mailsymbol] #3
+  \begin{description}[font=\color{accent},style=multiline,leftmargin=1.35em,align=left]
+  \item[\small\normalfont\emailsymbol] #2
+  \item[\small\normalfont\mailaddresssymbol] #3
   \end{description}
 %   \medskip
 }
