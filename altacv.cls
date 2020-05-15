@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.3, 10 May 2020) written by
+% This is altacv.cls (v1.3.1, 15 May 2020) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -18,7 +18,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2020/05/10 AltaCV v1.3, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2020/05/15 AltaCV v1.3.1, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 \newif\if@academicons
@@ -100,6 +100,7 @@
   \AtBeginDocument{%
     \RequirePackage{hyperref}
     \hypersetup{hidelinks}
+    \urlstyle{same}
   }
 \fi
 
@@ -136,18 +137,36 @@
   \begin{adjustwidth}{}{\dimexpr-\marginparwidth-\marginparsep\relax}}
   {\end{adjustwidth}}
 
+%% v1.3.1 \detokenize will break UTF-8 in pdflatex
+%% Using alternative from https://tex.stackexchange.com/a/530911/226
+\newcommand{\utffriendlydetokenize}[1]{%
+\scantokens{%
+  \catcode`\_=12%
+%   \catcode`\^=12%
+%   \catcode`\{=12%
+%   \catcode`\}=12%
+  \catcode`\&=12%
+  \catcode`\$=12%
+  \catcode`\#=12%
+  \catcode`\~=12%
+%   \catcode`\\=12%
+  {#1}%
+}%
+}
 %% v1.3: Incorporating hyperlinks
+%% v1.3.1: using \unfriendlydetokenize to avoid
+%% breaking unicode
 \ExplSyntaxOn
 \NewDocumentCommand{\printinfo}{m m o}{%
   \IfNoValueTF{#3}{%
-    \mbox{\textcolor{accent}{\normalfont #1}~\detokenize{#2}\hspace{2em}}%
+    \mbox{\textcolor{accent}{\normalfont #1}~\utffriendlydetokenize{#2}\hspace{2em}}%
   }{%
      \if@withhyper%
-       \mbox{\textcolor{accent}{\normalfont #1}~
-       \href{#3}{\detokenize{#2}}\hspace{2em}}
+      \mbox{\textcolor{accent}{\normalfont #1}~
+      \href{#3}{\utffriendlydetokenize{#2}}\hspace{2em}}
      \else%
        \ClassWarning{Please specify [withhyper] option to enable hyperlinks. Printing out full hyperlink prefix #1 for now.}%
-       \mbox{\textcolor{accent}{\normalfont #1}~\detokenize{#3#2}\hspace{2em}}%
+      \mbox{\textcolor{accent}{\normalfont #1}~{\utffriendlydetokenize{#3#2}}\hspace{2em}}%
      \fi%
   }%
 }%
