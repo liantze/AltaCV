@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.3.1, 15 May 2020) written by
+% This is altacv.cls (v1.3.2, 17 May 2020) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -18,7 +18,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2020/05/15 AltaCV v1.3.1, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2020/05/17 AltaCV v1.3.2, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 \newif\if@academicons
@@ -35,7 +35,9 @@
 \ProcessOptions\relax
 
 \LoadClass{article}
-
+%% v1.3.2 Hopefully this helps make the PDF
+%% file more 'friendly' with copy-paste etc
+\RequirePackage[a-1b]{pdfx}
 \RequirePackage[margin=2cm]{geometry}
 \RequirePackage[fixed]{fontawesome5}
 \RequirePackage{ifxetex,ifluatex}
@@ -52,6 +54,22 @@
   \else
     \xetexorluatexfalse
   \fi
+\fi
+
+\ifxetexorluatex
+  \RequirePackage{fontspec}
+\else
+  %% v1.3.2 attempts to make ligatures
+  %% copy-paste as normal characters
+  \RequirePackage{cmap}
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage[T1]{fontenc}
+  \input{glyphtounicode}
+  \pdfglyphtounicode{f_f}{FB00}
+  \pdfglyphtounicode{f_f_i}{FB03}
+  \pdfglyphtounicode{f_f_l}{FB04}
+  \pdfglyphtounicode{f_i}{FB01}
+  \pdfgentounicode=1
 \fi
 
 %% v1.1: Optionally load academicons

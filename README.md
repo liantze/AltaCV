@@ -1,6 +1,6 @@
 # AltaCV, yet another LaTeX CV/Résumé class
 
-v1.3 (10 May 2020), by LianTze Lim (liantze@gmail.com)
+v1.3.2 (17 May 2020), by LianTze Lim (liantze@gmail.com)
 
 _Clickable hyperlinked info fields added on 10 May 2020_
 
