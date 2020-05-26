@@ -314,7 +314,7 @@
   \smallskip}
   \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar~#3}}}%
   \ifstrequal{#4}{}{}{{\small\makebox[0.30\linewidth][l]{\faMapMarker~#4}}}
-  \ifstrequal{#5}{}{}{{\small\makebox[0.20\linewidth][l]{\faTrophy~#5}}}\par
+  \ifstrequal{#5}{}{}{{\small\makebox[0.20\linewidth][l]{\faGraduationCap~#5}}}\par
   \medskip\normalsize
 }
 
