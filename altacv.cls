@@ -37,7 +37,7 @@
 \LoadClass{article}
 %% v1.3.2 Hopefully this helps make the PDF
 %% file more 'friendly' with copy-paste etc
-\RequirePackage[a-1b]{pdfx}
+%\RequirePackage[a-1b]{pdfx} 
 \RequirePackage[margin=2cm]{geometry}
 \RequirePackage[fixed]{fontawesome5}
 \RequirePackage{ifxetex,ifluatex}
@@ -314,8 +314,13 @@
   \smallskip
 }
 
-\newcommand{\cvtag}[1]{%
-  \tikz[baseline]\node[anchor=base,draw=body!30,rounded corners,inner xsep=1ex,inner ysep =0.75ex,text height=1.5ex,text depth=.25ex]{#1};
+\newcommand{\cvtag}[3]{%
+  \pgfmathsetmacro{\rating}{#2 * 100 / 5}
+  \ifnumgreater{3}{#2}{%
+    \tikz[baseline]\node[anchor=base,draw=body,fill=#1!\rating, rounded corners,inner xsep=1ex,inner ysep =0.75ex,text height=1.5ex,text depth=.25ex]{\bfseries\textcolor{black!60}{#3}};%
+  }{%
+    \tikz[baseline]\node[anchor=base,draw=body,fill=#1!\rating, rounded corners,inner xsep=1ex,inner ysep =0.75ex,text height=1.5ex,text depth=.25ex]{\bfseries\textcolor{black!20}{#3}};%
+    }
 }
 
 \newcommand{\cvskill}[2]{%
