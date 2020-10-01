@@ -1,0 +1,10 @@
+version: "3.4"
+
+services:
+
+  cv:
+    image: thomasweise/docker-texlive-full
+    command: pdflatex mmayer.tex 
+    working_dir: /resume
+    volumes: 
+      - "${PWD}:/resume"
