@@ -33,3 +33,23 @@ jobs:
         with:
           # The root LaTeX file to be compiled
           root_file: sample.tex
+          compiler: pdflatex
+          
+      - name: Latex Biber Action
+        # You may pin to the exact commit or the version.
+        # uses: julianahrens/latex-biber-action@b030657c4bc77278ee7ec178a6a4339e50c6333b
+        uses: julianahrens/latex-biber-action@v2
+        with:
+          # Filename of .tex file
+          filename: sample.tex
+          # Define build directory
+          output-directory: .
+
+      - name: Github Action for LaTeX
+        # You may pin to the exact commit or the version.
+        # uses: xu-cheng/latex-action@dacf2cfbdd5fd768c2298cbdc9e105bd9ed7f293
+        uses: xu-cheng/latex-action@v2
+        with:
+          # The root LaTeX file to be compiled
+          root_file: sample.tex
+          compiler: pdflatex
