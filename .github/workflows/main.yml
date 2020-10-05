@@ -87,7 +87,7 @@ jobs:
           DRAFT_RELEASE: "false"
           PRE_RELEASE: "false"
           ALLOW_EMPTY_CHANGELOG: "true"
-          ALLOW_TAG_PREFIX: "true"
+          ALLOW_TAG_PREFIX: "false"
         with:
           # Release Assets
           args: cv.pdf # optional
