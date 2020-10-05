@@ -79,6 +79,12 @@ jobs:
         # You may pin to the exact commit or the version.
         # uses: anton-yurchenko/git-release@fb9b4ce2363c8b8d50fcbc9cddd2b12785a1f25a
         uses: anton-yurchenko/git-release@v3.4.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRAFT_RELEASE: "false"
+          PRE_RELEASE: "false"
+          ALLOW_EMPTY_CHANGELOG: "true"
+          ALLOW_TAG_PREFIX: "true"
         with:
           # Release Assets
           args: cv.pdf # optional
