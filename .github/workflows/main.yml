@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: cd on workspace
         run: cd $GITHUB_WORKSPACE
 
 
@@ -71,12 +71,14 @@ jobs:
           args: ""
           # Install extra packages by apt-get
           # extra_system_packages: # optional
-            
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v2.2.0
+                        
+      - name: Rename pdf
+        run: mv sample.pdf cv.pdf
+        
+      - name: Git Release
+        # You may pin to the exact commit or the version.
+        # uses: anton-yurchenko/git-release@fb9b4ce2363c8b8d50fcbc9cddd2b12785a1f25a
+        uses: anton-yurchenko/git-release@v3.4.1
         with:
-          # Artifact name
-          name: cv.pdf # optional, default is artifact
-          # A file, directory or wildcard pattern that describes what to upload
-          path: ./sample.pdf
-          # The desired behavior if no files are found using the provided path.
+          # Release Assets
+          args: cv.pdf # optional
