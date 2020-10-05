@@ -74,6 +74,9 @@ jobs:
                         
       - name: Rename pdf
         run: mv sample.pdf cv.pdf
+      
+      - name: Create empty changelog
+        run: echo "# Update CV" > CHANGELOG.md
         
       - name: Git Release
         # You may pin to the exact commit or the version.
