@@ -78,16 +78,24 @@ jobs:
       - name: Create empty changelog
         run: echo "# Update CV" > CHANGELOG.md
         
-      - name: Git Release
+      - name: Update Release
         # You may pin to the exact commit or the version.
-        # uses: anton-yurchenko/git-release@fb9b4ce2363c8b8d50fcbc9cddd2b12785a1f25a
-        uses: anton-yurchenko/git-release@v3.4.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DRAFT_RELEASE: "false"
-          PRE_RELEASE: "false"
-          ALLOW_EMPTY_CHANGELOG: "true"
-          ALLOW_TAG_PREFIX: "false"
+        # uses: johnwbyrd/update-release@1d5ec4791e40507e5eca3b4dbf90f0b27e7e4979
+        uses: johnwbyrd/update-release@v1.0.0
         with:
-          # Release Assets
-          args: cv.pdf # optional
+          # Your Github token; try \$\{\{ secrets.GITHUB_TOKEN \}\} if your build lasts less than an hour, or create your own secret token with repository access if your build requires longer than an hour.
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Paths to built files to be released. May be absolute or relative to \$\{\{ github.workspace \}\}.
+          files: cv.pdf
+          # The name of the release to be created. A reasonable looking release name will be created from the current \$\{\{ github.ref \}\} if this input is not supplied.
+          # release: # optional
+          # The name of the tag to be used. If not provided, the name of the release will be used.
+          tag: "latest" # optional
+          # A one-line description for both the tag and the release.
+          message: "Update CS" # optional
+          # A fuller description of the release.
+          #body: # optional
+          # Should the release, if created, be marked as a prerelease?  Such releases are generally publicly visible.
+          # prerelease: # optional, default is true
+          # Should the release, if created, be marked as a draft?  Such releases are generally not publicly visible.
+          # draft: # optional
