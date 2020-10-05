@@ -9,6 +9,8 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  schedule:
+  - cron: "0 12 1 * *"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -69,3 +71,12 @@ jobs:
           args: ""
           # Install extra packages by apt-get
           # extra_system_packages: # optional
+            
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          # Artifact name
+          name: sample.pdf # optional, default is artifact
+          # A file, directory or wildcard pattern that describes what to upload
+          path: .
+          # The desired behavior if no files are found using the provided path.
