@@ -1,0 +1,7 @@
+version: "3.4"
+
+services:
+
+  altacv:
+    image: liantze/altacv 
+    build: .
