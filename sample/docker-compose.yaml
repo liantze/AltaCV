@@ -1,0 +1,17 @@
+version: "3.4"
+
+services:
+
+  altacv:
+    image: liantze/altacv:latest
+    environment:
+      # Name of the tex file. Say "main.tex". Running latexpdf might generate main.aux (if references are included set WITH_BIB=true)
+      - TEX_FILENAME=sample
+      # If you have Bib references, just say so.
+      - WITH_BIB=true
+      # Clean the logs generated
+      - CLEAN_LATEX_LOGS=true
+      # Rename the final PDF with the name. Say "main.pdf -> RENAME_PDF_AS.pdf
+      # - RENAME_PDF_AS=sample-resume
+    volumes:
+      - "${PWD}:/resume"
