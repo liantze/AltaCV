@@ -1,6 +1,7 @@
 %%%%%%%%%%%%%%%%%
 % This is altacv.cls (v1.3.3, 31 October 2020) written by
 % LianTze Lim (liantze@gmail.com).
+% This fork/modified version has been made by Nicolás Omar González Passerino (nicolas.passerino@gmail.com, 15 Oct 2020)
 %
 %% It may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
@@ -12,6 +13,7 @@
 %%
 %%
 % Contributions:
+% - https://github.com/liantze/AltaCV Original template
 % - https://github.com/akreuzer Added ragged2e option (5 Nov 2018)
 % - https://github.com/stefanogermano Fixed bad boxes and undefined font shape (July 2018)
 % - https://github.com/foohyfooh Fixed blank spaces in \cvevent and bad link in README.md (June 2018)
@@ -38,16 +40,12 @@
 %% v1.3.2 Hopefully this helps make the PDF
 %% file more 'friendly' with copy-paste etc
 \RequirePackage[a-1b]{pdfx}
-%% v1.3.3 Temporary fix for pdfx and biblatex incompatibility
-%% (Thanks to @badetitou for highlighting this issue)
-%% https://github.com/plk/biblatex/issues/1044
-%% Will be removed when fix is released in biblatex 3.16
-\catcode30=12
 \RequirePackage[margin=2cm]{geometry}
 \RequirePackage[fixed]{fontawesome5}
 \RequirePackage{ifxetex,ifluatex}
 \RequirePackage{scrlfile}
 \RequirePackage{xparse}
+\RequirePackage{markdown}
 
 %% v1.1.5: added for convenience
 \newif\ifxetexorluatex
@@ -222,6 +220,9 @@
 \NewInfoField{github}{\faGithub}[https://github.com/]
 \NewInfoField{orcid}{\aiOrcid}[https://orcid.org/]
 \NewInfoField{location}{\faMapMarker}
+% New optional options added for dev and medium accounts
+\NewInfoField{dev}{\faDev}[https://dev.to/]
+\NewInfoField{medium}{\faMedium}[https://medium.com/@]
 
 % v1.2: Support for multiple photos
 \newlength{\altacv@photos@width}
@@ -235,21 +236,21 @@
     \if@normalphoto
       \includegraphics[width=\linewidth]{#2}
     \else
-      \tikz\path[fill overzoom image={#2}]circle[radius=0.5\linewidth];
+      \tikz\filldraw[color=headingrule, fill overzoom image={#2}, ultra thick](-1,0) circle[radius=0.5\linewidth];
     \fi%
   \end{minipage}%
 }
 
 \newcommand{\altacv@add@photo@left}[1]{%
   \appto{\altacv@left@photos}{%
-    \@makeaphoto{\altacv@photo@diam@left}{#1}\hspace{1ex}%
+    \@makeaphoto{\altacv@photo@diam@left}{#1}\hspace{6,5ex}%
   }%
   \addtolength{\altacv@photos@width}{\altacv@photo@diam@left}%
   \addtolength{\altacv@photos@width}{1ex}%
 }
 \newcommand{\altacv@add@photo@right}[1]{%
   \appto{\altacv@right@photos}{%
-    \@makeaphoto{\altacv@photo@diam@right}{#1}\hspace{1ex}%
+    \@makeaphoto{\altacv@photo@diam@right}{#1}\hspace{6,5ex}%
   }%
   \addtolength{\altacv@photos@width}{\altacv@photo@diam@right}%
   \addtolength{\altacv@photos@width}{1ex}%
@@ -288,7 +289,8 @@
 \renewenvironment{quote}{\color{accent}\itshape\large}{\par}
 
 \newcommand{\cvsection}[2][]{%
-  \bigskip%
+  \bigskip
+  \bigskip
   \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
   {\color{heading}\cvsectionfont\MakeUppercase{#2}}\\[-1ex]%
   {\color{headingrule}\rule{\linewidth}{2pt}\par}\medskip
@@ -301,13 +303,11 @@
 
 % v1.1.4: fixes inconsistent font size
 \newcommand{\cvevent}[4]{%
-  {\large\color{emphasis}#1\par}
-  \smallskip\normalsize
-  \ifstrequal{#2}{}{}{
-  \textbf{\color{accent}#2}\par
-  \smallskip}
-  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar~#3}}}%
-  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker~#4}}}\par
+  {\large\color{emphasis}#1}
+  \ifstrequal{#2}{}{}{\large{\color{accent}#2}}
+  \par\medskip\normalsize
+  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\color{accent}\faCalendar\color{emphasis}~#3}}}
+  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\color{accent}\faMapMarker\color{emphasis}~#4}}}\par
   \medskip\normalsize
 }
 
@@ -320,13 +320,20 @@
 }
 
 \newcommand{\cvtag}[1]{%
-  \tikz[baseline]\node[anchor=base,draw=body!30,rounded corners,inner xsep=1ex,inner ysep =0.75ex,text height=1.5ex,text depth=.25ex]{#1};
+  \tikz[baseline]\node[anchor=base,draw=body,rounded corners,inner xsep=1ex,inner ysep=0.75ex,text height=1.5ex,text depth=.25ex]{#1};
+  \smallskip
 }
 
 \newcommand{\cvskill}[2]{%
-\textcolor{emphasis}{\textbf{#1}}\hfill
-\foreach \x in {1,...,5}{%
-  \space{\ifnumgreater{\x}{#2}{\color{body!30}}{\color{accent}}\ratingmarker}}\par%
+    \textcolor{emphasis}{\textbf{#1}}
+    \foreach \x in {1,...,5}{
+      \SPACE{\IFNUMGREATER{\X}{#2}{\color{body}}{\color{accent}}\ratingmarker}
+    }\par
+}
+
+\newcommand{\cvlang}[2]{%
+    \textcolor{emphasis}{\textbf{#1: }}
+    \textcolor{accent}{\textbf{#2}}
 }
 
 % Adapted from @Jake's answer at http://tex.stackexchange.com/a/82729/226
@@ -384,14 +391,15 @@
     \endgroup
 }
 
-\newcommand{\cvref}[3]{%
-  \smallskip
+\newcommand{\cvref}[2]{%
   \textcolor{emphasis}{\textbf{#1}}\par
   \begin{description}[font=\color{accent},style=multiline,leftmargin=1.35em,align=left]
-  \item[\small\normalfont\emailsymbol] #2
-  \item[\small\normalfont\mailaddresssymbol] #3
+    \item[\small\normalfont\faLinkedin]\href{https://linkedin.com/in/#2}{#2}
   \end{description}
-%   \medskip
+}
+
+\newcommand{\cvrepo}[2]{
+    \textcolor{accent}{\href{#2}{#1}}
 }
 
 \newenvironment{cvcolumn}[1]{\begin{minipage}[t]{#1}\raggedright}{\end{minipage}}

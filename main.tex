@@ -1,0 +1,267 @@
+%%%%%%%%%%%%%%%%%
+% This is an sample CV template created using altacv.cls
+% (v1.3, 10 May 2020) written by LianTze Lim (liantze@gmail.com). Now compiles with pdfLaTeX, XeLaTeX and LuaLaTeX.
+% This fork/modified version has been made by Nicolás Omar González Passerino (nicolas.passerino@gmail.com, 15 Oct 2020)
+%
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%%%%%%%%%%%%%%%%
+
+%% If you need to pass whatever options to xcolor
+\PassOptionsToPackage{dvipsnames}{xcolor}
+
+%% If you are using \orcid or academicons
+%% icons, make sure you have the academicons
+%% option here, and compile with XeLaTeX
+%% or LuaLaTeX.
+% \documentclass[10pt,a4paper,academicons]{altacv}
+
+%% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
+% \documentclass[10pt,a4paper,normalphoto]{altacv}
+
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+
+%% AltaCV uses the fontawesome5 and academicons fonts
+%% and packages.
+%% See http://texdoc.net/pkg/fontawesome5 and http://texdoc.net/pkg/academicons for full list of symbols. You MUST compile with XeLaTeX or LuaLaTeX if you want to use academicons.
+
+% Change the page layout if you need to
+\geometry{left=1.2cm,right=1.2cm,top=1cm,bottom=1cm,columnsep=0.75cm}
+
+% The paracol package lets you typeset columns of text in parallel
+\usepackage{paracol}
+
+% Change the font if you want to, depending on whether
+% you're using pdflatex or xelatex/lualatex
+\ifxetexorluatex
+  % If using xelatex or lualatex:
+  \setmainfont{Roboto Slab}
+  \setsansfont{Lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  % If using pdflatex:
+  \usepackage[rm]{roboto}
+  \usepackage[defaultsans]{lato}
+  % \usepackage{sourcesanspro}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+% ----- LIGHT MODE -----
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\definecolor{PrimaryColor}{HTML}{001F5A}
+\definecolor{SecondaryColor}{HTML}{0039AC}
+\definecolor{ThirdColor}{HTML}{F3890B}
+\definecolor{BackgroundColor}{HTML}{E2E2E2}
+\colorlet{name}{PrimaryColor}
+\colorlet{tagline}{PrimaryColor}
+\colorlet{heading}{PrimaryColor}
+\colorlet{headingrule}{ThirdColor}
+\colorlet{subheading}{SecondaryColor}
+\colorlet{accent}{SecondaryColor}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+\pagecolor{BackgroundColor}   
+% ----- DARK MODE -----
+%\pagecolor{black}
+%\definecolor{SlateGrey}{HTML}{6F6F6F}
+%\definecolor{LightGrey}{HTML}{ABABAB}
+%\definecolor{PrimaryColor}{HTML}{3F7FFF}
+%\colorlet{name}{PrimaryColor}
+%\colorlet{tagline}{PrimaryColor}
+%\colorlet{heading}{PrimaryColor}
+%\colorlet{headingrule}{PrimaryColor}
+%\colorlet{subheading}{PrimaryColor}
+%\colorlet{accent}{PrimaryColor}
+%\colorlet{emphasis}{LightGrey}
+%\colorlet{body}{LightGrey}
+
+% Change some fonts, if necessary
+\renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+\renewcommand{\personalinfofont}{\small\bfseries}
+\renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+\renewcommand{\cvsubsectionfont}{\large\bfseries}
+
+% Change the bullets for itemize and rating marker
+% for \cvskill if you want to
+\renewcommand{\itemmarker}{{\small\textbullet}}
+\renewcommand{\ratingmarker}{\faCircle}
+
+%% sample.bib contains your publications
+%% \addbibresource{sample.bib}
+
+\begin{document}
+    \name{Nicolás Omar González Passerino}
+    \tagline{Front-end Developer}
+    %% You can add multiple photos on the left or right
+    \photoL{4cm}{Job}
+    
+    \personalinfo{
+        \email{nicolas.passerino@gmail.com}\smallskip
+        \phone{+54-3541-570931}
+        \location{Córdoba, Argentina}\\
+        \linkedin{nicolas0mar}
+        \github{NicolasOmar}
+        \dev{nicolasomar}
+        %\homepage{nicolasomar.me}
+        %\medium{nicolasomar}
+        %% You MUST add the academicons option to \documentclass, then compile with LuaLaTeX or XeLaTeX, if you want to use \orcid or other academicons commands.
+        % \orcid{0000-0000-0000-0000}
+        %% You can add your own arbtrary detail with
+        %% \printinfo{symbol}{detail}[optional hyperlink prefix]
+        % \printinfo{\faPaw}{Hey ho!}[https://example.com/]
+        %% Or you can declare your own field with
+        %% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
+        % \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
+        % \gitlab{your_id}
+    }
+    
+    \makecvheader
+    %% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
+    % \AtBeginEnvironment{itemize}{\small}
+    
+    %% Set the left/right column width ratio to 6:4.
+    \columnratio{0.25}
+
+    % Start a 2-column paracol. Both the left and right columns will automatically
+    % break across pages if things get too long.
+    \begin{paracol}{2}
+        % ----- STRENGTHS -----
+        \cvsection{Strengths}
+            \cvtag{JavaScript}
+            \cvtag{TypeScript}
+            \cvtag{Angular}
+            \cvtag{RxJs}\\
+            \cvtag{HTML5}
+            \cvtag{CSS3/SCSS}\\
+            \cvtag{Bootstrap}\\
+            \divider
+                
+            \cvtag{Visual Studio Code}
+            \cvtag{Git}
+            \cvtag{Azure DevOps}
+        % ----- STRENGTHS -----
+        
+        % ----- LEARNING -----
+        \cvsection{Learning}
+            \cvtag{React}
+            \cvtag{Jest}
+            \cvtag{NodeJs}
+            \cvtag{Express}
+            \cvtag{Mongoose}
+            \cvtag{Jasmine}
+            \cvtag{Semantic UI}
+            \divider
+            
+            \cvtag{Heroku}
+            \cvtag{Postman}\\
+            \cvtag{GitHub Actions}
+        % ----- LEARNING -----
+        
+        % ----- LANGUAGES -----
+        \cvsection{Languages}
+            \cvlang{Spanish}{Native}\\
+            \divider
+            
+            \cvlang{English}{B2}
+            %% Yeah I didn't spend too much time making all the
+            %% spacing consistent... sorry. Use \smallskip, \medskip,
+            %% \bigskip, \vpsace etc to make ajustments.
+            \smallskip
+        % ----- LANGUAGES -----
+            
+        % ----- REFERENCES -----
+        \cvsection{References}
+            \cvref{Julian Gribaudo}{julian-rafael-gribaudo}
+            \divider
+            
+            \cvref{Matías Baldi}{matiasbaldi}
+            \divider
+            
+            \cvref{Alejandro Kondrasky}{alejandro-kondrasky}
+            \smallskip
+        % ----- REFERENCES -----
+        
+        % ----- MOST PROUD -----
+        % \cvsection{Most Proud of}
+        
+        % \cvachievement{\faTrophy}{Fantastic Achievement}{and some details about it}\\
+        % \divider
+        % \cvachievement{\faHeartbeat}{Another achievement}{more details about it of course}\\
+        % \divider
+        % \cvachievement{\faHeartbeat}{Another achievement}{more details about it of course}
+        % ----- MOST PROUD -----
+        
+        % \cvsection{A Day of My Life}
+        
+        % Adapted from @Jake's answer from http://tex.stackexchange.com/a/82729/226
+        % \wheelchart{outer radius}{inner radius}{
+        % comma-separated list of value/text width/color/detail}
+        % \wheelchart{1.5cm}{0.5cm}{%
+        %   6/8em/accent!30/{Sleep,\\beautiful sleep},
+        %   3/8em/accent!40/Hopeful novelist by night,
+        %   8/8em/accent!60/Daytime job,
+        %   2/10em/accent/Sports and relaxation,
+        %   5/6em/accent!20/Spending time with family
+        % }
+        
+        % use ONLY \newpage if you want to force a page break for
+        % ONLY the current column
+        \newpage
+        
+        %% Switch to the right column. This will now automatically move to the second
+        %% page if the content is too long.
+        \switchcolumn
+        
+        % ----- ABOUT ME -----
+        \cvsection{About Me}
+            \begin{quote}
+                I'm a web developer since 2016. Definitely a team player that puts the client first and tries to give him the best product ever.
+            \end{quote}
+        % ----- ABOUT ME -----
+        
+        % ----- EXPERIENCE -----
+        \cvsection{Experience}
+            \cvevent{Web UI Developer }{| Globant}{Feb 2016 -- Present}{Córdoba, Argentina}
+            \begin{itemize}
+                \item Angular (2+), RxJs, Jasmine, React (Hooks), Jest and Sass
+                \item Azure DevOps, Git, Scrum and Kanban
+            \end{itemize}
+            \divider
+            
+            \cvevent{Computer Technical Service }{| Freeelance}{Oct 2011 -- Feb 2016}{Córdoba, Argentina}
+            \begin{itemize}
+                \item +80 clients in Villa Carlos Paz City and other cities in Córdoba.
+            \end{itemize}
+        % ----- EXPERIENCE -----
+        
+        % ----- EDUCATION -----
+        \cvsection{Education}
+            \cvevent{System Analyst }{| Institución Cervantes}{Jul 2018 -- Dec 2019}{Córdoba, Argentina}
+            \begin{itemize}
+                \item GPA: 8,92
+            \end{itemize}
+            \divider
+            
+            \cvevent{Computer Programming Technician }{| UTN - FRC}{Feb 2013 -- Dec 2014}{Córdoba, Argentina}
+            \begin{itemize}
+                \item GPA: 9
+            \end{itemize}
+        % ----- EDUCATION -----
+        
+        % ----- PROJECTS -----
+        \cvsection{Projects}
+            \cvevent{HolaFeria }{\cvrepo{| \faGitlab}{https://gitlab.com/MarkyRotten/HolaFeria}\cvrepo{| \faGlobe}{https://hola-feria.herokuapp.com/}}{Aug 2018 -- Sep 2019}{}
+            \begin{itemize}
+                \item Web/desktop system focused on stock and sales management for flea markets
+                \item Technologies: Angular 7, Bootstrap, Electron and Firebase
+            \end{itemize}
+            \medskip
+        % ----- PROJECTS -----
+    \end{paracol}
+\end{document}
