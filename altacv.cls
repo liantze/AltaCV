@@ -215,7 +215,7 @@
 \newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
 \NewInfoField{email}{\faAt}[mailto:]
 \NewInfoField{mailaddress}{\faEnvelope}
-\NewInfoField{phone}{\faPhone}
+\NewInfoField{phone}{\faPhone}[tel:]
 \NewInfoField{homepage}{\faGlobe}[https://]
 \NewInfoField{twitter}{\faTwitter}[https://twitter.com/]
 \NewInfoField{linkedin}{\faLinkedin}[https://linkedin.com/in/]
