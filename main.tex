@@ -68,7 +68,7 @@
 \colorlet{body}{LightGrey}
 \pagecolor{BackgroundColor}   
 % ----- DARK MODE -----
-%\pagecolor{black}
+%\definecolor{BackgroundColor}{HTML}{242424}
 %\definecolor{SlateGrey}{HTML}{6F6F6F}
 %\definecolor{LightGrey}{HTML}{ABABAB}
 %\definecolor{PrimaryColor}{HTML}{3F7FFF}
@@ -80,6 +80,7 @@
 %\colorlet{accent}{PrimaryColor}
 %\colorlet{emphasis}{LightGrey}
 %\colorlet{body}{LightGrey}
+%\pagecolor{BackgroundColor}
 
 % Change some fonts, if necessary
 \renewcommand{\namefont}{\Huge\rmfamily\bfseries}
@@ -96,18 +97,18 @@
 %% \addbibresource{sample.bib}
 
 \begin{document}
-    \name{Nicolás Omar González Passerino}
-    \tagline{Front-end Developer}
+    \name{John Doe}
+    \tagline{Test Developer}
     %% You can add multiple photos on the left or right
-    \photoL{4cm}{Job}
+    \photoL{4cm}{john-doe}
     
     \personalinfo{
-        \email{nicolas.passerino@gmail.com}\smallskip
-        \phone{+54-3541-570931}
-        \location{Córdoba, Argentina}\\
-        \linkedin{nicolas0mar}
-        \github{NicolasOmar}
-        \dev{nicolasomar}
+        \email{john_doe@email.com}\smallskip
+        \phone{+01-2345-678901}
+        \location{City, Country}\\
+        \linkedin{johnDoe}
+        \github{johnDoe}
+        \dev{johnDoe}
         %\homepage{nicolasomar.me}
         %\medium{nicolasomar}
         %% You MUST add the academicons option to \documentclass, then compile with LuaLaTeX or XeLaTeX, if you want to use \orcid or other academicons commands.
@@ -133,42 +134,41 @@
     \begin{paracol}{2}
         % ----- STRENGTHS -----
         \cvsection{Strengths}
-            \cvtag{JavaScript}
-            \cvtag{TypeScript}
-            \cvtag{Angular}
-            \cvtag{RxJs}\\
-            \cvtag{HTML5}
-            \cvtag{CSS3/SCSS}\\
-            \cvtag{Bootstrap}\\
-            \divider
+            \cvtag{One}
+            \cvtag{Two}
+            \cvtag{Three}
+            \cvtag{Four}
+            \cvtag{Five}
+            \cvtag{Six}
+            \cvtag{Seven}
+            \smallskip
                 
-            \cvtag{Visual Studio Code}
-            \cvtag{Git}
-            \cvtag{Azure DevOps}
+            \cvtag{Eight}
+            \cvtag{Nine}
+            \cvtag{Ten}
         % ----- STRENGTHS -----
         
         % ----- LEARNING -----
         \cvsection{Learning}
-            \cvtag{React}
-            \cvtag{Jest}
-            \cvtag{NodeJs}
-            \cvtag{Express}
-            \cvtag{Mongoose}
-            \cvtag{Jasmine}
-            \cvtag{Semantic UI}
-            \divider
+            \cvtag{First}
+            \cvtag{Second}
+            \cvtag{Third}
+            \cvtag{Fourth}
+            \cvtag{Fifth}
+            \cvtag{Sixth}
+            \cvtag{Seventh}
+            \smallskip
             
-            \cvtag{Heroku}
-            \cvtag{Postman}\\
-            \cvtag{GitHub Actions}
+            \cvtag{Eight}
+            \cvtag{Ninth}
         % ----- LEARNING -----
         
         % ----- LANGUAGES -----
         \cvsection{Languages}
-            \cvlang{Spanish}{Native}\\
+            \cvlang{Lang 1}{Native}\\
             \divider
             
-            \cvlang{English}{B2}
+            \cvlang{Lang 2}{Basic / A2}
             %% Yeah I didn't spend too much time making all the
             %% spacing consistent... sorry. Use \smallskip, \medskip,
             %% \bigskip, \vpsace etc to make ajustments.
@@ -177,13 +177,13 @@
             
         % ----- REFERENCES -----
         \cvsection{References}
-            \cvref{Julian Gribaudo}{julian-rafael-gribaudo}
+            \cvref{Ref 1}{ref-1}
             \divider
             
-            \cvref{Matías Baldi}{matiasbaldi}
+            \cvref{Ref 2}{ref-2}
             \divider
             
-            \cvref{Alejandro Kondrasky}{alejandro-kondrasky}
+            \cvref{Ref 3}{ref-3}
             \smallskip
         % ----- REFERENCES -----
         
@@ -221,47 +221,56 @@
         % ----- ABOUT ME -----
         \cvsection{About Me}
             \begin{quote}
-                I'm a web developer since 2016. Definitely a team player that puts the client first and tries to give him the best product ever.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             \end{quote}
         % ----- ABOUT ME -----
         
         % ----- EXPERIENCE -----
         \cvsection{Experience}
-            \cvevent{Web UI Developer }{| Globant}{Feb 2016 -- Present}{Córdoba, Argentina}
+            \cvevent{Charge }{| Company}{Mm YYYY -- Mm YYYY}{City, Country}
             \begin{itemize}
-                \item Angular (2+), RxJs, Jasmine, React (Hooks), Jest and Sass
-                \item Azure DevOps, Git, Scrum and Kanban
+                \item First item
+                \item Second item
+                \item Third item
             \end{itemize}
             \divider
             
-            \cvevent{Computer Technical Service }{| Freeelance}{Oct 2011 -- Feb 2016}{Córdoba, Argentina}
+            \cvevent{Charge }{| Company}{Mm YYYY -- Mm YYYY}{City, Country}
             \begin{itemize}
-                \item +80 clients in Villa Carlos Paz City and other cities in Córdoba.
+                \item First item
+                \item Second item
+                \item Third item
             \end{itemize}
         % ----- EXPERIENCE -----
         
         % ----- EDUCATION -----
         \cvsection{Education}
-            \cvevent{System Analyst }{| Institución Cervantes}{Jul 2018 -- Dec 2019}{Córdoba, Argentina}
+            \cvevent{Title }{| Institution}{Mm YYYY -- Mm YYYY}{City, Country}
             \begin{itemize}
-                \item GPA: 8,92
+                \item GPA: 1,23
             \end{itemize}
             \divider
             
-            \cvevent{Computer Programming Technician }{| UTN - FRC}{Feb 2013 -- Dec 2014}{Córdoba, Argentina}
+            \cvevent{Title }{| Institution}{Mm YYYY -- Mm YYYY}{City, Country}
             \begin{itemize}
-                \item GPA: 9
+                \item GPA: 1,23
             \end{itemize}
         % ----- EDUCATION -----
         
         % ----- PROJECTS -----
         \cvsection{Projects}
-            \cvevent{HolaFeria }{\cvrepo{| \faGitlab}{https://gitlab.com/MarkyRotten/HolaFeria}\cvrepo{| \faGlobe}{https://hola-feria.herokuapp.com/}}{Aug 2018 -- Sep 2019}{}
+            \cvevent{Project 1 }{\cvrepo{| \faGithub}{https://github.com/user/repo}\cvrepo{| \faGlobe}{https://repo-demo.com/}}{Mm YYYY -- Mm YYYY}{}
             \begin{itemize}
-                \item Web/desktop system focused on stock and sales management for flea markets
-                \item Technologies: Angular 7, Bootstrap, Electron and Firebase
+                \item Item 1
+                \item Item 2
             \end{itemize}
-            \medskip
+            \divider
+            
+            \cvevent{Project 1 }{\cvrepo{| \faGitlab}{https://gitlab.com/user/repo}\cvrepo{| \faGlobe}{https://repo-demo.com/}}{Mm YYYY -- Mm YYYY}{}
+            \begin{itemize}
+                \item Item 1
+                \item Item 2
+            \end{itemize}
         % ----- PROJECTS -----
     \end{paracol}
 \end{document}

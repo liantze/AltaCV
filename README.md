@@ -1,24 +1,26 @@
-# AltaCV, yet another LaTeX CV/Résumé class (a personal fork)
+# AltaCV, yet another LaTeX CV/Résumé class | A fork
 
-Based on v1.3.3 (31 October 2020), by LianTze Lim (liantze@gmail.com)
+Forked version of AltaCV v1.3.3 (31 October 2020), by LianTze Lim (liantze@gmail.com)
 
-## Samples
+## Original Sample
 
 This is how the orignal re-created résumé looks like ([view/open on Overleaf](https://www.overleaf.com/latex/examples/recreating-business-insiders-cv-of-marissa-mayer-using-altacv/gtqfpbwncfvp)):
 
 <img src="mmayer.png" alt="Marissa Mayer's résumé, re-created with AltaCV" width="600px">
 
-And this is how the forked version looks like ([view/open on Overleaf](https://www.overleaf.com/latex/examples/recreating-business-insiders-cv-of-marissa-mayer-using-altacv/gtqfpbwncfvp)):
+## Forked Sample
 
-* On 'Light mode'
-<img src="mysamplelight.png" alt="Nicolás Omar résumé on Light mode, re-created with AltaCV" width="600px">
+And this is how the forked version looks like:
 
-* And on 'Dark mode'
-<img src="mysampledark.png" alt="Nicolás Omar résumé on Dark mode, re-created with AltaCV" width="600px">
+### On 'Light mode'
+<img src="mysamplelight.png" alt="Nicolás Omar résumé on Light mode, based on AltaCV" width="300px">
+
+### And 'Dark mode'
+<img src="mysampledark.png" alt="Nicolás Omar résumé on Dark mode, based on AltaCV" width="300px">
 
 Though if you're creating your own CV/résumé, you'd probably prefer using the basic template ([view/open on Overleaf](https://www.overleaf.com/latex/templates/altacv-template/trgqjpwnmtgv)):
 
-<img src="sample.png" alt="sample barebones AltaCV template" width="600px">
+<img src="sample.png" alt="Nicolás Omar résumé sample, based on AltaCV" width="300px">
 
 
 ## Requirements and Compilation

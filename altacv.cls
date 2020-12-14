@@ -220,7 +220,7 @@
 \NewInfoField{github}{\faGithub}[https://github.com/]
 \NewInfoField{orcid}{\aiOrcid}[https://orcid.org/]
 \NewInfoField{location}{\faMapMarker}
-% New optional options added for dev and medium accounts
+% Fork: New optional options added for dev and medium accounts
 \NewInfoField{dev}{\faDev}[https://dev.to/]
 \NewInfoField{medium}{\faMedium}[https://medium.com/@]
 
@@ -236,11 +236,13 @@
     \if@normalphoto
       \includegraphics[width=\linewidth]{#2}
     \else
+% Fork: The photo image has modified to include a border around it, which color is aligned to document's theme
       \tikz\filldraw[color=headingrule, fill overzoom image={#2}, ultra thick](-1,0) circle[radius=0.5\linewidth];
     \fi%
   \end{minipage}%
 }
 
+% Fork: Horizontal space changed from 1ex to 6,5ex to align photo container width to smaller column width (25%)
 \newcommand{\altacv@add@photo@left}[1]{%
   \appto{\altacv@left@photos}{%
     \@makeaphoto{\altacv@photo@diam@left}{#1}\hspace{6,5ex}%
@@ -288,6 +290,7 @@
 
 \renewenvironment{quote}{\color{accent}\itshape\large}{\par}
 
+% Fork: Two bigskip tags added for better section separation
 \newcommand{\cvsection}[2][]{%
   \bigskip
   \bigskip
@@ -302,6 +305,7 @@
 }
 
 % v1.1.4: fixes inconsistent font size
+% Fork: structure modified to include change title, company name, start/end dates and work location (only a string)
 \newcommand{\cvevent}[4]{%
   {\large\color{emphasis}#1}
   \ifstrequal{#2}{}{}{\large{\color{accent}#2}}
@@ -319,6 +323,7 @@
   \smallskip
 }
 
+% Fork: Tags separation partially achieved, missing vertical spaces consistency for now
 \newcommand{\cvtag}[1]{%
   \tikz[baseline]\node[anchor=base,draw=body,rounded corners,inner xsep=1ex,inner ysep=0.75ex,text height=1.5ex,text depth=.25ex]{#1};
   \smallskip
@@ -331,6 +336,7 @@
     }\par
 }
 
+% Fork: Tag added for languages rating, avoiding star/button/progress bar previous ideas, I made a simpler and more accurate representation using a single string, which will be colored to be oustanding
 \newcommand{\cvlang}[2]{%
     \textcolor{emphasis}{\textbf{#1: }}
     \textcolor{accent}{\textbf{#2}}
@@ -391,6 +397,7 @@
     \endgroup
 }
 
+% Fork: CV reference tag has been modified to accept only linkedin accounts instead mail. It can be modified easily in case you need to display other type of contact
 \newcommand{\cvref}[2]{%
   \textcolor{emphasis}{\textbf{#1}}\par
   \begin{description}[font=\color{accent},style=multiline,leftmargin=1.35em,align=left]
