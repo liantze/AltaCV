@@ -18,7 +18,7 @@ And this is how the forked version looks like:
 ### And 'Dark mode'
 <img src="mysampledark.png" alt="Nicolás Omar résumé on Dark mode, based on AltaCV" width="300px">
 
-Though if you're creating your own CV/résumé, you'd probably prefer using the basic template ([view/open on Overleaf](https://www.overleaf.com/latex/templates/altacv-template/trgqjpwnmtgv)):
+Though if you're creating your own CV/résumé, you'd probably prefer using the basic template ([view/open on Overleaf](https://www.overleaf.com/latex/templates/altacv-nicolasomar-fork/htfpmrwhbwpw)):
 
 <img src="sample.png" alt="Nicolás Omar résumé sample, based on AltaCV" width="300px">
 
