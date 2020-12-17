@@ -323,10 +323,10 @@
   \smallskip
 }
 
-% Fork: Tags separation partially achieved, missing vertical spaces consistency for now
+% Fork: Tags now have a more consistent vertican and horizontal separation
 \newcommand{\cvtag}[1]{%
   \tikz[baseline]\node[anchor=base,draw=body,rounded corners,inner xsep=1ex,inner ysep=0.75ex,text height=1.5ex,text depth=.25ex]{#1};
-  \smallskip
+  \vspace{0.25ex}
 }
 
 \newcommand{\cvskill}[2]{%

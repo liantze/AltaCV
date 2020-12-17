@@ -10,17 +10,15 @@ This is how the orignal re-created résumé looks like ([view/open on Overleaf](
 
 ## Forked Sample
 
-And this is how the forked version looks like:
-
-### On 'Light mode'
-<img src="mysamplelight.png" alt="Nicolás Omar résumé on Light mode, based on AltaCV" width="300px">
-
-### And 'Dark mode'
-<img src="mysampledark.png" alt="Nicolás Omar résumé on Dark mode, based on AltaCV" width="300px">
-
 Though if you're creating your own CV/résumé, you'd probably prefer using the basic template ([view/open on Overleaf](https://www.overleaf.com/latex/templates/altacv-nicolasomar-fork/htfpmrwhbwpw)):
 
-<img src="sample.png" alt="Nicolás Omar résumé sample, based on AltaCV" width="300px">
+This is how the final version looks like on:
+
+### Light mode
+<img src="sampleLightMode.png" alt="Résumé sample | Light mode, based on AltaCV" width="300px">
+
+### Dark mode
+<img src="sampleDarkMode.png" alt="Résumé sample | Dark mode, based on AltaCV" width="300px">
 
 
 ## Requirements and Compilation
