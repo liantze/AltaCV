@@ -208,6 +208,21 @@
     \fi%
   }
 }
+
+%% Command for Mastodon 
+%% Because Mastodon has many instances, a separate field would be needed
+\NewDocumentCommand{\NewMastodonField}{m m m m}{%
+  \csdef{#1 hyperprefix}{#3}%
+  \csdef{#1 symbol}{#2}%
+  \csdef{#1}##1{%
+    \if@withhyper
+        \printinfo{\csuse{#1 symbol}}{##1@#4}[\csuse{#1 hyperprefix}##1]%
+    \else
+      \printinfo{\csuse{#1 symbol}}{##1}%
+    \fi%
+  }
+}
+
 \ExplSyntaxOff
 
 \newcommand{\name}[1]{\def\@name{#1}}
@@ -222,6 +237,8 @@
 \NewInfoField{github}{\faGithub}[https://github.com/]
 \NewInfoField{orcid}{\aiOrcid}[https://orcid.org/]
 \NewInfoField{location}{\faMapMarker}
+%% Change instance name and URL if needed
+\NewMastodonField{mastodon}{\faMastodon}{https://mastodon.social/}{mastodon.social}
 
 % v1.2: Support for multiple photos
 \newlength{\altacv@photos@width}
