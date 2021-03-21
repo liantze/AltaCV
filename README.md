@@ -33,7 +33,7 @@ Though if you're creating your own CV/résumé, you'd probably prefer using the 
 * Loading `academicons` is optional: enable it by adding the `academicons` option to `\documentclass`.
 * Use the `normalphoto` option to get normal (i.e. non-circular) photos.
 * As of v1.2 you can add multiple photos on the left or right: `\photoL{2cm}{logo1}` and `\photoR{2.5cm}{logo2,photo}`. (`\photo` will work like `\photoR`.) Separate your image filenames with commas _without_ spaces.
-* Use the `ragged2d` option to activate hyphenations while keeping text left-justified; line endings will thus be less jagged and more aesthetically pleasing.
+* Use the `ragged2e` option to activate hyphenations while keeping text left-justified; line endings will thus be less jagged and more aesthetically pleasing.
 * As of v1.3 the `withhyper` document class option will make the "personal info" fields into clickable hyperlinks (where it makes sense). See below for more details.
 * Can now be compiled with pdflatex, XeLaTeX and LuaLaTeX!
 * However if you're using `academicons`, you _must_ use either XeLaTeX or LuaLaTeX. If the doc then compiles but the icons don't show up in the output PDF, try compiling with LuaLaTeX instead.
