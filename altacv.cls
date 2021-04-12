@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.3.3, 31 October 2020) written by
+% This is altacv.cls (v1.4, 12 Apr 2021) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -18,11 +18,11 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2020/05/17 AltaCV v1.3.3, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2021/04/12 AltaCV v1.4, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
-\newif\if@academicons
-\DeclareOption{academicons}{\@academiconstrue}
+%% v1.4: Nope, academicons is unnecessary; fontawesome5 has \faOrcid.
+\DeclareOption{academicons}{\ClassWarning{altacv}{academicons option is now obsolete and unnecessary.}}
 %% v1.1.3: Choice of round/square photo
 \newif\if@normalphoto
 \DeclareOption{normalphoto}{\@normalphototrue}
@@ -75,44 +75,6 @@
   \pdfglyphtounicode{f_f_l}{FB04}
   \pdfglyphtounicode{f_i}{FB01}
   \pdfgentounicode=1
-\fi
-
-%% v1.1: Optionally load academicons
-%% v1.1.5: Handle different versions of academicons
-\if@academicons
-  \ifxetexorluatex
-    \RequirePackage{fontspec}
-    %% academicons in TL2018 doesn't require
-    %% Academicons to be installed in OS fonts
-    %% so can be loaded directly
-    \@ifl@t@r\fmtversion{2018/04/01}{%
-      \RequirePackage{academicons}
-    }{%
-      % TL2017
-      \@ifl@t@r\fmtversion{2017/04/01}{%
-        \@ifpackagelater{academicons}{2018/03/01}{%
-          \RequirePackage{academicons}
-        }{%
-          \let\ori@newfontfamily\newfontfamily%
-          \renewcommand{\newfontfamily}[2]{}
-          \RequirePackage{academicons}
-          \let\newfontfamily\ori@newfontfamily
-          \newfontfamily{\AI}{academicons.ttf}
-        }
-      }{% TL2016 requires the package to be loaded before
-        % the version can be checked. Only added because
-        % Overleaf v1 still runs TL2016; will be removed
-        % when v1 is completely retired.
-          \let\ori@newfontfamily\newfontfamily%
-          \renewcommand{\newfontfamily}[2]{}
-          \RequirePackage{academicons}
-          \let\newfontfamily\ori@newfontfamily
-          \newfontfamily{\AI}{academicons.ttf}
-      }
-    }
-  \else
-    \ClassError{AltaCV}{academicons unsupported by latex or pdflatex. Please compile with xelatex or lualatex}{Please compile with xelatex or lualatex to use the academicons option}
-  \fi
 \fi
 
 \if@raggedtwoe
@@ -220,7 +182,8 @@
 \NewInfoField{twitter}{\faTwitter}[https://twitter.com/]
 \NewInfoField{linkedin}{\faLinkedin}[https://linkedin.com/in/]
 \NewInfoField{github}{\faGithub}[https://github.com/]
-\NewInfoField{orcid}{\aiOrcid}[https://orcid.org/]
+% v1.?? Use fontawesome5 for Orcid symbol
+\NewInfoField{orcid}{\faOrcid}[https://orcid.org/]
 \NewInfoField{location}{\faMapMarker}
 
 % v1.2: Support for multiple photos
