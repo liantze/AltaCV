@@ -1,10 +1,11 @@
 # AltaCV, yet another LaTeX CV/Résumé class
 
-v1.3.3 (31 October 2020), by LianTze Lim (liantze@gmail.com)
+v1.5 (8 May 2021), by LianTze Lim (liantze@gmail.com)
 
-_Clickable hyperlinked info fields added on 10 May 2020_
-
-_Sample file with new paracol layout added on 2 February 2020_
+* Moved biblatex-related code to *.cfg files for easier edit on 8 May 2021
+* Removed dependency on academicons on 12 Apr 2021
+* Clickable hyperlinked info fields added on 10 May 2020
+* Sample file with new paracol layout added on 2 February 2020
 
 (Thanks to [Nur](https://github.com/nurh) for the name.)
 

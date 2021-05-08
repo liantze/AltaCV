@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.4, 12 Apr 2021) written by
+% This is altacv.cls (v1.5, 8 May 2021) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -18,7 +18,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2021/04/12 AltaCV v1.4, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2021/05/08 AltaCV v1.5, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 %% v1.4: Nope, academicons is unnecessary; fontawesome5 has \faOrcid.
@@ -42,7 +42,7 @@
 %% (Thanks to @badetitou for highlighting this issue)
 %% https://github.com/plk/biblatex/issues/1044
 %% Will be removed when fix is released in biblatex 3.16
-\catcode30=12
+% \catcode30=12
 \RequirePackage[margin=2cm]{geometry}
 \RequirePackage[fixed]{fontawesome5}
 \RequirePackage{ifxetex,ifluatex}
@@ -358,15 +358,9 @@
 
 \newenvironment{cvcolumn}[1]{\begin{minipage}[t]{#1}\raggedright}{\end{minipage}}
 
-\RequirePackage[backend=biber,style=authoryear,sorting=ydnt]{biblatex}
-%% For removing numbering entirely when using a numeric style
-% \setlength{\bibhang}{1em}
-% \DeclareFieldFormat{labelnumberwidth}{\makebox[\bibhang][l]{\itemmarker}}
-% \setlength{\biblabelsep}{0pt}
-\defbibheading{pubtype}{\cvsubsection{#1}}
-\renewcommand{\bibsetup}{\vspace*{-\baselineskip}}
-\AtEveryBibitem{\makebox[\bibhang][l]{\itemmarker}}
-\setlength{\bibitemsep}{0.25\baselineskip}
+% v1.5 Move biblatex-related code to separate .cfg file
+% so that it's easier to change and customise the style for
+% publication lists
 
 % v1.1.2: make it easier to add a sidebar aligned with top of next page
 \RequirePackage{afterpage}
