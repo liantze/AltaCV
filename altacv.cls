@@ -83,7 +83,6 @@
 
 \if@withhyper
   \AtBeginDocument{%
-    \RequirePackage{hyperref}
     \hypersetup{hidelinks}
     \urlstyle{same}
   }
