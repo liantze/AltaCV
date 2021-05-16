@@ -97,6 +97,25 @@ Or if you really prefer, you can define a new field yourself with `\NewInfoFiled
 \gitlab{your_id}
 ````
 
+For services and platforms like Mastodon where there isn't a straightforward relation between the more popular user ID or nickname and the hyperlink, you can use `\printinfo` directly e.g.
+
+```
+\printinfo{\faMastodon}{@username@instace}[https://instance.url/@username]
+```
+
+But if you absolutely want to create new dedicated info fields for such platforms, then use `\NewInfoField*` with a star:
+
+```
+\NewInfoField*{mastodon}{\faMastodon}
+```
+
+then you can use `\mastodon` with TWO arguments where the 2nd argument is the full hyperlink.
+
+```
+\mastodon{@username@instance}{https://instance.url/@username}
+```
+
+
 ## Configurable colours
 
 Use `\colorlet` or `\definecolor` to change these.

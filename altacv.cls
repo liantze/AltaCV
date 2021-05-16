@@ -15,6 +15,7 @@
 % - https://github.com/akreuzer Added ragged2e option (5 Nov 2018)
 % - https://github.com/stefanogermano Fixed bad boxes and undefined font shape (July 2018)
 % - https://github.com/foohyfooh Fixed blank spaces in \cvevent and bad link in README.md (June 2018)
+% - https://github.com/logological Remove redundant hyperref and typos (Apr 2021)
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
@@ -156,18 +157,33 @@
 }%
 
 %% v1.3: Exploring convenient creation of fields
-\NewDocumentCommand{\NewInfoField}{m m o}{%
-  \IfNoValueF{#3}{\csdef{#1 hyperprefix}{#3}}%
-  \csdef{#1 symbol}{#2}%
-  \csdef{#1}##1{%
-    \if@withhyper
-      \IfNoValueTF {#3}
-        {\printinfo{\csuse{#1 symbol}}{##1}}%
-        {\printinfo{\csuse{#1 symbol}}{##1}[\csuse{#1 hyperprefix}##1]}%
-    \else
-      \printinfo{\csuse{#1 symbol}}{##1}%
-    \fi%
+%% v1.6: Add starred mode to create \printinfo with full URL
+\NewDocumentCommand{\NewInfoField}{s m m o}{%
+  \IfBooleanF{#1}{
+    \IfNoValueF{#4}{\csdef{#2 hyperprefix}{#4}}%
   }
+  \csdef{#2 symbol}{#3}%
+  \IfBooleanTF{#1}
+    { \csdef{#2}##1##2{%
+        \if@withhyper
+          \IfNoValueTF {##2}
+            {\printinfo{\csuse{#2 symbol}}{##1}}%
+            {\printinfo{\csuse{#2 symbol}}{##1}[##2]}%
+        \else
+          \printinfo{\csuse{#2 symbol}}{##1}%
+        \fi%
+      }%
+    }
+    { \csdef{#2}##1{%
+        \if@withhyper
+          \IfNoValueTF {#4}
+            {\printinfo{\csuse{#2 symbol}}{##1}}%
+            {\printinfo{\csuse{#2 symbol}}{##1}[\csuse{#2 hyperprefix}##1]}%
+        \else
+          \printinfo{\csuse{#2 symbol}}{##1}%
+        \fi%
+      }%
+    }
 }
 \ExplSyntaxOff
 
