@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.5, 8 May 2021) written by
+% This is altacv.cls (v1.6, 21 May 2021) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -19,7 +19,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2021/05/08 AltaCV v1.5, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2021/05/21 AltaCV v1.6, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 %% v1.4: Nope, academicons is unnecessary; fontawesome5 has \faOrcid.
@@ -110,6 +110,7 @@
 \setlist{leftmargin=*,labelsep=0.5em,nosep,itemsep=0.25\baselineskip,after=\vspace{0.25\baselineskip}}
 \setlist[itemize]{label=\itemmarker}
 \RequirePackage{graphicx}
+\RequirePackage{trimclip}
 \RequirePackage{etoolbox}
 \RequirePackage{dashrule}
 \RequirePackage{multirow,tabularx}
@@ -307,11 +308,15 @@
 }
 
 % v1.6: Use accsupp so that the actual numeric value is copied/pasted
+%       and also support 0.5, 1.5, 2.5, 3.5, 4.5
 \newcommand{\cvskill}[2]{%
   \textcolor{emphasis}{\textbf{#1}}\hfill
   \BeginAccSupp{method=plain,ActualText={#2}}
   \foreach \x in {1,...,5}{%
-    {\ifnumgreater{\x}{#2}{\color{body!30}}{\color{accent}}\ratingmarker}%
+    \ifdimequal{\x pt - #2 pt}{0.5pt}%
+    {\clipbox*{0pt -0.25ex {.5\width} {\totalheight}}{\color{accent}\ratingmarker}%
+     \clipbox*{{.5\width} -0.25ex {\width} {\totalheight}}{\color{body!30}\ratingmarker}}
+    {\ifdimgreater{\x bp}{#2 bp}{\color{body!30}}{\color{accent}}\ratingmarker}%
   }\EndAccSupp{}\par%
 }
 
