@@ -44,6 +44,7 @@
 %% https://github.com/plk/biblatex/issues/1044
 %% Will be removed when fix is released in biblatex 3.16
 % \catcode30=12
+\RequirePackage{accsupp}
 \RequirePackage[margin=2cm]{geometry}
 \RequirePackage[fixed]{fontawesome5}
 \RequirePackage{ifxetex,ifluatex}
@@ -139,10 +140,12 @@
 }%
 }
 %% v1.3: Incorporating hyperlinks
-%% v1.3.1: using \unfriendlydetokenize to avoid
-%% breaking unicode
+%% v1.3.1: using \unfriendlydetokenize to avoid breaking unicode
+%% v1.6: Use accsupp so that when copying/pasting the icon from PDF to a text
+%%       file, the icon name is pasted
 \ExplSyntaxOn
 \NewDocumentCommand{\printinfo}{m m o}{%
+  \BeginAccSupp{method=escape,ActualText={#1:~#2}}
   \IfNoValueTF{#3}{%
     \mbox{\textcolor{accent}{\normalfont #1}~\utffriendlydetokenize{#2}\hspace{2em}}%
   }{%
@@ -154,7 +157,9 @@
       \mbox{\textcolor{accent}{\normalfont #1}~{\utffriendlydetokenize{#3#2}}\hspace{2em}}%
      \fi%
   }%
+  \EndAccSupp{}
 }%
+
 
 %% v1.3: Exploring convenient creation of fields
 %% v1.6: Add starred mode to create \printinfo with full URL
@@ -301,10 +306,13 @@
   \tikz[baseline]\node[anchor=base,draw=body!30,rounded corners,inner xsep=1ex,inner ysep =0.75ex,text height=1.5ex,text depth=.25ex]{#1};
 }
 
+% v1.6: Use accsupp so that the actual numeric value is copied/pasted
 \newcommand{\cvskill}[2]{%
-\textcolor{emphasis}{\textbf{#1}}\hfill
-\foreach \x in {1,...,5}{%
-  \space{\ifnumgreater{\x}{#2}{\color{body!30}}{\color{accent}}\ratingmarker}}\par%
+  \textcolor{emphasis}{\textbf{#1}}\hfill
+  \BeginAccSupp{method=plain,ActualText={#2}}
+  \foreach \x in {1,...,5}{%
+    {\ifnumgreater{\x}{#2}{\color{body!30}}{\color{accent}}\ratingmarker}%
+  }\EndAccSupp{}\par%
 }
 
 % Adapted from @Jake's answer at http://tex.stackexchange.com/a/82729/226
@@ -352,7 +360,8 @@
             (-\newcumnum:\innerradius) arc (-\newcumnum:-(\cumnum):\innerradius) -- cycle;
 
             % Draw the data labels
-            \draw  [*-,thin,emphasis] node [append after command={(\midangle:\midradius pt) -- (\midangle:\outerradius + 1ex) -- (\tikzlastnode)}] at (\midangle:\outerradius + 1ex) [xshift=\labelshiftdir*0.5cm,inner sep=1ex, outer sep=0pt, text width=\width,anchor=\textanchor,align=\textalign,font=\small,text=body]{\name};
+            % v1.6: Use accsupp so that the numeric number is copied/pasted too
+            \draw  [*-,thin,emphasis] node [append after command={(\midangle:\midradius pt) -- (\midangle:\outerradius + 1ex) -- (\tikzlastnode)}] at (\midangle:\outerradius + 1ex) [xshift=\labelshiftdir*0.5cm,inner sep=1ex, outer sep=0pt, text width=\width,anchor=\textanchor,align=\textalign,font=\small,text=body]{\BeginAccSupp{method=pdfstringdef,ActualText={\name: \value}}\name\EndAccSupp{}};
             % Set the old cumulated angle to the new value
             \global\let\cumnum=\newcumnum
         }

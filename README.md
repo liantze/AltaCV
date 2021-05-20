@@ -2,6 +2,7 @@
 
 v1.5 (8 May 2021), by LianTze Lim (liantze@gmail.com)
 
+* Starred \NewInfoField* command to handle Mastodon; Icons, \cvskills, \wheelchart have "copyable" text values on 21 May 2021
 * Moved biblatex-related code to *.cfg files for easier edit on 8 May 2021
 * Removed dependency on academicons on 12 Apr 2021
 * Clickable hyperlinked info fields added on 10 May 2020
