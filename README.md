@@ -2,8 +2,8 @@
 
 v1.6 (21 May 2021), by LianTze Lim (liantze@gmail.com)
 
-* Starred \NewInfoField* command to handle Mastodon; Icons, \cvskills, \wheelchart have "copyable" text values; \cvskill supports numerical values {0.5, 1, ..., 4.5, 5} on 21 May 2021
-* Moved biblatex-related code to *.cfg files for easier edit on 8 May 2021
+* Starred `\NewInfoField*` command to handle Mastodon; Icons, `\cvskills`, `\wheelchart` have "copyable" text values; `\cvskill` supports numerical values {0.5, 1, ..., 4.5, 5} on 21 May 2021
+* Moved biblatex-related code to `*.cfg` files for easier edit on 8 May 2021
 * Removed dependency on academicons on 12 Apr 2021
 * Clickable hyperlinked info fields added on 10 May 2020
 * Sample file with new paracol layout added on 2 February 2020
@@ -100,19 +100,19 @@ Or if you really prefer, you can define a new field yourself with `\NewInfoFiled
 
 For services and platforms like Mastodon where there isn't a straightforward relation between the more popular user ID or nickname and the hyperlink, you can use `\printinfo` directly e.g.
 
-```
+```latex
 \printinfo{\faMastodon}{@username@instace}[https://instance.url/@username]
 ```
 
 But if you absolutely want to create new dedicated info fields for such platforms, then use `\NewInfoField*` with a star:
 
-```
+```latex
 \NewInfoField*{mastodon}{\faMastodon}
 ```
 
 then you can use `\mastodon` with TWO arguments where the 2nd argument is the full hyperlink.
 
-```
+```latex
 \mastodon{@username@instance}{https://instance.url/@username}
 ```
 
