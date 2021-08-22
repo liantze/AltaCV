@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.6, 21 May 2021) written by
+% This is altacv.cls (v1.6.1, 22 Aug 2021) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -19,7 +19,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2021/05/21 AltaCV v1.6, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2021/08/22 AltaCV v1.6.1, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 %% v1.4: Nope, academicons is unnecessary; fontawesome5 has \faOrcid.
@@ -38,6 +38,11 @@
 \LoadClass{article}
 %% v1.3.2 Hopefully this helps make the PDF
 %% file more 'friendly' with copy-paste etc
+%% v 1.6.1 Temporary fix for pdfx incompatibility; see https://tex.stackexchange.com/a/610445
+\RequirePackage{etoolbox}
+\@ifl@t@r\fmtversion{2021-06-01}%
+ {\AddToHook{package/after/xmpincl}
+   {\patchcmd\mcs@xmpincl@patchFile{\if\par}{\ifx\par}{}{\fail}}}{}
 \RequirePackage[a-1b]{pdfx}
 %% v1.3.3 Temporary fix for pdfx and biblatex incompatibility
 %% (Thanks to @badetitou for highlighting this issue)
@@ -111,7 +116,6 @@
 \setlist[itemize]{label=\itemmarker}
 \RequirePackage{graphicx}
 \RequirePackage{trimclip}
-\RequirePackage{etoolbox}
 \RequirePackage{dashrule}
 \RequirePackage{multirow,tabularx}
 \RequirePackage{changepage}

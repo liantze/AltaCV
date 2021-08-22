@@ -1,12 +1,12 @@
 # AltaCV, yet another LaTeX CV/Résumé class
 
-v1.6 (21 May 2021), by LianTze Lim (liantze@gmail.com)
+v1.6.1 (22 Aug 2021), by LianTze Lim (liantze@gmail.com)
 
 * Starred `\NewInfoField*` command to handle Mastodon; Icons, `\cvskills`, `\wheelchart` have "copyable" text values; `\cvskill` supports numerical values {0.5, 1, ..., 4.5, 5} on 21 May 2021
-* Moved biblatex-related code to `*.cfg` files for easier edit on 8 May 2021
-* Removed dependency on academicons on 12 Apr 2021
+* Moved `biblatex`-related code to `*.cfg` files for easier edit on 8 May 2021
+* Removed dependency on `academicons` on 12 Apr 2021
 * Clickable hyperlinked info fields added on 10 May 2020
-* Sample file with new paracol layout added on 2 February 2020
+* Sample file with new `paracol` layout added on 2 February 2020
 
 (Thanks to [Nur](https://github.com/nurh) for the name.)
 
@@ -142,7 +142,7 @@ Use `\renewcommand` to change these.
 
 ## `legacy/sample-old.tex`
 
-This is the original sample template file until 5 May 2020. The right sidebar is actually a _marginpar_, so it doesn't support footnote and cannot automatically break across pages if it's too long. You would need to split your right sidebar contents into separate files e.g. `p1sidebar.tex` and `p2sidebar.tex`, and insert them as the optional argument of the `\cvsection{...}` that you want to align them with:
+This is the original sample template file until 5 May 2020. The right sidebar is actually a _`marginpar`_, so it doesn't support footnote and cannot automatically break across pages if it's too long. You would need to split your right sidebar contents into separate files e.g. `p1sidebar.tex` and `p2sidebar.tex`, and insert them as the optional argument of the `\cvsection{...}` that you want to align them with:
 
 ```latex
 \cvsection[p1sidebar]{Experience}
