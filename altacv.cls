@@ -19,7 +19,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2021/08/22 AltaCV v1.6.1, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2021/08/28 AltaCV v1.6.2, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 %% v1.4: Nope, academicons is unnecessary; fontawesome5 has \faOrcid.
@@ -276,7 +276,7 @@
 \renewenvironment{quote}{\color{accent}\itshape\large}{\par}
 
 \newcommand{\cvsection}[2][]{%
-  \bigskip%
+  \nointerlineskip\bigskip%  %% bugfix in v1.6.2
   \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
   {\color{heading}\cvsectionfont\MakeUppercase{#2}}\\[-1ex]%
   {\color{headingrule}\rule{\linewidth}{2pt}\par}\medskip
