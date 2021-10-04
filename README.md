@@ -1,6 +1,6 @@
 # AltaCV, yet another LaTeX CV/Résumé class
 
-v1.6.2 (28 Aug 2021), by LianTze Lim (liantze@gmail.com)
+v1.6.3 (04 Oct 2021), by LianTze Lim (liantze@gmail.com)
 
 * Starred `\NewInfoField*` command to handle Mastodon; Icons, `\cvskills`, `\wheelchart` have "copyable" text values; `\cvskill` supports numerical values {0.5, 1, ..., 4.5, 5} on 21 May 2021
 * Moved `biblatex`-related code to `*.cfg` files for easier edit on 8 May 2021

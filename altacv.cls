@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.6.1, 22 Aug 2021) written by
+% This is altacv.cls (v1.6.3, 04 Oct 2021) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -19,7 +19,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2021/08/28 AltaCV v1.6.2, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2021/10/04 AltaCV v1.6.3, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 %% v1.4: Nope, academicons is unnecessary; fontawesome5 has \faOrcid.
@@ -38,17 +38,8 @@
 \LoadClass{article}
 %% v1.3.2 Hopefully this helps make the PDF
 %% file more 'friendly' with copy-paste etc
-%% v 1.6.1 Temporary fix for pdfx incompatibility; see https://tex.stackexchange.com/a/610445
 \RequirePackage{etoolbox}
-\@ifl@t@r\fmtversion{2021-06-01}%
- {\AddToHook{package/after/xmpincl}
-   {\patchcmd\mcs@xmpincl@patchFile{\if\par}{\ifx\par}{}{\fail}}}{}
 \RequirePackage[a-1b]{pdfx}
-%% v1.3.3 Temporary fix for pdfx and biblatex incompatibility
-%% (Thanks to @badetitou for highlighting this issue)
-%% https://github.com/plk/biblatex/issues/1044
-%% Will be removed when fix is released in biblatex 3.16
-% \catcode30=12
 \RequirePackage{accsupp}
 \RequirePackage[margin=2cm]{geometry}
 \RequirePackage[fixed]{fontawesome5}
