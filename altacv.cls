@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.6.3, 04 Oct 2021) written by
+% This is altacv.cls (v1.6.4, 13 Nov 2021) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -19,7 +19,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2021/10/04 AltaCV v1.6.3, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2021/10/04 AltaCV v1.6.4, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 %% v1.4: Nope, academicons is unnecessary; fontawesome5 has \faOrcid.
@@ -35,7 +35,7 @@
 \DeclareOption{withhyper}{\@withhypertrue}
 \ProcessOptions\relax
 
-\LoadClass{article}
+\LoadClass{extarticle}
 %% v1.3.2 Hopefully this helps make the PDF
 %% file more 'friendly' with copy-paste etc
 \RequirePackage{etoolbox}
