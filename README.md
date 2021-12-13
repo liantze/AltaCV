@@ -1,12 +1,17 @@
 # AltaCV, yet another LaTeX CV/Résumé class | A fork
 
-Forked version of AltaCV v1.3.3 (31 October 2020), by LianTze Lim (liantze@gmail.com)
+v1.6.4 (13 Nov 2021), by LianTze Lim (liantze@gmail.com)
 
 ## Original Sample
 
 This is how the orignal re-created résumé looks like ([view/open on Overleaf](https://www.overleaf.com/latex/examples/recreating-business-insiders-cv-of-marissa-mayer-using-altacv/gtqfpbwncfvp)):
+v1.6.4 (13 Nov 2021), by LianTze Lim (liantze@gmail.com)
 
-<img src="mmayer.png" alt="Marissa Mayer's résumé, re-created with AltaCV" width="600px">
+* Starred `\NewInfoField*` command to handle Mastodon; Icons, `\cvskills`, `\wheelchart` have "copyable" text values; `\cvskill` supports numerical values {0.5, 1, ..., 4.5, 5} on 21 May 2021
+* Moved `biblatex`-related code to `*.cfg` files for easier edit on 8 May 2021
+* Removed dependency on `academicons` on 12 Apr 2021
+* Clickable hyperlinked info fields added on 10 May 2020
+* Sample file with new `paracol` layout added on 2 February 2020
 
 ## Forked Sample
 
@@ -24,14 +29,13 @@ This is how the final version looks like on:
 ## Requirements and Compilation
 
 * pdflatex + biber + pdflatex
-* AltaCV uses [`fontawesome5`](http://www.ctan.org/pkg/fontawesome5) and [`academicons`](http://www.ctan.org/pkg/academicons); they're included in both TeX Live 2016 and MikTeX 2.9.
-* Loading `academicons` is optional: enable it by adding the `academicons` option to `\documentclass`.
+* AltaCV uses [`fontawesome5`](http://www.ctan.org/pkg/fontawesome5).
 * Use the `normalphoto` option to get normal (i.e. non-circular) photos.
 * As of v1.2 you can add multiple photos on the left or right: `\photoL{2cm}{logo1}` and `\photoR{2.5cm}{logo2,photo}`. (`\photo` will work like `\photoR`.) Separate your image filenames with commas _without_ spaces.
-* Use the `ragged2d` option to activate hyphenations while keeping text left-justified; line endings will thus be less jagged and more aesthetically pleasing.
+* Use the `ragged2e` option to activate hyphenations while keeping text left-justified; line endings will thus be less jagged and more aesthetically pleasing.
 * As of v1.3 the `withhyper` document class option will make the "personal info" fields into clickable hyperlinks (where it makes sense). See below for more details.
 * Can now be compiled with pdflatex, XeLaTeX and LuaLaTeX!
-* However if you're using `academicons`, you _must_ use either XeLaTeX or LuaLaTeX. If the doc then compiles but the icons don't show up in the output PDF, try compiling with LuaLaTeX instead.
+  * Note that to compile with XeLaTeX, you should use a command line as follows, per [the `pdfx` documentation](http://mirrors.ctan.org/macros/latex/contrib/pdfx/pdfx.pdf): `xelatex -shell-escape -output-driver="xdvipdfmx -z 0" sample.tex`
 * The samples here use the [Lato](http://www.latofonts.com/lato-free-fonts/) and [Roboto Slab fonts](https://github.com/googlefonts/robotoslab). Feel free to use a different typeface package instead—often a different typeface will change the entire CV's feel.
 
 ## `sample.tex` [WAS `sample-alt.tex` 2 FEBRUARY 2020, DEFAULT SINCE 10 MAY 2020] ##
@@ -92,6 +96,25 @@ Or if you really prefer, you can define a new field yourself with `\NewInfoFiled
 \gitlab{your_id}
 ````
 
+For services and platforms like Mastodon where there isn't a straightforward relation between the more popular user ID or nickname and the hyperlink, you can use `\printinfo` directly e.g.
+
+```latex
+\printinfo{\faMastodon}{@username@instace}[https://instance.url/@username]
+```
+
+But if you absolutely want to create new dedicated info fields for such platforms, then use `\NewInfoField*` with a star:
+
+```latex
+\NewInfoField*{mastodon}{\faMastodon}
+```
+
+then you can use `\mastodon` with TWO arguments where the 2nd argument is the full hyperlink.
+
+```latex
+\mastodon{@username@instance}{https://instance.url/@username}
+```
+
+
 ## Configurable colours
 
 Use `\colorlet` or `\definecolor` to change these.
@@ -117,7 +140,7 @@ Use `\renewcommand` to change these.
 
 ## `legacy/sample-old.tex`
 
-This is the original sample template file until 5 May 2020. The right sidebar is actually a _marginpar_, so it doesn't support footnote and cannot automatically break across pages if it's too long. You would need to split your right sidebar contents into separate files e.g. `p1sidebar.tex` and `p2sidebar.tex`, and insert them as the optional argument of the `\cvsection{...}` that you want to align them with:
+This is the original sample template file until 5 May 2020. The right sidebar is actually a _`marginpar`_, so it doesn't support footnote and cannot automatically break across pages if it's too long. You would need to split your right sidebar contents into separate files e.g. `p1sidebar.tex` and `p2sidebar.tex`, and insert them as the optional argument of the `\cvsection{...}` that you want to align them with:
 
 ```latex
 \cvsection[p1sidebar]{Experience}
