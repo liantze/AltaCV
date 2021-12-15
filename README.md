@@ -6,6 +6,11 @@ v1.6.4 (13 Nov 2021), by LianTze Lim (liantze@gmail.com)
 
 This is how the orignal re-created résumé looks like ([view/open on Overleaf](https://www.overleaf.com/latex/examples/recreating-business-insiders-cv-of-marissa-mayer-using-altacv/gtqfpbwncfvp)):
 v1.6.4 (13 Nov 2021), by LianTze Lim (liantze@gmail.com)
+* Starred `\NewInfoField*` command to handle Mastodon; Icons, `\cvskills`, `\wheelchart` have "copyable" text values; `\cvskill` supports numerical values {0.5, 1, ..., 4.5, 5} on 21 May 2021
+* Moved `biblatex`-related code to `*.cfg` files for easier edit on 8 May 2021
+* Removed dependency on `academicons` on 12 Apr 2021
+* Clickable hyperlinked info fields added on 10 May 2020
+* Sample file with new `paracol` layout added on 2 February 2020
 
 * Starred `\NewInfoField*` command to handle Mastodon; Icons, `\cvskills`, `\wheelchart` have "copyable" text values; `\cvskill` supports numerical values {0.5, 1, ..., 4.5, 5} on 21 May 2021
 * Moved `biblatex`-related code to `*.cfg` files for easier edit on 8 May 2021
