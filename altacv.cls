@@ -35,6 +35,8 @@
 %% v1.3: load hyperref for clickable hyperlinks
 \newif\if@withhyper
 \DeclareOption{withhyper}{\@withhypertrue}
+\newif\ifdarkmode
+\DeclareOption{darkmode}{\darkmodetrue}
 \ProcessOptions\relax
 
 \LoadClass{extarticle}
@@ -90,15 +92,6 @@
 \fi
 
 \RequirePackage{xcolor}
-
-\colorlet{accent}{blue!70!black}
-\colorlet{emphasis}{black}
-\colorlet{heading}{black}
-\colorlet{headingrule}{black}
-\colorlet{subheading}{emphasis}
-\colorlet{body}{black!80!white}
-\colorlet{name}{heading}
-\colorlet{tagline}{accent}
 \newcommand{\itemmarker}{{\small\textbullet}}
 \newcommand{\ratingmarker}{\faCircle}
 

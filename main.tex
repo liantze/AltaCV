@@ -24,6 +24,10 @@
 %% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
 % \documentclass[10pt,a4paper,normalphoto]{altacv}
 
+%% Fork: CV dark mode toggle enabler to use a inverted color palette.
+%% Use the "darkmode" option if you want a color palette used to 
+% \documentclass[10pt,a4paper,darkmode]{altacv}
+
 \documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
 
 %% AltaCV uses the fontawesome5 and academicons fonts
@@ -51,36 +55,32 @@
   \renewcommand{\familydefault}{\sfdefault}
 \fi
 
-% ----- LIGHT MODE -----
-\definecolor{SlateGrey}{HTML}{2E2E2E}
-\definecolor{LightGrey}{HTML}{666666}
-\definecolor{PrimaryColor}{HTML}{001F5A}
-\definecolor{SecondaryColor}{HTML}{0039AC}
-\definecolor{ThirdColor}{HTML}{F3890B}
-\definecolor{BackgroundColor}{HTML}{E2E2E2}
+% Fork: Change the color codes to test your personal variant on any mode
+\ifdarkmode%
+  \definecolor{PrimaryColor}{HTML}{0F52D9}
+  \definecolor{SecondaryColor}{HTML}{3F7FFF}
+  \definecolor{ThirdColor}{HTML}{F3890B}
+  \definecolor{BodyColor}{HTML}{ABABAB}
+  \definecolor{EmphasisColor}{HTML}{ABA2A2}
+  \definecolor{BackgroundColor}{HTML}{242424}
+\else%
+  \definecolor{PrimaryColor}{HTML}{001F5A}
+  \definecolor{SecondaryColor}{HTML}{0039AC}
+  \definecolor{ThirdColor}{HTML}{F3890B}
+  \definecolor{BodyColor}{HTML}{666666}
+  \definecolor{EmphasisColor}{HTML}{2E2E2E}
+  \definecolor{BackgroundColor}{HTML}{E2E2E2}
+\fi%
+
 \colorlet{name}{PrimaryColor}
 \colorlet{tagline}{PrimaryColor}
 \colorlet{heading}{PrimaryColor}
 \colorlet{headingrule}{ThirdColor}
 \colorlet{subheading}{SecondaryColor}
 \colorlet{accent}{SecondaryColor}
-\colorlet{emphasis}{SlateGrey}
-\colorlet{body}{LightGrey}
-\pagecolor{BackgroundColor}   
-% ----- DARK MODE -----
-%\definecolor{BackgroundColor}{HTML}{242424}
-%\definecolor{SlateGrey}{HTML}{6F6F6F}
-%\definecolor{LightGrey}{HTML}{ABABAB}
-%\definecolor{PrimaryColor}{HTML}{3F7FFF}
-%\colorlet{name}{PrimaryColor}
-%\colorlet{tagline}{PrimaryColor}
-%\colorlet{heading}{PrimaryColor}
-%\colorlet{headingrule}{PrimaryColor}
-%\colorlet{subheading}{PrimaryColor}
-%\colorlet{accent}{PrimaryColor}
-%\colorlet{emphasis}{LightGrey}
-%\colorlet{body}{LightGrey}
-%\pagecolor{BackgroundColor}
+\colorlet{emphasis}{EmphasisColor}
+\colorlet{body}{BodyColor}
+\pagecolor{BackgroundColor}
 
 % Change some fonts, if necessary
 \renewcommand{\namefont}{\Huge\rmfamily\bfseries}

@@ -20,6 +20,7 @@ v1.6.4 (13 Nov 2021), by LianTze Lim (liantze@gmail.com)
 
 ## Forked Sample
 
+As a personal adition, I wanted to add a color variation following the "dark mode". In order to use it, add the `darkmode` option in line 31 of file `main.tex`
 Though if you're creating your own CV/résumé, you'd probably prefer using the basic template ([view/open on Overleaf](https://www.overleaf.com/latex/templates/altacv-nicolasomar-fork/htfpmrwhbwpw)):
 
 This is how the final version looks like on:
