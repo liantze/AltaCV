@@ -12,15 +12,10 @@ v1.6.4 (13 Nov 2021), by LianTze Lim (liantze@gmail.com)
 * Clickable hyperlinked info fields added on 10 May 2020
 * Sample file with new `paracol` layout added on 2 February 2020
 
-* Starred `\NewInfoField*` command to handle Mastodon; Icons, `\cvskills`, `\wheelchart` have "copyable" text values; `\cvskill` supports numerical values {0.5, 1, ..., 4.5, 5} on 21 May 2021
-* Moved `biblatex`-related code to `*.cfg` files for easier edit on 8 May 2021
-* Removed dependency on `academicons` on 12 Apr 2021
-* Clickable hyperlinked info fields added on 10 May 2020
-* Sample file with new `paracol` layout added on 2 February 2020
-
 ## Forked Sample
 
-As a personal adition, I wanted to add a color variation following the "dark mode". In order to use it, add the `darkmode` option in line 31 of file `main.tex`
+As a personal adition, I wanted to add a color variation following the "dark mode". In order to use it, add the `darkmode` option in line 31 of file `main.tex`.
+
 Though if you're creating your own CV/résumé, you'd probably prefer using the basic template ([view/open on Overleaf](https://www.overleaf.com/latex/templates/altacv-nicolasomar-fork/htfpmrwhbwpw)):
 
 This is how the final version looks like on:
@@ -30,7 +25,6 @@ This is how the final version looks like on:
 
 ### Dark mode
 <img src="sampleDarkMode.png" alt="Résumé sample | Dark mode, based on AltaCV" width="300px">
-
 
 ## Requirements and Compilation
 
