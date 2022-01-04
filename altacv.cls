@@ -1,6 +1,7 @@
 %%%%%%%%%%%%%%%%%
 % This is altacv.cls (v1.6.4, 13 Nov 2021) written by
 % LianTze Lim (liantze@gmail.com).
+% This fork/modified version has been made by Nicolás Omar González Passerino (nicolas.passerino@gmail.com, 15 Oct 2020)
 %
 %% It may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
@@ -12,6 +13,7 @@
 %%
 %%
 % Contributions:
+% - https://github.com/liantze/AltaCV Original template
 % - https://github.com/akreuzer Added ragged2e option (5 Nov 2018)
 % - https://github.com/stefanogermano Fixed bad boxes and undefined font shape (July 2018)
 % - https://github.com/foohyfooh Fixed blank spaces in \cvevent and bad link in README.md (June 2018)
@@ -33,6 +35,8 @@
 %% v1.3: load hyperref for clickable hyperlinks
 \newif\if@withhyper
 \DeclareOption{withhyper}{\@withhypertrue}
+\newif\ifdarkmode
+\DeclareOption{darkmode}{\darkmodetrue}
 \ProcessOptions\relax
 
 \LoadClass{extarticle}
@@ -46,6 +50,7 @@
 \RequirePackage{ifxetex,ifluatex}
 \RequirePackage{scrlfile}
 \RequirePackage{xparse}
+\RequirePackage{markdown}
 
 %% v1.1.5: added for convenience
 \newif\ifxetexorluatex
@@ -87,15 +92,6 @@
 \fi
 
 \RequirePackage{xcolor}
-
-\colorlet{accent}{blue!70!black}
-\colorlet{emphasis}{black}
-\colorlet{heading}{black}
-\colorlet{headingrule}{black}
-\colorlet{subheading}{emphasis}
-\colorlet{body}{black!80!white}
-\colorlet{name}{heading}
-\colorlet{tagline}{accent}
 \newcommand{\itemmarker}{{\small\textbullet}}
 \newcommand{\ratingmarker}{\faCircle}
 
@@ -201,6 +197,9 @@
 % v1.?? Use fontawesome5 for Orcid symbol
 \NewInfoField{orcid}{\faOrcid}[https://orcid.org/]
 \NewInfoField{location}{\faMapMarker}
+% Fork: New optional options added for dev and medium accounts
+\NewInfoField{dev}{\faDev}[https://dev.to/]
+\NewInfoField{medium}{\faMedium}[https://medium.com/@]
 
 % v1.2: Support for multiple photos
 \newlength{\altacv@photos@width}
@@ -214,21 +213,23 @@
     \if@normalphoto
       \includegraphics[width=\linewidth]{#2}
     \else
-      \tikz\path[fill overzoom image={#2}]circle[radius=0.5\linewidth];
+% Fork: The photo image has modified to include a border around it, which color is aligned to document's theme
+      \tikz\filldraw[color=headingrule, fill overzoom image={#2}, ultra thick](-1,0) circle[radius=0.5\linewidth];
     \fi%
   \end{minipage}%
 }
 
+% Fork: Horizontal space changed from 1ex to 6,5ex to align photo container width to smaller column width (25%)
 \newcommand{\altacv@add@photo@left}[1]{%
   \appto{\altacv@left@photos}{%
-    \@makeaphoto{\altacv@photo@diam@left}{#1}\hspace{1ex}%
+    \@makeaphoto{\altacv@photo@diam@left}{#1}\hspace{6,5ex}%
   }%
   \addtolength{\altacv@photos@width}{\altacv@photo@diam@left}%
   \addtolength{\altacv@photos@width}{1ex}%
 }
 \newcommand{\altacv@add@photo@right}[1]{%
   \appto{\altacv@right@photos}{%
-    \@makeaphoto{\altacv@photo@diam@right}{#1}\hspace{1ex}%
+    \@makeaphoto{\altacv@photo@diam@right}{#1}\hspace{6,5ex}%
   }%
   \addtolength{\altacv@photos@width}{\altacv@photo@diam@right}%
   \addtolength{\altacv@photos@width}{1ex}%
@@ -266,6 +267,7 @@
 
 \renewenvironment{quote}{\color{accent}\itshape\large}{\par}
 
+% Fork: Two bigskip tags added for better section separation
 \newcommand{\cvsection}[2][]{%
   \nointerlineskip\bigskip%  %% bugfix in v1.6.2
   \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
@@ -279,14 +281,13 @@
 }
 
 % v1.1.4: fixes inconsistent font size
+% Fork: structure modified to include change title, company name, start/end dates and work location (only a string)
 \newcommand{\cvevent}[4]{%
-  {\large\color{emphasis}#1\par}
-  \smallskip\normalsize
-  \ifstrequal{#2}{}{}{
-  \textbf{\color{accent}#2}\par
-  \smallskip}
-  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar~#3}}}%
-  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker~#4}}}\par
+  {\large\color{emphasis}#1}
+  \ifstrequal{#2}{}{}{\large{\color{accent}#2}}
+  \par\medskip\normalsize
+  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\color{accent}\faCalendar\color{emphasis}~#3}}}
+  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\color{accent}\faMapMarker\color{emphasis}~#4}}}\par
   \medskip\normalsize
 }
 
@@ -298,8 +299,10 @@
   \smallskip
 }
 
+% Fork: Tags now have a more consistent vertican and horizontal separation
 \newcommand{\cvtag}[1]{%
-  \tikz[baseline]\node[anchor=base,draw=body!30,rounded corners,inner xsep=1ex,inner ysep =0.75ex,text height=1.5ex,text depth=.25ex]{#1};
+  \tikz[baseline]\node[anchor=base,draw=body,rounded corners,inner xsep=1ex,inner ysep=0.75ex,text height=1.5ex,text depth=.25ex]{#1};
+  \vspace{0.25ex}
 }
 
 % v1.6: Use accsupp so that the actual numeric value is copied/pasted
@@ -313,6 +316,12 @@
      \clipbox*{{.5\width} -0.25ex {\width} {\totalheight}}{\color{body!30}\ratingmarker}}
     {\ifdimgreater{\x bp}{#2 bp}{\color{body!30}}{\color{accent}}\ratingmarker}%
   }\EndAccSupp{}\par%
+}
+
+% Fork: Tag added for languages rating, avoiding star/button/progress bar previous ideas, I made a simpler and more accurate representation using a single string, which will be colored to be oustanding
+\newcommand{\cvlang}[2]{%
+    \textcolor{emphasis}{\textbf{#1: }}
+    \textcolor{accent}{\textbf{#2}}
 }
 
 % Adapted from @Jake's answer at http://tex.stackexchange.com/a/82729/226
@@ -371,14 +380,16 @@
     \endgroup
 }
 
-\newcommand{\cvref}[3]{%
-  \smallskip
+% Fork: CV reference tag has been modified to accept only linkedin accounts instead mail. It can be modified easily in case you need to display other type of contact
+\newcommand{\cvref}[2]{%
   \textcolor{emphasis}{\textbf{#1}}\par
   \begin{description}[font=\color{accent},style=multiline,leftmargin=1.35em,align=left]
-  \item[\small\normalfont\emailsymbol] #2
-  \item[\small\normalfont\mailaddresssymbol] #3
+    \item[\small\normalfont\faLinkedin]\href{https://linkedin.com/in/#2}{#2}
   \end{description}
-%   \medskip
+}
+
+\newcommand{\cvrepo}[2]{
+    \textcolor{accent}{\href{#2}{#1}}
 }
 
 \newenvironment{cvcolumn}[1]{\begin{minipage}[t]{#1}\raggedright}{\end{minipage}}

@@ -1,0 +1,3 @@
+main.*
+pdfa.*
+!main.tex

@@ -1,32 +1,30 @@
-# AltaCV, yet another LaTeX CV/Résumé class
+# AltaCV, yet another LaTeX CV/Résumé class | A fork
 
 v1.6.4 (13 Nov 2021), by LianTze Lim (liantze@gmail.com)
 
+## Original Sample
+
+This is how the orignal re-created résumé looks like ([view/open on Overleaf](https://www.overleaf.com/latex/examples/recreating-business-insiders-cv-of-marissa-mayer-using-altacv/gtqfpbwncfvp)):
+v1.6.4 (13 Nov 2021), by LianTze Lim (liantze@gmail.com)
 * Starred `\NewInfoField*` command to handle Mastodon; Icons, `\cvskills`, `\wheelchart` have "copyable" text values; `\cvskill` supports numerical values {0.5, 1, ..., 4.5, 5} on 21 May 2021
 * Moved `biblatex`-related code to `*.cfg` files for easier edit on 8 May 2021
 * Removed dependency on `academicons` on 12 Apr 2021
 * Clickable hyperlinked info fields added on 10 May 2020
 * Sample file with new `paracol` layout added on 2 February 2020
 
-(Thanks to [Nur](https://github.com/nurh) for the name.)
+## Forked Sample
 
-It all started with this:
+As a personal adition, I wanted to add a color variation following the "dark mode". In order to use it, add the `darkmode` option in line 31 of file `main.tex`.
 
-[<img src="tweet-that-started-this.png" width="500px">](https://twitter.com/Leonduck/status/764281546408923136)
+Though if you're creating your own CV/résumé, you'd probably prefer using the basic template ([view/open on Overleaf](https://www.overleaf.com/latex/templates/altacv-nicolasomar-fork/htfpmrwhbwpw)):
 
-Leonardo was talking about a [résumé of Marissa Mayer that Business Insider put together](http://www.businessinsider.my/a-sample-resume-for-marissa-mayer-2016-7/) using [enhancv.com](https://enhancv.com).
-I _knew_ I had to do something about it. And so AltaCV was born.
+This is how the final version looks like on:
 
-## Samples
+### Light mode
+<img src="sampleLightMode.png" alt="Résumé sample | Light mode, based on AltaCV" width="300px">
 
-This is how the re-created résumé looks like ([view/open on Overleaf](https://www.overleaf.com/latex/examples/recreating-business-insiders-cv-of-marissa-mayer-using-altacv/gtqfpbwncfvp)):
-
-<img src="mmayer.png" alt="Marissa Mayer's résumé, re-created with AltaCV" width="600px">
-
-Though if you're creating your own CV/résumé, you'd probably prefer using the basic template ([view/open on Overleaf](https://www.overleaf.com/latex/templates/altacv-template/trgqjpwnmtgv)):
-
-<img src="sample.png" alt="sample barebones AltaCV template" width="600px">
-
+### Dark mode
+<img src="sampleDarkMode.png" alt="Résumé sample | Dark mode, based on AltaCV" width="300px">
 
 ## Requirements and Compilation
 
