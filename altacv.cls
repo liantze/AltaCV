@@ -298,8 +298,37 @@
   \smallskip
 }
 
-\newcommand{\cvtag}[1]{%
-  \tikz[baseline]\node[anchor=base,draw=body!30,rounded corners,inner xsep=1ex,inner ysep =0.75ex,text height=1.5ex,text depth=.25ex]{#1};
+\newlength{\tagwidth}
+% \cvtags{comma-separated list of tags}
+\newcommand{\cvtags}[1]{%
+    % Varibale for saving total tag width in current line
+    \pgfmathsetmacro{\sofarlinewidth}{0}%
+    \foreach \tagtext in {#1} {%
+        % Calculate tagwidth with length of tagtext + 2*(inner xsep)
+        \settowidth{\tagwidth}{\tagtext}%
+        \addtolength{\tagwidth}{8pt}%
+        % Check if tag is too large for current line
+        \pgfmathparse{\linewidth-\sofarlinewidth}%
+        \ifdimgreater{\tagwidth}{\pgfmathresult pt}{%
+            % Go to next line
+            \par%
+            \pgfmathparse{\tagwidth+2}%
+            \global\let\sofarlinewidth=\pgfmathresult%
+        }%
+        {%
+            % Add tagwidth + node distance
+            \pgfmathparse{\sofarlinewidth+\tagwidth+2}%
+            \global\let\sofarlinewidth=\pgfmathresult%
+        }%
+        \tikz[baseline]\node[
+            anchor=base,
+            draw=body!30,
+            rounded corners,
+            inner xsep=4pt,
+            inner ysep =0.75ex,
+            text height=1.5ex,
+            text depth=.25ex]{\tagtext};
+    }
 }
 
 % v1.6: Use accsupp so that the actual numeric value is copied/pasted
