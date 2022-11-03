@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.6.4, 13 Nov 2021) written by
+% This is altacv.cls (v1.6.5, 3 Nov 2022) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -19,7 +19,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2021/10/04 AltaCV v1.6.4, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2022/11/03 AltaCV v1.6.5, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 %% v1.4: Nope, academicons is unnecessary; fontawesome5 has \faOrcid.
@@ -395,7 +395,36 @@
 }
 \newcommand{\addnextpagesidebar}[2][]{\afterpage{\addsidebar[#1]{#2}}}
 
-\AtBeginDocument{%
+% v1.6.5 But provide for ability to highlight names in publication list
+\RequirePackage{pgffor}
+\def\my@namelist{}
+\newcommand{\mynames}[1]{\def\my@namelist{#1}}
+\newtoggle{boldname}
+\AddToHook{package/biblatex/after}{
+\renewcommand*{\mkbibnamefamily}[1]{%
+  \global\togglefalse{boldname}%
+  \foreach \my@fname / \my@gname in \my@namelist {%
+    \ifboolexpr{ test {\ifdefstrequal{\namepartfamily}{\my@fname}}
+                 and
+                 test {\ifdefstrequal{\namepartgiven}{\my@gname}}}
+      {\global\toggletrue{boldname}}{}%
+  }%
+  \iftoggle{boldname}{\textbf{#1}}{#1}%
+}
+
+\renewcommand*{\mkbibnamegiven}[1]{%
+  \global\togglefalse{boldname}%
+  \foreach \my@fname / \my@gname in \my@namelist{%
+    \ifboolexpr{ test {\ifdefstrequal{\namepartfamily}{\my@fname}}
+                 and
+                 test {\ifdefstrequal{\namepartgiven}{\my@gname}}}
+      {\global\toggletrue{boldname}\breakforeach}{}%
+  }%
+  \iftoggle{boldname}{\textbf{#1}}{#1}%
+}
+}
+
+\AddToHook{begindocument/before}{%
   \pagestyle{empty}
   \color{body}
   \raggedright
