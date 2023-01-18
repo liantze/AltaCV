@@ -101,14 +101,15 @@
     \tagline{Test Developer}
     %% You can add multiple photos on the left or right
     \photoL{4cm}{john-doe}
-    
+
     \personalinfo{
         \email{john_doe@email.com}\smallskip
         \phone{+01-2345-678901}
         \location{City, Country}\\
-        \linkedin{johnDoe}
-        \github{johnDoe}
-        \dev{johnDoe}
+        \linkedin{linkedinUser}
+        \github{githubUser}
+        \npm{npmUser}
+        \dev{devtoUser}
         %\homepage{nicolasomar.me}
         %\medium{nicolasomar}
         %% You MUST add the academicons option to \documentclass, then compile with LuaLaTeX or XeLaTeX, if you want to use \orcid or other academicons commands.
@@ -178,6 +179,7 @@
             \cvtag{Blanco}
             \cvtag{Gris}
             \cvtag{Negro}
+            \smallskip
         % ----- LEARNING -----
         
         % ----- LANGUAGES -----
@@ -189,19 +191,17 @@
             %% Yeah I didn't spend too much time making all the
             %% spacing consistent... sorry. Use \smallskip, \medskip,
             %% \bigskip, \vpsace etc to make ajustments.
-            \smallskip
         % ----- LANGUAGES -----
             
         % ----- REFERENCES -----
         \cvsection{References}
-            \cvref{Ref 1}{ref-1}
-            \divider
+            \cvreference{Ref 1}{ref-1}
+            \medskip
             
-            \cvref{Ref 2}{ref-2}
-            \divider
+            \cvreference{Ref 2}{ref-2}
+            \medskip
             
-            \cvref{Ref 3}{ref-3}
-            \smallskip
+            \cvreference{Ref 3}{ref-3}
         % ----- REFERENCES -----
         
         % ----- MOST PROUD -----
@@ -276,14 +276,14 @@
         
         % ----- PROJECTS -----
         \cvsection{Projects}
-            \cvevent{Project 1 }{\cvrepo{| \faGithub}{https://github.com/user/repo}\cvrepo{| \faGlobe}{https://repo-demo.com/}}{Mm YYYY -- Mm YYYY}{}
+            \cvevent{Project 1 }{\cvreference{| \faGithub}{https://github.com/user/repo}\cvreference{| \faGlobe}{https://repo-demo.com/}}{Mm YYYY -- Mm YYYY}{}
             \begin{itemize}
                 \item Item 1
                 \item Item 2
             \end{itemize}
             \divider
             
-            \cvevent{Project 1 }{\cvrepo{| \faGitlab}{https://gitlab.com/user/repo}\cvrepo{| \faGlobe}{https://repo-demo.com/}}{Mm YYYY -- Mm YYYY}{}
+            \cvevent{Project 1 }{\cvreference{| \faGitlab}{https://gitlab.com/user/repo}\cvreference{| \faGlobe}{https://repo-demo.com/}}{Mm YYYY -- Mm YYYY}{}
             \begin{itemize}
                 \item Item 1
                 \item Item 2

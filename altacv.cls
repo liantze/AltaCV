@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%
 % This is altacv.cls (v1.6.5, 3 Nov 2022) written by
 % LianTze Lim (liantze@gmail.com).
-% This fork/modified version has been made by Nicolás Omar González Passerino (nicolas.passerino@gmail.com, 15 Oct 2020)
+% This fork/modified version has been made by Nicolás Omar González Passerino (nicolas.passerino@gmail.com, 18 Jan 2023)
 %
 %% It may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
@@ -200,6 +200,7 @@
 % Fork: New optional options added for dev and medium accounts
 \NewInfoField{dev}{\faDev}[https://dev.to/]
 \NewInfoField{medium}{\faMedium}[https://medium.com/@]
+\NewInfoField{npm}{\faNpm}[https://www.npmjs.com/~]
 
 % v1.2: Support for multiple photos
 \newlength{\altacv@photos@width}
