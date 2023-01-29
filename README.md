@@ -2,6 +2,8 @@
 
 v1.6.5 (3 Nov 2022), by LianTze Lim (liantze@gmail.com)
 
+v1.6.5a (29 Jan 2023), by Nicolás Omar González Passerino (nicolas.passerino@gmail.com)
+
 ## Original Sample
 
 * Added \mynames{...} to specify names to be highlighted in the publication list on 3 Nov 2022
@@ -13,17 +15,25 @@ v1.6.5 (3 Nov 2022), by LianTze Lim (liantze@gmail.com)
 
 ## Forked Sample
 
-As a personal adition, I wanted to add a color variation following the "dark mode". In order to use it, add the `darkmode` option in line 31 of file `main.tex`.
+Before v1.6.5a:
+* **Added:** Contact options added for dev.to, medium and npm accounts.
+* **Added:** Adapted color scheme as well as `darkmode` (enable in line 31 of file `main.tex`).
+* **Added:** (`\cvlang`) tag added for languages rating, avoiding star/button/progress bar previous ideas, I made a simpler and more accurate representation using a single string, which will be colored to be oustanding.
+* **Updated:** (`\@makeaphoto`) Photo image has modified to include a border around it, which color is aligned to document's theme.
+* **Updated:** (`\altacv@add@photo@left`) Horizontal space changed from 1ex to 6,5ex to align photo container width to smaller column width (25%).
+* **Updated:** (`\cvsection`) separation has been changed by adding 2 `\bigskip`.
+* **Updated:** (`\cvevent`) structure modified to include change title, company name, start/end dates and work location (only a string).
+* **Updated:** (`\cvtag`) items now have a more consistent vertican and horizontal separation.
 
-Though if you're creating your own CV/résumé, you'd probably prefer using the basic template ([view/open on Overleaf](https://www.overleaf.com/latex/templates/altacv-nicolasomar-fork/htfpmrwhbwpw)):
+Though if you're creating your own CV/résumé, you'd probably prefer using the online template ([view/open on Overleaf](https://www.overleaf.com/latex/templates/altacv-nicolasomar-fork/htfpmrwhbwpw)):
 
 This is how the final version looks like on:
 
 ### Light mode
-<img src="sampleLightMode.png" alt="Résumé sample | Light mode, based on AltaCV" width="300px">
+<img src="sampleLightMode.png" title="Résumé sample | Light mode, based on AltaCV" alt="Résumé sample | Light mode, based on AltaCV" width="300px">
 
 ### Dark mode
-<img src="sampleDarkMode.png" alt="Résumé sample | Dark mode, based on AltaCV" width="300px">
+<img src="sampleDarkMode.png" title="Résumé sample | Dark mode, based on AltaCV" alt="Résumé sample | Dark mode, based on AltaCV" width="300px">
 
 ## Requirements and Compilation
 
