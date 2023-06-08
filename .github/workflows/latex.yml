@@ -13,7 +13,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Merge main branch
+      - name: git config
         run: |
           git config user.name sista05
           git config user.email akisista05@gmail.com
