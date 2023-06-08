@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - fix/*
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,6 +12,11 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+      - name: Merge main branch
+        run: |
+          git config user.name sista05
+          git config user.email akisista05@gmail.com
 
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
