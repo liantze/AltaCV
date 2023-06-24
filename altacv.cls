@@ -248,6 +248,7 @@
 \newcommand{\personalinfofont}{\footnotesize\bfseries}
 \newcommand{\cvsectionfont}{\LARGE\bfseries}
 \newcommand{\cvsubsectionfont}{\large\bfseries}
+\newcommand{\cvsectionline}{\rule{\linewidth}{2pt}}
 
 \newcommand{\makecvheader}{%
   \begingroup
@@ -270,7 +271,7 @@
   \nointerlineskip\bigskip%  %% bugfix in v1.6.2
   \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
   {\color{heading}\cvsectionfont\MakeUppercase{#2}}\\[-1ex]%
-  {\color{headingrule}\rule{\linewidth}{2pt}\par}\medskip
+  {\color{headingrule}\cvsectionline\par}\medskip
 }
 
 \newcommand{\cvsubsection}[1]{%
