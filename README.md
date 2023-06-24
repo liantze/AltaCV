@@ -139,6 +139,11 @@ Use `\renewcommand` to change these.
 * `\cvsectionfont`
 * `\cvsubsectionfont`
 
+## Configurable line
+
+Use `\renewcommand` to change these.
+ * `cvsectionline`
+
 ---
 
 ## `legacy/sample-old.tex`
