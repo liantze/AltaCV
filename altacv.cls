@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%
 % This is altacv.cls (v1.6.5, 3 Nov 2022) written by
 % LianTze Lim (liantze@gmail.com).
-% This is also a fork (v1.6.5b, 27 Jun 2023) written by
+% This is also a fork (v1.6.5c, 27 Jun 2023) written by
 % Nicolás Omar González Passerino (nicolas.passerino@gmail.com)
 %% It may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
@@ -21,7 +21,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2023/06/27 AltaCV v1.6.5b, yet another alternative class for a resume/curriculum vitae, now forked.]
+\ProvidesClass{altacv}[2023/06/27 AltaCV v1.6.5c, yet another alternative class for a resume/curriculum vitae, now forked.]
 
 %% v1.1: Optionally load academicons
 %% v1.4: Nope, academicons is unnecessary; fontawesome5 has \faOrcid.
@@ -305,6 +305,13 @@
   & #3
   \end{tabularx}%
   \smallskip
+}
+
+% Fork v1.6.5c: A parser for several tags that will reutilize the cvtag component in a less verbose way
+\newcommand{\cvtags}[1]{%
+  \foreach \tagValue in {#1} {%
+      \cvtag{\tagValue}
+  }
 }
 
 % Fork (before v1.6.5a): Tags now have a more consistent vertican and horizontal separation

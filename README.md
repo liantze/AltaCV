@@ -2,7 +2,7 @@
 
 v1.6.5 (3 Nov 2022), by LianTze Lim (liantze@gmail.com)
 
-v1.6.5b (27 Jun 2023), by Nicolás Omar González Passerino (nicolas.passerino@gmail.com)
+v1.6.5c (27 Jun 2023), by Nicolás Omar González Passerino (nicolas.passerino@gmail.com)
 
 ## Original Sample
 
@@ -15,8 +15,12 @@ v1.6.5b (27 Jun 2023), by Nicolás Omar González Passerino (nicolas.passerino@g
 
 ## Forked Sample
 
+### v1.6.5c:
+* **Added:** (`sloppypar`) environment added and improved to solve `\cvtag` list overlapping with `\cvsection` width.
+* **Added:** (`\cvtags`) tag created to parse several skills in tag/pill way in a less verbose way than before.
+
 ### v1.6.5b:
-* **Updated:** (`\cvref`) tag rebuilt from original version with optional display for LinkedIn and Mail links
+* **Updated:** (`\cvref`) tag rebuilt from original version with optional display for *LinkedIn* and *Email* links.
 
 ### v1.6.5a and before:
 * **Added:** Contact options added for dev.to, medium and npm accounts.
