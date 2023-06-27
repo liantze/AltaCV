@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%
 % This is altacv.cls (v1.6.5, 3 Nov 2022) written by
 % LianTze Lim (liantze@gmail.com).
-% This is also a fork (v1.6.5a, 29 Jan 2023) written by
+% This is also a fork (v1.6.5b, 27 Jun 2023) written by
 % Nicolás Omar González Passerino (nicolas.passerino@gmail.com)
 %% It may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
@@ -21,7 +21,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2022/11/03 AltaCV v1.6.5, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2023/06/27 AltaCV v1.6.5b, yet another alternative class for a resume/curriculum vitae, now forked.]
 
 %% v1.1: Optionally load academicons
 %% v1.4: Nope, academicons is unnecessary; fontawesome5 has \faOrcid.
@@ -50,7 +50,6 @@
 \RequirePackage{ifxetex,ifluatex}
 \RequirePackage{scrlfile}
 \RequirePackage{xparse}
-\RequirePackage{markdown}
 
 %% v1.1.5: added for convenience
 \newif\ifxetexorluatex
@@ -288,11 +287,16 @@
 % Fork (before v1.6.5a): Structure modified to include change title, company name, start/end dates and work location (only a string)
 \newcommand{\cvevent}[4]{%
   {\large\color{emphasis}#1}
-  \ifstrequal{#2}{}{}{\large{\color{accent}#2}}
+  \ifstrequal{#2}{}{}{\large{\color{accent}| #2}}
   \par\medskip\normalsize
   \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\color{accent}\faCalendar\color{emphasis}~#3}}}
   \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\color{accent}\faMapMarker\color{emphasis}~#4}}}\par
   \medskip\normalsize
+}
+
+% Fork v1.6.5b
+\newcommand{\cvreference}[2]{
+  \textcolor{accent}{\href{#2}{#1}}
 }
 
 \newcommand{\cvachievement}[3]{%
@@ -384,16 +388,21 @@
     \endgroup
 }
 
-% Fork (before v1.6.5a): [WIP] \cvreference tag has been modified to accept only linkedin accounts instead mail. It can be modified easily in case you need to display other type of contact
-% \newcommand{\cvref}[2]{%
-%   \textcolor{emphasis}{\textbf{#1}}\par
-%   \begin{description}[font=\color{accent},style=multiline,leftmargin=1.35em,align=left]
-%     \item[\small\normalfont\faLinkedin]\href{https://linkedin.com/in/#2}{#2}
-%   \end{description}
-% }
-
-\newcommand{\cvreference}[2]{
-    \textcolor{accent}{\href{#2}{#1}}
+% Fork v1.6.5b: Taking from original version, I added some modifications related to optional Linkedin and mail links for each reference (both will be shown only if there is any value)
+\newcommand{\cvref}[3]{%
+  \textcolor{emphasis}{\textbf{#1}}\par
+  \smallskip
+  \begin{description}[font=\color{accent},style=multiline,leftmargin=1em,align=left]
+    \def\temp{#2}\ifx\temp\empty
+    \else
+      \item[\faLinkedin] \href{https://linkedin.com/in/#2}{#2}
+    \fi
+    
+    \def\temp{#3}\ifx\temp\empty
+    \else
+      \item[\small\normalfont\mailaddresssymbol] \href{mailto:#3}{#3}
+    \fi
+  \end{description}
 }
 
 \newenvironment{cvcolumn}[1]{\begin{minipage}[t]{#1}\raggedright}{\end{minipage}}

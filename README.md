@@ -1,8 +1,8 @@
-# AltaCV, yet another LaTeX CV/Résumé class | A fork
+# AltaCV, yet another LaTeX CV/Résumé class | Now forked
 
 v1.6.5 (3 Nov 2022), by LianTze Lim (liantze@gmail.com)
 
-v1.6.5a (29 Jan 2023), by Nicolás Omar González Passerino (nicolas.passerino@gmail.com)
+v1.6.5b (27 Jun 2023), by Nicolás Omar González Passerino (nicolas.passerino@gmail.com)
 
 ## Original Sample
 
@@ -15,7 +15,10 @@ v1.6.5a (29 Jan 2023), by Nicolás Omar González Passerino (nicolas.passerino@g
 
 ## Forked Sample
 
-Before v1.6.5a:
+### v1.6.5b:
+* **Updated:** (`\cvref`) tag rebuilt from original version with optional display for LinkedIn and Mail links
+
+### v1.6.5a and before:
 * **Added:** Contact options added for dev.to, medium and npm accounts.
 * **Added:** Adapted color scheme as well as `darkmode` (enable in line 31 of file `main.tex`).
 * **Added:** (`\cvlang`) tag added for languages rating, avoiding star/button/progress bar previous ideas, I made a simpler and more accurate representation using a single string, which will be colored to be oustanding.
@@ -27,12 +30,8 @@ Before v1.6.5a:
 
 Though if you're creating your own CV/résumé, you'd probably prefer using the online template ([view/open on Overleaf](https://www.overleaf.com/latex/templates/altacv-nicolasomar-fork/htfpmrwhbwpw)):
 
-This is how the final version looks like on:
-
-### Light mode
+### This is how the final version looks like on Light & Dark mode
 <img src="sampleLightMode.png" title="Résumé sample | Light mode, based on AltaCV" alt="Résumé sample | Light mode, based on AltaCV" width="300px">
-
-### Dark mode
 <img src="sampleDarkMode.png" title="Résumé sample | Dark mode, based on AltaCV" alt="Résumé sample | Dark mode, based on AltaCV" width="300px">
 
 ## Requirements and Compilation

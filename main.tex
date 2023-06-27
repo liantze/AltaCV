@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%
 % This is an sample CV template created using altacv.cls
 % (v1.3, 10 May 2020) written by LianTze Lim (liantze@gmail.com). Now compiles with pdfLaTeX, XeLaTeX and LuaLaTeX.
-% This fork/modified version has been made by Nicolás Omar González Passerino (nicolas.passerino@gmail.com, 15 Oct 2020)
+% (v1.6.5a, 15 Oct 2020) forked by Nicolás Omar González Passerino (nicolas.passerino@gmail.com)
 %
 %% It may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
@@ -28,7 +28,7 @@
 %% Use the "darkmode" option if you want a color palette used to 
 % \documentclass[10pt,a4paper,ragged2e,withhyper,darkmode]{altacv}
 
-\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+\documentclass[10pt,a4paper,ragged2e,withhyper,darkmode]{altacv}
 
 %% AltaCV uses the fontawesome5 and academicons fonts
 %% and packages.
@@ -94,7 +94,7 @@
 \renewcommand{\ratingmarker}{\faCircle}
 
 %% sample.bib contains your publications
-%% \addbibresource{sample.bib}
+%% \addbibresource{main.bib}
 
 \begin{document}
     \name{John Doe}
@@ -133,8 +133,8 @@
     % Start a 2-column paracol. Both the left and right columns will automatically
     % break across pages if things get too long.
     \begin{paracol}{2}
-        % ----- STRENGTHS -----
-        \cvsection{Strengths}
+        % ----- TECH STACK -----
+        \cvsection{TECH STACK}
             \cvtag{One}
             \cvtag{Two}
             \cvtag{Three}
@@ -153,7 +153,7 @@
             \cvtag{Green}
             \cvtag{Violet}
             \cvtag{Orange}
-        % ----- STRENGTHS -----
+        % ----- TECH STACK -----
         
         % ----- LEARNING -----
         \cvsection{Learning}
@@ -179,14 +179,13 @@
             \cvtag{Blanco}
             \cvtag{Gris}
             \cvtag{Negro}
-            \smallskip
         % ----- LEARNING -----
         
         % ----- LANGUAGES -----
         \cvsection{Languages}
             \cvlang{Lang 1}{Native}\\
             \divider
-            
+
             \cvlang{Lang 2}{Basic / A2}
             %% Yeah I didn't spend too much time making all the
             %% spacing consistent... sorry. Use \smallskip, \medskip,
@@ -195,13 +194,10 @@
             
         % ----- REFERENCES -----
         \cvsection{References}
-            \cvreference{Ref 1}{ref-1}
-            \medskip
-            
-            \cvreference{Ref 2}{ref-2}
-            \medskip
-            
-            \cvreference{Ref 3}{ref-3}
+            \cvref{Prof.\ Alpha Beta}{Institute}{a.beta@university.edu}
+            \divider
+
+            \cvref{Boss\ Gamma Delta}{Business}{g.delta@business.com}
         % ----- REFERENCES -----
         
         % ----- MOST PROUD -----
@@ -244,31 +240,31 @@
         
         % ----- EXPERIENCE -----
         \cvsection{Experience}
-            \cvevent{Charge }{| Company}{Mm YYYY -- Mm YYYY}{City, Country}
+            \cvevent{Charge}{Company}{Mm YYYY -- Mm YYYY}{City, Country}
             \begin{itemize}
-                \item First item
-                \item Second item
-                \item Third item
+                \item First achievement
+                \item Second achievement
+                \item Third achievement
             \end{itemize}
             \divider
             
-            \cvevent{Charge }{| Company}{Mm YYYY -- Mm YYYY}{City, Country}
+            \cvevent{Charge}{Company}{Mm YYYY -- Mm YYYY}{City, Country}
             \begin{itemize}
-                \item First item
-                \item Second item
-                \item Third item
+                \item First achievement
+                \item Second achievement
+                \item Third achievement
             \end{itemize}
         % ----- EXPERIENCE -----
         
         % ----- EDUCATION -----
         \cvsection{Education}
-            \cvevent{Title }{| Institution}{Mm YYYY -- Mm YYYY}{City, Country}
+            \cvevent{Title}{Institution}{Mm YYYY -- Mm YYYY}{City, Country}
             \begin{itemize}
                 \item GPA: 1,23
             \end{itemize}
             \divider
             
-            \cvevent{Title }{| Institution}{Mm YYYY -- Mm YYYY}{City, Country}
+            \cvevent{Title}{Institution}{Mm YYYY -- Mm YYYY}{City, Country}
             \begin{itemize}
                 \item GPA: 1,23
             \end{itemize}
@@ -276,14 +272,14 @@
         
         % ----- PROJECTS -----
         \cvsection{Projects}
-            \cvevent{Project 1 }{\cvreference{| \faGithub}{https://github.com/user/repo}\cvreference{| \faGlobe}{https://repo-demo.com/}}{Mm YYYY -- Mm YYYY}{}
+            \cvevent{Project 1 }{\cvreference{\faGithub}{https://github.com/user/repo}\cvreference{| \faGlobe}{https://project-demo.com/}}{Mm YYYY -- Mm YYYY}{}
             \begin{itemize}
                 \item Item 1
                 \item Item 2
             \end{itemize}
             \divider
             
-            \cvevent{Project 1 }{\cvreference{| \faGitlab}{https://gitlab.com/user/repo}\cvreference{| \faGlobe}{https://repo-demo.com/}}{Mm YYYY -- Mm YYYY}{}
+            \cvevent{Project 2 }{\cvreference{\faGitlab}{https://gitlab.com/user/repo}\cvreference{| \faGlobe}{https://project-demo.com/}}{Mm YYYY -- Mm YYYY}{}
             \begin{itemize}
                 \item Item 1
                 \item Item 2
