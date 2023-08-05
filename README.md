@@ -41,6 +41,19 @@ Though if you're creating your own CV/résumé, you'd probably prefer using the 
   * Note that to compile with XeLaTeX, you should use a command line as follows, per [the `pdfx` documentation](http://mirrors.ctan.org/macros/latex/contrib/pdfx/pdfx.pdf): `xelatex -shell-escape -output-driver="xdvipdfmx -z 0" sample.tex`
 * The samples here use the [Lato](http://www.latofonts.com/lato-free-fonts/) and [Roboto Slab fonts](https://github.com/googlefonts/robotoslab). Feel free to use a different typeface package instead—often a different typeface will change the entire CV's feel.
 
+## Setup (Ubuntu)
+If you have an ubuntu (should work for .deb based operating systems too) you can follow these installation steps:
+
+- `sudo apt install texlive-latex-extra -y` to install LaTeX.
+- `latex --version` to confirm installation.
+- `sudo apt-get install texlive-fonts-extra` to install required project fonts **keep in mind that this will use about 1.2GB.**
+- Download the [fontawesome5 package](https://ctan.org/pkg/fontawesome5) then extract its contents.
+- `mkdir -p ~/texmf/tex/latex` to create latex libraries directory
+- `mv extracted_fontawesome5_directory ~/texmf/tex/latex` to move the extracted fontawesome5 directory to the libraries directory. Replace `extracted_fontawesome5_directory` with the path to the extracted content.
+- `texhash ~/texmf` To update the database.
+
+Finally, run `pdflatex sample.tex` to compile the Tex file into a PDF.
+
 ## `sample.tex` [WAS `sample-alt.tex` 2 FEBRUARY 2020, DEFAULT SINCE 10 MAY 2020] ##
 Many users have overlooked the optional argument of `\cvsection` to insert the right sidebar contents, and often confused that the right sidebar doesn't automatically break across pages. This new layout uses the `paracol` package for typesetting the left and right columns that _can_ break across pages. It also makes changing the column widths easier:
 
