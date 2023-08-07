@@ -139,6 +139,14 @@ Use `\renewcommand` to change these.
 * `\cvsectionfont`
 * `\cvsubsectionfont`
 
+## Configurable icons
+
+Use `\renewcommand` to change these.
+* `\cvItemMarker`
+* `\cvRatingMarker`
+* `\cvDateMarker`
+* `\cvLocationMarker`
+
 ---
 
 ## `legacy/sample-old.tex`

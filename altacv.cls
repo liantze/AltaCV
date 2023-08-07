@@ -96,15 +96,20 @@
 \colorlet{body}{black!80!white}
 \colorlet{name}{heading}
 \colorlet{tagline}{accent}
-\newcommand{\itemmarker}{{\small\textbullet}}
-\newcommand{\ratingmarker}{\faCircle}
+\newcommand{\cvItemMarker}{{\small\textbullet}}
+\newcommand{\cvRatingMarker}{\faCircle}
+\let\itemmarker\cvItemMarker      % for backward compatibility
+\let\ratingmarker\cvRatingMarker  % for backward compatibility
+\newcommand{\cvDateMarker}{\faCalendar[regular]}
+\newcommand{\cvLocationMarker}{\faMapMarker}
+
 
 \RequirePackage{tikz}
 \usetikzlibrary{arrows}
 \RequirePackage[skins]{tcolorbox}
 \RequirePackage[inline]{enumitem}
 \setlist{leftmargin=*,labelsep=0.5em,nosep,itemsep=0.25\baselineskip,after=\vspace{0.25\baselineskip}}
-\setlist[itemize]{label=\itemmarker}
+\setlist[itemize]{label=\cvItemMarker}
 \RequirePackage{graphicx}
 \RequirePackage{trimclip}
 \RequirePackage{dashrule}
@@ -200,7 +205,7 @@
 \NewInfoField{github}{\faGithub}[https://github.com/]
 % v1.?? Use fontawesome5 for Orcid symbol
 \NewInfoField{orcid}{\faOrcid}[https://orcid.org/]
-\NewInfoField{location}{\faMapMarker}
+\NewInfoField{location}{\cvLocationMarker}
 
 % v1.2: Support for multiple photos
 \newlength{\altacv@photos@width}
@@ -285,8 +290,8 @@
   \ifstrequal{#2}{}{}{
   \textbf{\color{accent}#2}\par
   \smallskip}
-  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar~#3}}}%
-  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker~#4}}}\par
+  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\cvDateMarker~#3}}}%
+  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\cvLocationMarker~#4}}}\par
   \medskip\normalsize
 }
 
@@ -309,9 +314,9 @@
   \BeginAccSupp{method=plain,ActualText={#2}}
   \foreach \x in {1,...,5}{%
     \ifdimequal{\x pt - #2 pt}{0.5pt}%
-    {\clipbox*{0pt -0.25ex {.5\width} {\totalheight}}{\color{accent}\ratingmarker}%
-     \clipbox*{{.5\width} -0.25ex {\width} {\totalheight}}{\color{body!30}\ratingmarker}}
-    {\ifdimgreater{\x bp}{#2 bp}{\color{body!30}}{\color{accent}}\ratingmarker}%
+    {\clipbox*{0pt -0.25ex {.5\width} {\totalheight}}{\color{accent}\cvRatingMarker}%
+     \clipbox*{{.5\width} -0.25ex {\width} {\totalheight}}{\color{body!30}\cvRatingMarker}}
+    {\ifdimgreater{\x bp}{#2 bp}{\color{body!30}}{\color{accent}}\cvRatingMarker}%
   }\EndAccSupp{}\par%
 }
 
