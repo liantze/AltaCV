@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.6.5, 3 Nov 2022) written by
+% This is altacv.cls (v1.7, 9 Aug 2023) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -19,7 +19,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2022/11/03 AltaCV v1.6.5, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2023/08/09 AltaCV v1.7, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 %% v1.4: Nope, academicons is unnecessary; fontawesome5 has \faOrcid.
@@ -96,13 +96,15 @@
 \colorlet{body}{black!80!white}
 \colorlet{name}{heading}
 \colorlet{tagline}{accent}
+% Renamed or added v1.7
 \newcommand{\cvItemMarker}{{\small\textbullet}}
 \newcommand{\cvRatingMarker}{\faCircle}
 \let\itemmarker\cvItemMarker      % for backward compatibility
 \let\ratingmarker\cvRatingMarker  % for backward compatibility
 \newcommand{\cvDateMarker}{\faCalendar[regular]}
 \newcommand{\cvLocationMarker}{\faMapMarker}
-
+\newcommand{\locationname}{Location}
+\newcommand{\datename}{Date}
 
 \RequirePackage{tikz}
 \usetikzlibrary{arrows}
@@ -144,21 +146,27 @@
 %% v1.3.1: using \unfriendlydetokenize to avoid breaking unicode
 %% v1.6: Use accsupp so that when copying/pasting the icon from PDF to a text
 %%       file, the icon name is pasted
+%% v1.7: Some tweaks/corrections so that accsupp is for icons only
 \ExplSyntaxOn
 \NewDocumentCommand{\printinfo}{m m o}{%
-  \BeginAccSupp{method=escape,ActualText={#1:~#2}}
+  % \BeginAccSupp{method=escape,ActualText={#1:~#2}}
   \IfNoValueTF{#3}{%
-    \mbox{\textcolor{accent}{\normalfont #1}~\utffriendlydetokenize{#2}\hspace{2em}}%
+    \mbox{\textcolor{accent}%
+    {\BeginAccSupp{method=escape,ActualText={#1:}}\normalfont #1\EndAccSupp{}}%
+    ~\utffriendlydetokenize{#2}\hspace{2em}}%
   }{%
      \if@withhyper%
-      \mbox{\textcolor{accent}{\normalfont #1}~
-      \href{#3}{\utffriendlydetokenize{#2}}\hspace{2em}}
+      \mbox{\textcolor{accent}%
+      {\BeginAccSupp{method=escape,ActualText={#1:}}\normalfont #1\EndAccSupp{}}%
+      ~\href{#3}{\utffriendlydetokenize{#2}}\hspace{2em}}
      \else%
        \ClassWarning{Please specify [withhyper] option to enable hyperlinks. Printing out full hyperlink prefix #1 for now.}%
-      \mbox{\textcolor{accent}{\normalfont #1}~{\utffriendlydetokenize{#3#2}}\hspace{2em}}%
+      \mbox{\textcolor{accent}
+      {\BeginAccSupp{method=escape,ActualText={#1:}}\normalfont #1\EndAccSupp{}}%
+      ~{\utffriendlydetokenize{#3#2}}\hspace{2em}}%
      \fi%
   }%
-  \EndAccSupp{}
+  % \EndAccSupp{}
 }%
 
 
@@ -284,20 +292,30 @@
 }
 
 % v1.1.4: fixes inconsistent font size
+% v1.7: adds accsupp ActualText for location and date markers
 \newcommand{\cvevent}[4]{%
   {\large\color{emphasis}#1\par}
   \smallskip\normalsize
   \ifstrequal{#2}{}{}{
   \textbf{\color{accent}#2}\par
   \smallskip}
-  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\cvDateMarker~#3}}}%
-  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\cvLocationMarker~#4}}}\par
+  \ifstrequal{#3}{}{}{%
+    {\small\makebox[0.5\linewidth][l]%
+      {\BeginAccSupp{method=pdfstringdef,ActualText={\datename:}}\cvDateMarker\EndAccSupp{}%
+      ~#3}%
+    }}%
+  \ifstrequal{#4}{}{}{%
+    {\small\makebox[0.5\linewidth][l]%
+      {\BeginAccSupp{method=pdfstringdef,ActualText={\locationname:}}\cvLocationMarker\EndAccSupp{}%
+        ~#4}%
+    }}\par
   \medskip\normalsize
 }
 
+% v1.7: adds accsupp for the icon as well
 \newcommand{\cvachievement}[3]{%
   \begin{tabularx}{\linewidth}{@{}p{2em} @{\hspace{1ex}} >{\raggedright\arraybackslash}X@{}}
-  \multirow{2}{*}{\Large\color{accent}#1} & \bfseries\textcolor{emphasis}{#2}\\
+  \multirow{2}{*}{\Large\color{accent}\BeginAccSupp{method=escape,ActualText={#1: }}#1\EndAccSupp{}} & \bfseries\textcolor{emphasis}{#2}\\
   & #3
   \end{tabularx}%
   \smallskip

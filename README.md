@@ -1,8 +1,15 @@
 # AltaCV, yet another LaTeX CV/Résumé class
 
-v1.6.5 (3 Nov 2022), by LianTze Lim (liantze@gmail.com)
+v1.7 (9 Aug 2023), by LianTze Lim (liantze@gmail.com)
 
-* Added \mynames{...} to specify names to be highlighted in the publication list on 3 Nov 2022
+* v1.7 (9 Aug 2023) changes:
+  - `\itemmarker` and `\ratingmarker` renamed to `\cvItemMarker` and `\cvRatingMarker`
+  - Added `\cvLocationMarker` and `\cvDateMarker` so that these icons in `\cvevent`
+    can be re-defined
+  - Added `\locationname` and `\datename` for replacement text of the location and date
+    markers in `\cvevent`
+  - Other tweaks with `accsupp`
+* Added `\mynames{...}` to specify names to be highlighted in the publication list on 3 Nov 2022
 * Starred `\NewInfoField*` command to handle Mastodon; Icons, `\cvskills`, `\wheelchart` have "copyable" text values; `\cvskill` supports numerical values {0.5, 1, ..., 4.5, 5} on 21 May 2021
 * Moved `biblatex`-related code to `*.cfg` files for easier edit on 8 May 2021
 * Removed dependency on `academicons` on 12 Apr 2021
@@ -41,7 +48,10 @@ Though if you're creating your own CV/résumé, you'd probably prefer using the 
   * Note that to compile with XeLaTeX, you should use a command line as follows, per [the `pdfx` documentation](http://mirrors.ctan.org/macros/latex/contrib/pdfx/pdfx.pdf): `xelatex -shell-escape -output-driver="xdvipdfmx -z 0" sample.tex`
 * The samples here use the [Lato](http://www.latofonts.com/lato-free-fonts/) and [Roboto Slab fonts](https://github.com/googlefonts/robotoslab). Feel free to use a different typeface package instead—often a different typeface will change the entire CV's feel.
 
-## `sample.tex` [WAS `sample-alt.tex` 2 FEBRUARY 2020, DEFAULT SINCE 10 MAY 2020] ##
+## `sample.tex` ##
+
+This file was first created as `sample-alt.tex` on 2 Feb 2020. **It is the default sample LaTeX file since 10 May 2020.**
+
 Many users have overlooked the optional argument of `\cvsection` to insert the right sidebar contents, and often confused that the right sidebar doesn't automatically break across pages. This new layout uses the `paracol` package for typesetting the left and right columns that _can_ break across pages. It also makes changing the column widths easier:
 
 ```latex
@@ -120,7 +130,8 @@ then you can use `\mastodon` with TWO arguments where the 2nd argument is the fu
 
 ## Configurable colours
 
-Use `\colorlet` or `\definecolor` to change these.
+Use `\colorlet` or `\definecolor` to change these; see examples 
+in preamble of `sample.tex`.
 * `accent`
 * `emphasis`
 * `heading`
@@ -132,7 +143,8 @@ Use `\colorlet` or `\definecolor` to change these.
 
 ## Configurable fonts
 
-Use `\renewcommand` to change these.
+Use `\renewcommand` to change these; see examples in preamble of
+`sample.tex`.
 * `\namefont`
 * `\taglinefont`
 * `\personalinfofont`
@@ -141,17 +153,33 @@ Use `\renewcommand` to change these.
 
 ## Configurable icons
 
-Use `\renewcommand` to change these.
-* `\cvItemMarker`
-* `\cvRatingMarker`
-* `\cvDateMarker`
-* `\cvLocationMarker`
+Use `\renewcommand` to change these; see examples in preamble of
+`sample.tex`.
+* `\cvItemMarker` (bullets for `itemize`)
+* `\cvRatingMarker` (for `\cvskill`)
+* `\cvDateMarker` (for date in `\cvevent`)
+* `\cvLocationMarker` (for location in `\cvevent` and `\location`)
+
+
+## Is this template ATS-friendly?
+There is some discussion about this in issue #76. No actual claims are made, because we don't really know how each ATS system works. But this template uses `accsupp` to add replacement text for the icons, which may help — e.g. the `\faGithub` icon rendered in the PDF would copy-and-paste from Acrobat Reader, as exactly the text `\faGithub`. 
+
+You could try running `pdftotext -raw sample.pdf` to view the text-only version of the CV, with the columnar layout removed.
+
+Alternatively running `pdftotext -layout sample.pdf` to view the text-only version in a pseudo-two-column layout.
+
+In particular `\locationname` and `\datename` hold the replacement text for the location and date/duration icon in `\cvevent`. These can be re-defined especially if your CV is in a non-English language, e.g. Spanish (see commented examples in preamble of `sample.tex`):
+
+```latex
+\renewcommand{\locationname}{Ubicación}
+\renewcommand{\datename}{Fecha}
+```
 
 ---
 
-## `legacy/sample-old.tex`
+## `legacy/sample-old.tex` (for historical record only)
 
-This is the original sample template file until 5 May 2020. The right sidebar is actually a _`marginpar`_, so it doesn't support footnote and cannot automatically break across pages if it's too long. You would need to split your right sidebar contents into separate files e.g. `p1sidebar.tex` and `p2sidebar.tex`, and insert them as the optional argument of the `\cvsection{...}` that you want to align them with:
+This was the original sample template file until 5 May 2020. The right sidebar is actually a _`marginpar`_, so it doesn't support footnote and cannot automatically break across pages if it's too long. You would need to split your right sidebar contents into separate files e.g. `p1sidebar.tex` and `p2sidebar.tex`, and insert them as the optional argument of the `\cvsection{...}` that you want to align them with:
 
 ```latex
 \cvsection[p1sidebar]{Experience}

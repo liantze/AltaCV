@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%
 % This is an sample CV template created using altacv.cls
-% (v1.6.5, 3 Nov 2022) written by LianTze Lim (liantze@gmail.com), based on the
+% (v1.7, 9 Aug 2023) written by LianTze Lim (liantze@gmail.com), based on the
 % CV created by BusinessInsider at http://www.businessinsider.my/a-sample-resume-for-marissa-mayer-2016-7/?r=US&IR=T
 %
 %% It may be distributed and/or modified under the
@@ -16,7 +16,6 @@
 % \documentclass[10pt,a4paper,normalphoto]{altacv}
 
 \documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
-
 %% AltaCV uses the fontawesome5 package.
 %% See http://texdoc.net/pkg/fontawesome5 for full list of symbols.
 
@@ -29,6 +28,8 @@
 
 % Change the font if you want to, depending on whether
 % you're using pdflatex or xelatex/lualatex
+% WHEN COMPILING WITH XELATEX PLEASE USE
+% xelatex -shell-escape -output-driver="xdvipdfmx -z 0" mmayer.tex
 \ifxetexorluatex
   % If using xelatex or lualatex:
   \setmainfont{Lato}
@@ -60,9 +61,18 @@
 % for \cvskill if you want to
 \renewcommand{\cvItemMarker}{{\small\textbullet}}
 \renewcommand{\cvRatingMarker}{\faCircle}
-% ...and the markers for the duration/location for \cvevent
+% ...and the markers for the date/location for \cvevent
 % \renewcommand{\cvDateMarker}{\faCalendar*[regular]}
 % \renewcommand{\cvLocationMarker}{\faMapMarker*}
+
+
+% If your CV/résumé is in a language other than English,
+% then you probably want to change these so that when you
+% copy-paste from the PDF or run pdftotext, the location
+% and date marker icons for \cvevent will paste as correct
+% translations. For example Spanish:
+% \renewcommand{\locationname}{Ubicación}
+% \renewcommand{\datename}{Fecha}
 
 
 %% Use (and optionally edit if necessary) this .cfg if you
