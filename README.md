@@ -1,6 +1,6 @@
 # AltaCV, yet another LaTeX CV/Résumé class
 
-v1.7 (9 Aug 2023), by LianTze Lim (liantze@gmail.com)
+v1.7.1 (25 Aug 2023), by LianTze Lim (liantze@gmail.com)
 
 * v1.7 (9 Aug 2023) changes:
   - `\itemmarker` and `\ratingmarker` renamed to `\cvItemMarker` and `\cvRatingMarker`
@@ -8,7 +8,7 @@ v1.7 (9 Aug 2023), by LianTze Lim (liantze@gmail.com)
     can be re-defined
   - Added `\locationname` and `\datename` for replacement text of the location and date
     markers in `\cvevent`
-  - Other tweaks with `accsupp`
+  - Other tweaks with `accsupp` (with another bugfix in v1.7.1.)
 * Added `\mynames{...}` to specify names to be highlighted in the publication list on 3 Nov 2022
 * Starred `\NewInfoField*` command to handle Mastodon; Icons, `\cvskills`, `\wheelchart` have "copyable" text values; `\cvskill` supports numerical values {0.5, 1, ..., 4.5, 5} on 21 May 2021
 * Moved `biblatex`-related code to `*.cfg` files for easier edit on 8 May 2021

@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.7, 9 Aug 2023) written by
+% This is altacv.cls (v1.7.1, 25 Aug 2023) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -19,7 +19,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2023/08/09 AltaCV v1.7, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2023/08/25 AltaCV v1.7.1, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 %% v1.4: Nope, academicons is unnecessary; fontawesome5 has \faOrcid.
@@ -117,7 +117,6 @@
 \RequirePackage{dashrule}
 \RequirePackage{multirow,tabularx}
 \RequirePackage{changepage}
-% \RequirePackage{marginfix}
 
 \setlength{\parindent}{0pt}
 \newcommand{\divider}{\textcolor{body!30}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}\medskip}
@@ -147,26 +146,25 @@
 %% v1.6: Use accsupp so that when copying/pasting the icon from PDF to a text
 %%       file, the icon name is pasted
 %% v1.7: Some tweaks/corrections so that accsupp is for icons only
+%% v1.7.1: Bugfix to support some symbol commands e.g. academicons commands 
 \ExplSyntaxOn
 \NewDocumentCommand{\printinfo}{m m o}{%
-  % \BeginAccSupp{method=escape,ActualText={#1:~#2}}
   \IfNoValueTF{#3}{%
     \mbox{\textcolor{accent}%
-    {\BeginAccSupp{method=escape,ActualText={#1:}}\normalfont #1\EndAccSupp{}}%
+    {\BeginAccSupp{method=escape,ActualText={\detokenize{#1}:}}\normalfont #1\EndAccSupp{}}%
     ~\utffriendlydetokenize{#2}\hspace{2em}}%
   }{%
      \if@withhyper%
       \mbox{\textcolor{accent}%
-      {\BeginAccSupp{method=escape,ActualText={#1:}}\normalfont #1\EndAccSupp{}}%
+      {\BeginAccSupp{method=escape,ActualText={\detokenize{#1}:}}\normalfont #1\EndAccSupp{}}%
       ~\href{#3}{\utffriendlydetokenize{#2}}\hspace{2em}}
      \else%
        \ClassWarning{Please specify [withhyper] option to enable hyperlinks. Printing out full hyperlink prefix #1 for now.}%
       \mbox{\textcolor{accent}
-      {\BeginAccSupp{method=escape,ActualText={#1:}}\normalfont #1\EndAccSupp{}}%
+      {\BeginAccSupp{method=escape,ActualText={\detokenize{#1}:}}\normalfont #1\EndAccSupp{}}%
       ~{\utffriendlydetokenize{#3#2}}\hspace{2em}}%
      \fi%
   }%
-  % \EndAccSupp{}
 }%
 
 
