@@ -212,6 +212,8 @@
 % v1.?? Use fontawesome5 for Orcid symbol
 \NewInfoField{orcid}{\faOrcid}[https://orcid.org/]
 \NewInfoField{location}{\cvLocationMarker}
+\NewInfoField{birthday}{\faBirthdayCake}
+
 
 % v1.2: Support for multiple photos
 \newlength{\altacv@photos@width}
