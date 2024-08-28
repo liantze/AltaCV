@@ -1,7 +1,10 @@
 # AltaCV, yet another LaTeX CV/Résumé class
 
-v1.7.1 (25 Aug 2023), by LianTze Lim (liantze@gmail.com)
+v1.7.2 (25 Aug 2024), by LianTze Lim (liantze@gmail.com)
 
+* 1.7.2 (25 Aug 2024) changes:
+  - Added `simpleicons` package to provide icon for X.com
+  - Added `\xtwitter` to replace `\twitter`
 * v1.7 (9 Aug 2023) changes:
   - `\itemmarker` and `\ratingmarker` renamed to `\cvItemMarker` and `\cvRatingMarker`
   - Added `\cvLocationMarker` and `\cvDateMarker` so that these icons in `\cvevent`

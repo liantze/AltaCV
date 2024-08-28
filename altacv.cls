@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.7.1, 25 Aug 2023) written by
+% This is altacv.cls (v1.7.2, 25 Aug 2024) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -19,7 +19,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2023/08/25 AltaCV v1.7.1, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2024/08/25 AltaCV v1.7.2, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 %% v1.4: Nope, academicons is unnecessary; fontawesome5 has \faOrcid.
@@ -43,6 +43,8 @@
 \RequirePackage{accsupp}
 \RequirePackage[margin=2cm]{geometry}
 \RequirePackage[fixed]{fontawesome5}
+% v1.7.2 Add simpleicons to provide X icon
+\RequirePackage{simpleicons}
 \RequirePackage{ifxetex,ifluatex}
 \RequirePackage{scrlfile}
 \RequirePackage{xparse}
@@ -207,6 +209,8 @@
 \NewInfoField{phone}{\faPhone}[tel:]
 \NewInfoField{homepage}{\faGlobe}[https://]
 \NewInfoField{twitter}{\faTwitter}[https://twitter.com/]
+% v1.7.2 twitter.com is now X.com
+\NewInfoField{xtwitter}{\raisebox{-0.2ex}{\scalebox{0.95}{\simpleicon{x}}}\,}[https://x.com/]
 \NewInfoField{linkedin}{\faLinkedin}[https://linkedin.com/in/]
 \NewInfoField{github}{\faGithub}[https://github.com/]
 % v1.?? Use fontawesome5 for Orcid symbol
