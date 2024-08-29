@@ -156,12 +156,12 @@
   }{%
      \if@withhyper%
       \mbox{\textcolor{accent}%
-      {\BeginAccSupp{method=escape,ActualText={\detokenize{#1}:}}\normalfont #1\EndAccSupp{}}%
+      {\BeginAccSupp{method=escape,ActualText={\detokenize{#1}:}}\normalfont{#1}\EndAccSupp{}}%
       ~\href{#3}{\utffriendlydetokenize{#2}}\hspace{2em}}
      \else%
        \ClassWarning{Please specify [withhyper] option to enable hyperlinks. Printing out full hyperlink prefix #1 for now.}%
       \mbox{\textcolor{accent}
-      {\BeginAccSupp{method=escape,ActualText={\detokenize{#1}:}}\normalfont #1\EndAccSupp{}}%
+      {\BeginAccSupp{method=escape,ActualText={\detokenize{#1}:}}\normalfont{#1}\EndAccSupp{}}%
       ~{\utffriendlydetokenize{#3#2}}\hspace{2em}}%
      \fi%
   }%
@@ -254,10 +254,10 @@
 }
 \let\photo\photoR
 
-\newcommand{\namefont}{\Huge\bfseries}
+\newcommand{\namefont}{\Huge\bfseries\MakeUppercase}
 \newcommand{\taglinefont}{\large\bfseries}
 \newcommand{\personalinfofont}{\footnotesize\bfseries}
-\newcommand{\cvsectionfont}{\LARGE\bfseries}
+\newcommand{\cvsectionfont}{\LARGE\bfseries\MakeUppercase}
 \newcommand{\cvsubsectionfont}{\large\bfseries}
 
 \newcommand{\makecvheader}{%
@@ -265,11 +265,11 @@
     \altacv@left@photos\hfill%
     \begin{minipage}{\dimexpr\linewidth-\altacv@photos@width}%
     \raggedright%
-    {\namefont\color{name}\MakeUppercase{\@name}\par}
+    {\color{name}\namefont{\@name}\par}
     \medskip
-    {\taglinefont\color{tagline}\@tagline\par}
+    {\color{tagline}\taglinefont{\@tagline}\par}
     \medskip
-    {\personalinfofont\@personalinfo\par}
+    {\personalinfofont{\@personalinfo}\par}
     \end{minipage}\hfill%
     \altacv@right@photos\par%
   \endgroup\medskip
@@ -280,7 +280,7 @@
 \newcommand{\cvsection}[2][]{%
   \nointerlineskip\bigskip%  %% bugfix in v1.6.2
   \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
-  {\color{heading}\cvsectionfont\MakeUppercase{#2}}\\[-1ex]%
+  {\color{heading}\cvsectionfont{#2}}\\[-1ex]%
   {\color{headingrule}\rule{\linewidth}{2pt}\par}\medskip
 }
 
