@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.7.2, 25 Aug 2024) written by
+% This is altacv.cls (v1.7.3, 31 Oct 2024) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -19,10 +19,11 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2024/08/25 AltaCV v1.7.2, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2024/10/31 AltaCV v1.7.3, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 %% v1.4: Nope, academicons is unnecessary; fontawesome5 has \faOrcid.
+%% v1.7.3: Re backward compatibility we'll now load academicons automatically for \aiOrcid if ≤TL2019 i.e. if \faOrcid undefined
 \DeclareOption{academicons}{\ClassWarning{altacv}{academicons option is now obsolete and unnecessary.}}
 %% v1.1.3: Choice of round/square photo
 \newif\if@normalphoto
@@ -36,32 +37,40 @@
 \ProcessOptions\relax
 
 \LoadClass{extarticle}
+\RequirePackage{etoolbox}
+% v1.7.3 Load xcolor early to avoid receiving `hyperref` option from pdfx package
+\RequirePackage{xcolor}
 %% v1.3.2 Hopefully this helps make the PDF
 %% file more 'friendly' with copy-paste etc
-\RequirePackage{etoolbox}
 \RequirePackage[a-1b]{pdfx}
 \RequirePackage{accsupp}
-\RequirePackage[margin=2cm]{geometry}
-\RequirePackage[fixed]{fontawesome5}
-% v1.7.2 Add simpleicons to provide X icon
-\RequirePackage{simpleicons}
-\RequirePackage{ifxetex,ifluatex}
-\RequirePackage{scrlfile}
+%% v1.7.3 Avoid 'Token not allowed' when \\ used with accsupp
+\pdfstringdefDisableCommands{
+  \let\\\space
+}
 \RequirePackage{xparse}
+\RequirePackage[margin=2cm]{geometry}
+\RequirePackage[fixed]{fontawesome5}%[2020-01-15]
 
-%% v1.1.5: added for convenience
-\newif\ifxetexorluatex
-\ifxetex
-  \xetexorluatextrue
-\else
-  \ifluatex
-    \xetexorluatextrue
+% 1.7.3 For backward compatibility
+\providecommand\IfFormatAtLeastTF{\@ifl@t@r\fmtversion}
+\IfFormatAtLeastTF{2021-11-15}{}{\RequirePackage{scrlfile}}
+
+% v1.7.2 Add simpleicons to provide X icon
+% v1.7.3 But first check if the package files exist
+\IfFileExists{simpleiconsglyphs-pdftex.tex}{\RequirePackage{simpleicons}}{}
+
+% v1.7.3 Use iftex for easier access to \iftutex
+\RequirePackage{iftex}
+% ...but still check for backward compatibility
+\ifundef{\iftutex}{%
+  \newif\iftutex
+  \ifxetex\tutextrue
   \else
-    \xetexorluatexfalse
+    \ifluatex\tutextrue\else\tutexfalse\fi
   \fi
-\fi
-
-\ifxetexorluatex
+}{}
+\iftutex 
   \RequirePackage{fontspec}
 \else
   %% v1.3.2 attempts to make ligatures
@@ -81,14 +90,14 @@
   \RequirePackage[newcommands]{ragged2e}
 \fi
 
+% 1.7.3 For backward compatibility re hooks management
 \if@withhyper
-  \AtBeginDocument{%
-    \hypersetup{hidelinks}
-    \urlstyle{same}
-  }
+\IfFormatAtLeastTF{2020-10-01}{%
+  \AddToHook{begindocument/before}{\hypersetup{hidelinks}\urlstyle{same}}
+}{%
+  \AtBeginDocument{\hypersetup{hidelinks}\urlstyle{same}}
+}
 \fi
-
-\RequirePackage{xcolor}
 
 \colorlet{accent}{blue!70!black}
 \colorlet{emphasis}{black}
@@ -144,7 +153,7 @@
 }%
 }
 %% v1.3: Incorporating hyperlinks
-%% v1.3.1: using \unfriendlydetokenize to avoid breaking unicode
+%% v1.3.1: using \utffriendlydetokenize to avoid breaking unicode
 %% v1.6: Use accsupp so that when copying/pasting the icon from PDF to a text
 %%       file, the icon name is pasted
 %% v1.7: Some tweaks/corrections so that accsupp is for icons only
@@ -176,7 +185,7 @@
   \IfBooleanF{#1}{
     \IfNoValueF{#4}{\csdef{#2 hyperprefix}{#4}}%
   }
-  \csdef{#2 symbol}{#3}%
+  \csdef{#2 symbol}{#3}
   \IfBooleanTF{#1}
     { \csdef{#2}##1##2{%
         \if@withhyper
@@ -209,12 +218,25 @@
 \NewInfoField{phone}{\faPhone}[tel:]
 \NewInfoField{homepage}{\faGlobe}[https://]
 \NewInfoField{twitter}{\faTwitter}[https://twitter.com/]
-% v1.7.2 twitter.com is now X.com
-\NewInfoField{xtwitter}{\raisebox{-0.2ex}{\scalebox{0.95}{\simpleicon{x}}}\,}[https://x.com/]
+% v1.7.2 twitter.com is now X.com; v1.7.3 but only use the new icon if it's been defined
+\ifcsdef{simpleicon@xicon}
+ {\NewInfoField{xtwitter}{\raisebox{-0.2ex}{\scalebox{0.95}{\simpleicon{x}}}\,}[https://x.com/]}
+ {\let\xtwitter\twitter%
+  \pretocmd{\xtwitter}{\ClassWarning{altacv}{You tried to use \string\xtwitter, but the new X icon isn't available. Please ensure you have updated the `simpleicons' package. Falling back to \string\twitter\space icon for now}}{}{}%
+ }
 \NewInfoField{linkedin}{\faLinkedin}[https://linkedin.com/in/]
 \NewInfoField{github}{\faGithub}[https://github.com/]
-% v1.?? Use fontawesome5 for Orcid symbol
-\NewInfoField{orcid}{\faOrcid}[https://orcid.org/]
+% v1.7.3 Backward compatibility for ORCiD icon
+\ifdef{\faOrcid}{
+  \NewInfoField{orcid}{\faOrcid}[https://orcid.org/]
+}{\iftutex
+    \RequirePackage{academicons}
+    \NewInfoField{orcid}{\aiOrcid\space}[https://orcid.org/]
+  \else
+    \ClassWarning{altacv}{ORCID icon for \string\orcid\space unavailable in pdflatex. Please compile with XeLaTeX or LuaLaTeX; or upgrade your LaTeX distribution and packages}
+    \NewInfoField{orcid}{\fbox{O?}\space}[https://orcid.org/]
+  \fi
+}
 \NewInfoField{location}{\cvLocationMarker}
 
 % v1.2: Support for multiple photos
@@ -425,32 +447,54 @@
 \def\my@namelist{}
 \newcommand{\mynames}[1]{\def\my@namelist{#1}}
 \newtoggle{boldname}
-\AddToHook{package/biblatex/after}{
-\renewcommand*{\mkbibnamefamily}[1]{%
-  \global\togglefalse{boldname}%
-  \foreach \my@fname / \my@gname in \my@namelist {%
-    \ifboolexpr{ test {\ifdefstrequal{\namepartfamily}{\my@fname}}
-                 and
-                 test {\ifdefstrequal{\namepartgiven}{\my@gname}}}
-      {\global\toggletrue{boldname}}{}%
+% v1.7.3 For backward compatibility re hooks management
+\IfFormatAtLeastTF{2021-11-15}{%
+  \AddToHook{package/biblatex/after}{%
+    \typeout{OK AddToHook biblatex after works}
+    \altacv@makeboldnames
   }%
-  \iftoggle{boldname}{\textbf{#1}}{#1}%
+}{%
+  \AfterPackage{biblatex}{%
+    \typeout{OK AfterPackage biblatex after works}
+    \altacv@makeboldnames
+  }%
 }
 
-\renewcommand*{\mkbibnamegiven}[1]{%
-  \global\togglefalse{boldname}%
-  \foreach \my@fname / \my@gname in \my@namelist{%
-    \ifboolexpr{ test {\ifdefstrequal{\namepartfamily}{\my@fname}}
-                 and
-                 test {\ifdefstrequal{\namepartgiven}{\my@gname}}}
-      {\global\toggletrue{boldname}\breakforeach}{}%
+\newcommand{\altacv@makeboldnames}{%
+  \renewcommand*{\mkbibnamefamily}[1]{%
+    \global\togglefalse{boldname}%
+    \foreach \my@fname / \my@gname in \my@namelist {%
+      \ifboolexpr{ test {\ifdefstrequal{\namepartfamily}{\my@fname}}
+                   and
+                   test {\ifdefstrequal{\namepartgiven}{\my@gname}}}
+        {\global\toggletrue{boldname}\typeout{YES BOLD NAMES}}{}%
+    }%
+    \iftoggle{boldname}{\textbf{##1}}{##1}%
   }%
-  \iftoggle{boldname}{\textbf{#1}}{#1}%
-}
+% 
+  \renewcommand*{\mkbibnamegiven}[1]{%
+    \global\togglefalse{boldname}%
+    \foreach \my@fname / \my@gname in \my@namelist{%
+      \ifboolexpr{ test {\ifdefstrequal{\namepartfamily}{\my@fname}}
+                   and
+                   test {\ifdefstrequal{\namepartgiven}{\my@gname}}}
+        {\global\toggletrue{boldname}\breakforeach}{}%
+    }%
+    \iftoggle{boldname}{\textbf{##1}}{##1}%
+  }
 }
 
-\AddToHook{begindocument/before}{%
-  \pagestyle{empty}
-  \color{body}
-  \raggedright
+% 1.7.3 Backward compatibility for hooks management
+\IfFormatAtLeastTF{2020-10-01}{%
+  \AddToHook{begindocument/before}{%
+    \pagestyle{empty}%
+    \color{body}%
+    \raggedright%
+  }
+}{%
+  \AtBeginDocument{%
+    \pagestyle{empty}%
+    \color{body}%
+    \raggedright%
+  }
 }

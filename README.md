@@ -1,23 +1,6 @@
 # AltaCV, yet another LaTeX CV/Résumé class
 
-v1.7.2 (25 Aug 2024), by LianTze Lim (liantze@gmail.com)
-
-* 1.7.2 (25 Aug 2024) changes:
-  - Added `simpleicons` package to provide icon for X.com
-  - Added `\xtwitter` to replace `\twitter`
-* v1.7 (9 Aug 2023) changes:
-  - `\itemmarker` and `\ratingmarker` renamed to `\cvItemMarker` and `\cvRatingMarker`
-  - Added `\cvLocationMarker` and `\cvDateMarker` so that these icons in `\cvevent`
-    can be re-defined
-  - Added `\locationname` and `\datename` for replacement text of the location and date
-    markers in `\cvevent`
-  - Other tweaks with `accsupp` (with another bugfix in v1.7.1.)
-* Added `\mynames{...}` to specify names to be highlighted in the publication list on 3 Nov 2022
-* Starred `\NewInfoField*` command to handle Mastodon; Icons, `\cvskills`, `\wheelchart` have "copyable" text values; `\cvskill` supports numerical values {0.5, 1, ..., 4.5, 5} on 21 May 2021
-* Moved `biblatex`-related code to `*.cfg` files for easier edit on 8 May 2021
-* Removed dependency on `academicons` on 12 Apr 2021
-* Clickable hyperlinked info fields added on 10 May 2020
-* Sample file with new `paracol` layout added on 2 February 2020
+v1.7.3 (31 Oct 2024), by LianTze Lim (liantze@gmail.com)
 
 (Thanks to [Nur](https://github.com/nurh) for the name.)
 
@@ -42,7 +25,7 @@ Though if you're creating your own CV/résumé, you'd probably prefer using the 
 ## Requirements and Compilation
 
 * pdflatex + biber + pdflatex
-* AltaCV uses [`fontawesome5`](http://www.ctan.org/pkg/fontawesome5).
+* AltaCV uses [`fontawesome5`](http://www.ctan.org/pkg/fontawesome5) (≥ v5.12.0), and [simpleicons](http://www.ctan.org/pkg/fontawesome5) (≥ v9.9.0) for the new X icon.
 * Use the `normalphoto` option to get normal (i.e. non-circular) photos.
 * As of v1.2 you can add multiple photos on the left or right: `\photoL{2cm}{logo1}` and `\photoR{2.5cm}{logo2,photo}`. (`\photo` will work like `\photoR`.) Separate your image filenames with commas _without_ spaces.
 * Use the `ragged2e` option to activate hyphenations while keeping text left-justified; line endings will thus be less jagged and more aesthetically pleasing.
