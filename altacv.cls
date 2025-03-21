@@ -42,6 +42,7 @@
 \RequirePackage{xcolor}
 %% v1.3.2 Hopefully this helps make the PDF
 %% file more 'friendly' with copy-paste etc
+\RequirePackage{luatex85}
 \RequirePackage[a-1b]{pdfx}
 \RequirePackage{accsupp}
 %% v1.7.3 Avoid 'Token not allowed' when \\ used with accsupp
