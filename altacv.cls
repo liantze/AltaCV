@@ -471,17 +471,10 @@
     }%
     \iftoggle{boldname}{\textbf{##1}}{##1}%
   }%
-% 
-  \renewcommand*{\mkbibnamegiven}[1]{%
-    \global\togglefalse{boldname}%
-    \foreach \my@fname / \my@gname in \my@namelist{%
-      \ifboolexpr{ test {\ifdefstrequal{\namepartfamily}{\my@fname}}
-                   and
-                   test {\ifdefstrequal{\namepartgiven}{\my@gname}}}
-        {\global\toggletrue{boldname}\breakforeach}{}%
-    }%
-    \iftoggle{boldname}{\textbf{##1}}{##1}%
-  }
+  % v1.7.4 will handle "von" "van" etc prefixes and "Jr" etc suffixes too
+  \let\mkbibnamegiven\mkbibnamefamily%
+  \let\mkbibnameprefix\mkbibnamefamily%
+  \let\mkbibnamesuffix\mkbibnamefamily%
 }
 
 % 1.7.3 Backward compatibility for hooks management
