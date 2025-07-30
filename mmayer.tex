@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%
 % This is an sample CV template created using altacv.cls
-% (v1.7.2, 28 Aug 2024) written by LianTze Lim (liantze@gmail.com), based on the
+% (v1.7.4, 30 Jul 2025) written by LianTze Lim (liantze@gmail.com), based on the
 % CV created by BusinessInsider at http://www.businessinsider.my/a-sample-resume-for-marissa-mayer-2016-7/?r=US&IR=T
 %
 %% It may be distributed and/or modified under the
@@ -13,9 +13,9 @@
 %%%%%%%%%%%%%%%%
 
 %% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
-% \documentclass[10pt,a4paper,normalphoto]{altacv}
+% \documentclass[10pt,a4paper,withhypeper,normalphoto]{altacv}
 
-\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+\documentclass[10pt,a4paper,withhyper]{altacv}
 %% AltaCV uses the fontawesome5 and simpleicons packages.
 %% See http://texdoc.net/pkg/fontawesome5 and http://texdoc.net/pkg/simpleicons for full list of symbols.
 
@@ -97,20 +97,19 @@
 % \photoL{2cm}{Yacht_High,Suitcase_High}
 \personalinfo{%
   % Not all of these are required!
-  % You can add your own with \printinfo{symbol}{detail}
   \email{mmayer@yahoo-inc.com}
-%   \phone{000-00-0000}
+  \phone{000-00-0000}
   \mailaddress{Address, Street, 00000 County}
   \location{Sunnyvale, CA}
-  \homepage{marissamayr.tumblr.com}
+  \linkedin{marissamayer}
   % \twitter{@marissamayer}
   \xtwitter{@marissamayer}
-  \linkedin{marissamayer}
+  \homepage{marissamayr.tumblr.com}
 %   \github{github.com/mmayer} % I'm just making this up though.
 %   \orcid{0000-0000-0000-0000} % Obviously making this up too.
   %% You can add your own arbitrary detail with
   %% \printinfo{symbol}{detail}[optional hyperlink prefix]
-  % \printinfo{\faPaw}{Hey ho!}
+  %% \printinfo{\faPaw}{Hey ho!}
   %% Or you can declare your own field with
   %% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
   % \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
@@ -266,10 +265,10 @@
 \cvsection{Languages}
 
 \cvskill{English}{5}
-% \divider
+\divider
 
 \cvskill{Spanish}{4}
-% \divider
+\divider
 
 \cvskill{German}{3.5} %% supports X.5 values.
 
@@ -288,12 +287,12 @@
 
 % \cvref{name}{email}{mailing address}
 \cvref{Prof.\ Alpha Beta}{Institute}{a.beta@university.edu}
-{Address Line 1\\Address line 2}
+{Address Line 1\\Address Line 2}
 
 \divider
 
 \cvref{Prof.\ Gamma Delta}{Institute}{g.delta@university.edu}
-{Address Line 1\\Address line 2}
+{Address Line 1\\Address Line 2}
 
 \end{paracol}
 

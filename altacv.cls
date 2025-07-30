@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.7.3, 31 Oct 2024) written by
+% This is altacv.cls (v1.7.4, 30 Jul 2025) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -19,7 +19,7 @@
 
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{altacv}[2024/10/31 AltaCV v1.7.3, yet another alternative class for a resume/curriculum vitae.]
+\ProvidesClass{altacv}[2025/07/30 AltaCV v1.7.4, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 %% v1.4: Nope, academicons is unnecessary; fontawesome5 has \faOrcid.
@@ -32,12 +32,15 @@
 \newif\if@raggedtwoe
 \DeclareOption{ragged2e}{\@raggedtwoetrue}
 %% v1.3: load hyperref for clickable hyperlinks
-\newif\if@withhyper
+\newif\if@withhyper\@withhyperfalse
 \DeclareOption{withhyper}{\@withhypertrue}
 \ProcessOptions\relax
 
 \LoadClass{extarticle}
 \RequirePackage{etoolbox}
+%% v1.7.4: use etoolbox toggles to fix accsupp ActualText bugs when withhyper enabled
+\newtoggle{withhyper}\togglefalse{withhyper}
+\if@withhyper\toggletrue{withhyper}\fi
 % v1.7.3 Load xcolor early to avoid receiving `hyperref` option from pdfx package
 \RequirePackage{xcolor}
 %% v1.3.2 Hopefully this helps make the PDF
@@ -91,13 +94,12 @@
 \fi
 
 % 1.7.3 For backward compatibility re hooks management
-\if@withhyper
+\iftoggle{withhyper}{%
 \IfFormatAtLeastTF{2020-10-01}{%
   \AddToHook{begindocument/before}{\hypersetup{hidelinks}\urlstyle{same}}
 }{%
   \AtBeginDocument{\hypersetup{hidelinks}\urlstyle{same}}
-}
-\fi
+}}{}
 
 \colorlet{accent}{blue!70!black}
 \colorlet{emphasis}{black}
@@ -159,22 +161,26 @@
 %% v1.7: Some tweaks/corrections so that accsupp is for icons only
 %% v1.7.1: Bugfix to support some symbol commands e.g. academicons commands 
 \ExplSyntaxOn
-\NewDocumentCommand{\printinfo}{m m o}{%
-  \IfNoValueTF{#3}{%
+\NewDocumentCommand{\printinfo}{o m m o}{%
+  \IfNoValueTF{#4}{%
     \mbox{\textcolor{accent}%
-    {\BeginAccSupp{method=escape,ActualText={\detokenize{#1}:}}\normalfont #1\EndAccSupp{}}%
-    ~\utffriendlydetokenize{#2}\hspace{2em}}%
-  }{%
-     \if@withhyper%
+    {\BeginAccSupp{method=escape,ActualText={\IfNoValueTF{#1}{\detokenize{#2}}{#1}:\space}}\normalfont #2\EndAccSupp{}}%
+    ~\utffriendlydetokenize{#3}\hspace{2em}}%
+  }{% v1.7.4: fix accsupp ActualText bugs when withhyper enabled
+    \iftoggle{withhyper}{%
       \mbox{\textcolor{accent}%
-      {\BeginAccSupp{method=escape,ActualText={\detokenize{#1}:}}\normalfont #1\EndAccSupp{}}%
-      ~\href{#3}{\utffriendlydetokenize{#2}}\hspace{2em}}
-     \else%
+      {\BeginAccSupp{method=escape,ActualText={\IfNoValueTF{#1}{\detokenize{#2}}{#1}:\space}}\normalfont #2\EndAccSupp{}}%
+      ~%
+      \BeginAccSupp{method=escape,ActualText={#4}}%
+      \href{#4}{\utffriendlydetokenize{#3}}%
+      \EndAccSupp{}%
+      \hspace{2em}}%
+     }{%
        \ClassWarning{Please specify [withhyper] option to enable hyperlinks. Printing out full hyperlink prefix #1 for now.}%
       \mbox{\textcolor{accent}
-      {\BeginAccSupp{method=escape,ActualText={\detokenize{#1}:}}\normalfont #1\EndAccSupp{}}%
-      ~{\utffriendlydetokenize{#3#2}}\hspace{2em}}%
-     \fi%
+      {\BeginAccSupp{method=escape,ActualText={\IfNoValueTF{#1}{\detokenize{#2}}{#1}:\space}}\normalfont #2\EndAccSupp{}}%
+      ~{\utffriendlydetokenize{#4}}\hspace{2em}}%
+    }%
   }%
 }%
 
@@ -188,23 +194,15 @@
   \csdef{#2 symbol}{#3}
   \IfBooleanTF{#1}
     { \csdef{#2}##1##2{%
-        \if@withhyper
-          \IfNoValueTF {##2}
-            {\printinfo{\csuse{#2 symbol}}{##1}}%
-            {\printinfo{\csuse{#2 symbol}}{##1}[##2]}%
-        \else
-          \printinfo{\csuse{#2 symbol}}{##1}%
-        \fi%
+        \IfNoValueTF {##2}
+          {\printinfo[#2]{\csuse{#2 symbol}}{##1}}%
+          {\printinfo[#2]{\csuse{#2 symbol}}{##1}[##2]}%
       }%
     }
     { \csdef{#2}##1{%
-        \if@withhyper
-          \IfNoValueTF {#4}
-            {\printinfo{\csuse{#2 symbol}}{##1}}%
-            {\printinfo{\csuse{#2 symbol}}{##1}[\csuse{#2 hyperprefix}##1]}%
-        \else
-          \printinfo{\csuse{#2 symbol}}{##1}%
-        \fi%
+        \IfNoValueTF {#4}
+          {\printinfo[#2]{\csuse{#2 symbol}}{##1}}%
+          {\printinfo[#2]{\csuse{#2 symbol}}{##1}[\csuse{#2 hyperprefix}##1]}%
       }%
     }
 }
@@ -467,7 +465,7 @@
       \ifboolexpr{ test {\ifdefstrequal{\namepartfamily}{\my@fname}}
                    and
                    test {\ifdefstrequal{\namepartgiven}{\my@gname}}}
-        {\global\toggletrue{boldname}\typeout{YES BOLD NAMES}}{}%
+        {\global\toggletrue{boldname}}{}%
     }%
     \iftoggle{boldname}{\textbf{##1}}{##1}%
   }%

@@ -1,5 +1,9 @@
 # AltaCV (messy) change logs
 
+* 1.7.4 (30 Jul 2025) changes:
+  - Fixes `accsupp` `ActualText` bugs when `withhyper` option is enabled. Full hyperlinks to LinkedIn, ORCiD profiles etc should now be captured with `pdftotext`.
+  - When using `\mynames`, family name prefixes such as 'von', 'van' and suffices such as 'Jr' should now be automatically bold, as long as the family- and given-name pairs passed to `\mynames` match an author/editor of a publication.
+
 * 1.7.3 (31 Oct 2024) changes:
   - Adds backward compatibility checks for
     - hooks management re LaTeX 2020-10-01 (`\AtBeginDocument` vs `\AddToHook{begindocument/before}) and 2021-11-15 (`\AfterPackage` vs `\AddToHook{package/.../after}`)
